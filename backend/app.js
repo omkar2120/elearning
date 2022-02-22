@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config({path:"./config.env"});
 const PORT=process.env.PORT ;
 
-
+require("./database/connect");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
