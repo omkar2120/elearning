@@ -27,4 +27,11 @@ const User = new mongoose.Schema({
     }
 },{timestamps:true});
 
+User.pre("save",async function(next){                   // to  bcrpty the password
+    if(this.isModified('password')){
+        this.password = await bcrypt.hash(this.password,12);
+    }
+    next();
+})
+
 module.exports=mongoose.model("USER",User);
