@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Container, CssBaseline, Divider } from '@mui/material';
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
@@ -28,7 +29,7 @@ const Navbar = () => {
 
              <Toolbar sx={{ justifySelf:'flex-end'}}>
                <Button color="inherit" variant='outlined' sx={{borderRadius:7 , marginRight:'10px'}}>Teacher Login</Button>
-               <Button variant='contained' sx={{borderRadius:7 , color:'#fafafa'}}>Student Login </Button>
+            <Link to="/studlogin"><Button variant='contained' sx={{borderRadius:7 , color:'#fafafa',textDecoration:'none'}}>Student Login </Button></Link>
              </Toolbar>
         </Toolbar>
       </AppBar>
