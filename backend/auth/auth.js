@@ -3,6 +3,7 @@ const course=require("../models/course.schema")
 const validator = require("validator");
 const jwt=require("jsonwebtoken")
 const bcrypt=require("bcrypt")
+require("dotenv").config()
 exports.addProfile = async (req, res) => {
   try {
     const { fullname, email, mobile, password, role,course } = req.body;
@@ -40,6 +41,7 @@ exports.adminSignIn=async(req,res)=>{
         if(!await bcrypt.compare(password,isValidUser.password))
         return res.status(400).send("invalid details!")
         dataToSend.user=isValidUser
+        dataToSend.token=await jwt.sign({id:isValidUser._id},process.env.SECRETKEY)
         dataToSend.courses=[]
         const totalCourse=await course.find({});
         for(let i=0;i<totalCourse.length;i++){
