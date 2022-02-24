@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const bcrypt=require("bcrypt")
 const User = new mongoose.Schema({
   
     fullname:{
@@ -22,7 +22,7 @@ const User = new mongoose.Schema({
     },
     role:{
         type:String,
-        enum:["teacher","admin"],
+        enum:["teacher","admin","student"],
         default:"student"
     }
 },{timestamps:true});
