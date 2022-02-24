@@ -1,10 +1,11 @@
 const auth = require("../models/userSchema");
+const course=require("../models/course.schema")
 const validator = require("validator");
 const jwt=require("jsonwebtoken")
 const bcrypt=require("bcrypt")
 exports.addProfile = async (req, res) => {
   try {
-    const { fullname, email, mobile, password, role } = req.body;
+    const { fullname, email, mobile, password, role,course } = req.body;
     console.log(fullname, email, mobile, password, role);
     if (!fullname || !email || !mobile || !password || !role)
       return res.status(400).send("all field is required!");
@@ -12,7 +13,7 @@ exports.addProfile = async (req, res) => {
       return res.status(400).send("invalid email!");
     else if (!validator.isMobilePhone(mobile, "en-IN"))
       return res.status(400).send("invalid mobile!");
-    const user=new auth({fullname, email, mobile, password, role})
+    const user=new auth({fullname, email, mobile, password, role,course})
     console.log(user.role)
     if(user.role!="admin"&&user.role!="teacher"&&user.role!="student")
     return res.status(400).send("role is not valid!")
@@ -28,6 +29,7 @@ exports.addProfile = async (req, res) => {
 exports.adminSignIn=async(req,res)=>{
     try{
         const {email,password}=req.body
+        let dataToSend={}
         if(!email||!password)
         res.status(400).send("fill the field!")
         else if(!validator.isEmail(email))
@@ -37,7 +39,19 @@ exports.adminSignIn=async(req,res)=>{
         return res.status(400).send("invalid details!")
         if(!await bcrypt.compare(password,isValidUser.password))
         return res.status(400).send("invalid details!")
-        res.status(200).send({user:isValidUser})
+        dataToSend.user=isValidUser
+        dataToSend.courses=[]
+        const totalCourse=await course.find({});
+        for(let i=0;i<totalCourse.length;i++){
+          let toAdd={}
+          toAdd.courseId=totalCourse[i]._id;
+          toAdd.courseName=totalCourse[i].cName
+          toAdd.totalStudent=await auth.count({role:"student",course:totalCourse[i]._id})
+          toAdd.totalTeacher=await auth.count({role:"teacher",course:totalCourse[i]._id})
+          dataToSend.courses.push(toAdd)
+        }
+        res.status(200).send(dataToSend)
+
 
     }
     catch(err){
