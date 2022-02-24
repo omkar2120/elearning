@@ -11,10 +11,10 @@ import Navbar from '../../global/component/Navbar';
 const AdminLogin = () => {
   return (
     <div style={{backgroundImage:'url()',
-    height:'85vh',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center'
+    // height:'85vh',
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: 'cover',
+    // backgroundPosition: 'center'
     }}>    
     <Navbar />
       <Grid container component="main"
