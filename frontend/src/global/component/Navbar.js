@@ -19,17 +19,10 @@ const Navbar = () => {
                 ELearning
               </Typography>
               </Link>
-              <Toolbar sx={{flexGrow:15, justifyContent:'space-evenly'}}>
-                <Typography>Hello</Typography>
-                <Typography>Hello</Typography>
-                <Typography>Hello</Typography>
-              </Toolbar>
-                 
-              <Divider orientation="vertical" variant="middle" flexItem sx={{height:'20px', marginTop:'23px'}} />
-
-             <Toolbar sx={{ justifySelf:'flex-end'}}>
-          <Link to="/teachlogin" style={{textDecoration:'none'}}><Button color="inherit" variant='outlined' sx={{borderRadius:7 , marginRight:'10px'}}>Teacher</Button></Link>
-            <Link to="/studlogin" style={{ textDecoration:'none'}}><Button variant='contained' sx={{borderRadius:7 , color:'#fafafa',textDecoration:'none'}}>Student </Button></Link>
+              
+             <Toolbar sx={{display:"flex", justifyContent:'right' ,width:"100%"}}>
+          <Link to="/teachlogin" style={{textDecoration:'none', marginRight:'5%'}}><Button color="inherit" variant='text' >Teacher</Button></Link>
+            <Link to="/studlogin" style={{ textDecoration:'none'}}><Button color="inherit" variant='text' >Student </Button></Link>
              </Toolbar>
         </Toolbar>
       </AppBar>

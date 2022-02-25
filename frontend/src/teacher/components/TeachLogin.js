@@ -25,7 +25,6 @@ const TeachLogin = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-around",
-          padding: "3%",
         }}
       >
         <Grid

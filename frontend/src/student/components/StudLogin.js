@@ -1,101 +1,138 @@
-import React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import OTPInput, { ResendOTP } from "otp-input-react"
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import Navbar from '../../global/component/Navbar';
-import { height } from '@mui/system';
-
-const StudLogin = () => {
+import React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import OTPInput, { ResendOTP } from "otp-input-react";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import Navbar from "../../global/component/Navbar";
+import { display } from "@mui/system";
+import { FormControl, FormLabel } from "@mui/material";
+const TeachLogin = () => {
   return (
-    <div>
-    <Navbar/>
-        <Grid container component="main" sx={{   padding:'10vh',marginTop:'5vh'}} style={{ width:'250vh',justifyContent:'center'}}>
-        <CssBaseline />
+    <>
+      {" "}
+      <Navbar />
+      <div
+        style={{
+          width: "100%",
+          height: "calc(100vh - 9%)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-around",
+        }}
+      >
         <Grid
-          item
-          sm={4}
-          md={6}
-          height={350}
-          sx={{
-            // backgroundImage: 'url(https://source.unsplash.com/random)',
-            backgroundImage:'url(https://www.igexsolutions.com/wp-content/themes/igexsolutions-child/assets/images/webdevelopment.svg)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            
+          container
+          component="main"
+          style={{
+            width: "70%",
+            justifyContent: "center",
+            boxShadow: "rgba(100, 100, 111, 0.322) 0px 7px 29px 0px",
+            minHeight: "65%",
           }}
-        />
-        <Grid item xs={10}  sm={8} md={3.9} height={350} component={Paper} elevation={6} square style={{boxShadow:'none', }}>
-            <Typography style={{ textAlign:'center', fontWeight:'800',fontFamily:'Quicksand,sans-serif', fontSize:'25px', marginTop:'2vh' }}>Student Login</Typography>
-            <Typography style={{ fontSize:'13px', textAlign:'center',fontFamily:'Quicksand,sans-serif' }}>Enter Your Credential to access the platform</Typography>
-          <Box
+        >
+          <CssBaseline />
+          <Grid
+            item
+            sm={6}
+            md={6}
             sx={{
-              my: 1,
-              mx: 3,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-               
+              backgroundImage: "url(https://source.unsplash.com/random)",
+              backgroundImage:
+                "url(https://www.igexsolutions.com/wp-content/themes/igexsolutions-child/assets/images/webdevelopment.svg)",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              boxShadow: "0.01px solid black",
             }}
+          />
+          <Grid
+            item
+            sm={6}
+            md={6}
+            component={Paper}
+            elevation={6}
+            square
+            style={{ boxShadow: "none", padding: "3%" }}
           >
-         
-            <Box component="form"  sx={{ mt: 0 }}>
-             <Box sx={{display:'flex'}}>
+            <Typography
+              style={{
+                textTransform: "uppercase",
+                textAlign: "center",
+                fontWeight: "800",
+                fontFamily: "Quicksand,sans-serif",
+                fontSize: "25px",
+                marginBottom: "2%",
+              }}
+            >
+              Student Login
+            </Typography>
+
+            <Grid container spacing={2}>
+              {/* <Grid item sm={12} md={12} xl={12} style={{marginTop:"8%"}}>
               <TextField
-                margin="normal"
                 required
                 id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
-                borderRadius='10vh'
+                fullWidth
               />
+              </Grid>
+              <Grid item sm={12} md={12} xl={12} left="30%">
+                <div style={{width:"100%",display:"flex",justifyContent:"right"}}>
                  <Button 
                    variant='contained'
                    style={{
-                       width:'15vh',
-                       marginLeft:'5vh', 
-                       borderRadius:'20px',
-                       height:'8vh',
-                       marginTop:'4.9vh'
+                       borderRadius:'20px'
                        }}
-                       >Send
-                </Button>  
-                </Box>
-
-              <div style={{ textAlign:'center'}}>
-              <OTPInput OTPLength={4} OTPType={Number} style={{margin:'3vh',marginLeft:'11vh'}} />
-               <Button variant='contained' style={{ borderRadius:'20px', marginRight:'2vh', height:'7vh'}}><CheckCircleIcon/>Verified</Button>
-               <Button variant='contained' style={{ borderRadius:'20px', backgroundColor:'#D8240F',height:'7vh'}}><RefreshIcon/>Resend</Button>
-
-              </div>
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{ mt: 5, mb: 2, borderRadius:'10vh', width:'35vh',marginLeft:'13vh' }}
-              >
-                LogIn
-              </Button>
+                       >Send Otp
+                </Button> 
+                </div>
+                </Grid> */}
+              <Grid item sm={12} md={12} xl={12} textAlign="center">
+                <h3>OTP has been sent to your mobile number 917700838900 <Button variant="text">change</Button></h3>
+              </Grid>
+              <Grid item sm={12} md={12} xl={12} marginTop="2%">
+                <div
+                  style={{
+                    display: "flex",
+                    alighItem: "center",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <OTPInput OTPLength={4} value={1234} OTPType={Number} />
+                </div>
+              </Grid>
+              <Grid item sm={6} md={6} xl={6} marginTop="5%">
+                <Button
+                  variant="contained"
+                  style={{ borderRadius: "20px", backgroundColor: "#D8240F" ,marginLeft:"30%" }}
+                >
+                  <RefreshIcon />
+                  Resend
+                </Button>
+              </Grid>
+              <Grid item sm={6} md={6} xl={6} marginTop="5%">
+                <Button variant="contained" style={{ borderRadius: "20px" }}>
+                  <CheckCircleIcon />
+                  Verified
+                </Button>
+              </Grid>
               
-              
-            </Box>
-          </Box>
+            </Grid>
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
-  )
-}
+      </div>
+    </>
+  );
+};
 
-
-
-export default StudLogin;
-
+export default TeachLogin;
