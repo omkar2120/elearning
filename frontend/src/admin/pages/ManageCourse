@@ -1,0 +1,11 @@
+import React from "react";
+
+function ManageCourse() {
+  return (
+    <div className="manage-course">
+       <h1>ManageCourse</h1>
+    </div>
+  );
+}
+
+export default ManageCourse;

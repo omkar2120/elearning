@@ -1,0 +1,10 @@
+import React from "react";
+function ManageSession() {
+  return (
+    <div className="manage-session">
+      <h1>ManageSession</h1>
+    </div>
+  );
+}
+
+export default ManageSession;
