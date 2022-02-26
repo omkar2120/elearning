@@ -10,11 +10,12 @@ export const loginAdminAction = (data) => async (dispatch) => {
             
         const adminData=await axios.post("/auth/admin/signin",data)
         console.log(adminData)
-        Cookies.set("admintoken",adminData.data.token)
+        Cookies.set("e-learningadmintoken",adminData.data.token)
 
            dispatch({ 
                type: admin.ADMIN_USER_LOGIN_SUCCESS,
-               payload:adminData.data,
+               user:adminData.data.user,
+               courses:adminData.data.courses
             });
             
 

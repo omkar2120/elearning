@@ -21,7 +21,7 @@ const adminReducer=(state=initialState,action)=>{
                 ...state,
                 isLoading:false,
                 isLogedin:true,
-                user:action.user,
+                users:action.user,
                 courses:action.courses,
                 token:Cookie.get("e-learningadmintoken")
             }

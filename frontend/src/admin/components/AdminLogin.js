@@ -9,7 +9,7 @@ import { Input, TextField } from "@mui/material";
 import Navbar from "../../global/component/Navbar";
 import {useDispatch,useSelector} from "react-redux"
 import { loginAdminAction } from "../../redux/actions/admin.action";
-
+import { Navigate } from "react-router-dom";
 
 const AdminLogin = () => {
   const adminState=useSelector((state)=>state.adminReducer)
@@ -26,6 +26,12 @@ const AdminLogin = () => {
   const sendLogin=async()=>{
    await dispatch(loginAdminAction(user))
   }
+  if(adminState.isLogedin&&adminState.users.role=="admin")
+  {
+    return <Navigate to={"/admin/dashboard"}/>
+  }
+  else
+  {
   return (
     <>
       <Navbar />
@@ -157,6 +163,7 @@ const AdminLogin = () => {
       </div>
     </>
   );
+}
 };
 
 export default AdminLogin;
