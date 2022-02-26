@@ -20,6 +20,7 @@ exports.addProfile = async (req, res) => {
     return res.status(400).send("role is not valid!")
     const theUser=await user.save()
     res.status(200).send("User Created!")
+    console.log(theUser);
   } catch (err) {
     const splitedErr = err.message.split(" ");
     if (splitedErr[11] == "email:" || splitedErr[11] == "mobile:")
