@@ -1,0 +1,12 @@
+.teacher{flex:4;
+    padding:30px;}
+    .couseTitle{text-align: center;} 
+    .btn-primary {
+        color: #fff;
+        background-color: darkblue !important;
+        border-color:darkblue !important;
+    }  
+    a {
+        color: darkblue !important;
+        text-decoration: none !important; 
+    }  
