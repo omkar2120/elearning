@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 //update user
 exports.updateuser = async (req,res)=>{
          try{
-                  if(req.body.password){
+                   if(req.body.password){
                       req.body.password = await bcrypt.hash(req.body.password,12);
                   }
             const updateduser = await User.findByIdAndUpdate(req.params.id,
