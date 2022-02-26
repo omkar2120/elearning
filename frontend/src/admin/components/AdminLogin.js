@@ -2,13 +2,30 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
+import {CircularProgress} from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Input, TextField } from "@mui/material";
 import Navbar from "../../global/component/Navbar";
+import {useDispatch,useSelector} from "react-redux"
+import { loginAdminAction } from "../../redux/actions/admin.action";
+
 
 const AdminLogin = () => {
+  const adminState=useSelector((state)=>state.adminReducer)
+  console.log(adminState)
+  const dispatch=useDispatch()
+  const [user,setUser]=useState({
+    email:"",
+    password:""
+  })
+  const handleChange=(e)=>{
+    const {name,value}=e.target
+    setUser({...user,[name]:value})
+  }
+  const sendLogin=async()=>{
+   await dispatch(loginAdminAction(user))
+  }
   return (
     <>
       <Navbar />
@@ -44,6 +61,7 @@ const AdminLogin = () => {
             }} // | second div
           />
           <Grid
+          item
             xs={6}
             sm={6}
             md={6}
@@ -78,7 +96,7 @@ const AdminLogin = () => {
                 xl={12}
                 style={{ marginTop: "2%", borderRadius: "60%" }}
               >
-                <TextField fullWidth placeholder="Enter Email"></TextField>
+                <TextField fullWidth name="email" value={user.email} placeholder="Enter Email" onChange={handleChange}></TextField>
               </Grid>
               <Grid
                 item
@@ -90,7 +108,10 @@ const AdminLogin = () => {
                 <TextField
                   fullWidth
                   type="password"
+                  name="password" 
+                  value={user.password}
                   placeholder="Enter password"
+                  onChange={handleChange}
                 ></TextField>
               </Grid>
               <Grid
@@ -117,9 +138,18 @@ const AdminLogin = () => {
                   justifyContent: "right",
                 }}
               >
-                <Button variant="contained" style={{ width: "30%" }}>
-                  Login
-                </Button>
+                {adminState.isLoading?
+                <Button variant="contained" style={{ width: "30%" }} onClick={sendLogin} style={{fonSize:"5px",textTransform:"capitalize"}}>
+                 <CircularProgress color="secondary" size={20}/> 
+                <b style={{marginLeft:"12px"}}>Wait..</b> 
+              </Button>
+                :<Button variant="contained" style={{ width: "30%" }} onClick={sendLogin}>
+                Login
+              </Button>}
+                
+              </Grid>
+              <Grid item sm={12} md={12} xl={12}>
+                <b style={{color:"red", fontWeight:"bold"}}>{!adminState.err ?" ":`*${adminState.err} `}</b>
               </Grid>
             </Grid>
           </Grid>
