@@ -1,9 +1,10 @@
-import Admin from "../admin/pages/Admin";
+import React from "react";
+import StudentDash from "./student/components/screens/StudentDash";
 
 function App() {
   return (
     <div className="App">
-    <Admin />
+    <StudentDash />
     </div>
   );
 }
