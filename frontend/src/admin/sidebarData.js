@@ -7,22 +7,23 @@ import {CgUserAdd} from "react-icons/cg"
 import {GiBookCover} from "react-icons/gi"
 import {HiClipboardList} from "react-icons/hi"
 import {MdAddModerator} from "react-icons/md"
+import {Add,TrendingUp} from '@mui/icons-material';
 export const sideBarData=[
     {
         icon:<AiFillDashboard/>,
         list:"Dashboard",
-        path:"/admin/dashboard",
+        path:"/dashboard",
         dropdown:[]
     },
     {
         icon:<BiBookReader/>,
-        list:"ManageCourse",
+        list:"Manage Course",
         path:false,
         dropdown:[
              {
             name:"AddCourse",
             icon:<MdAddModerator/>,
-            link:"/admin/manage/course",
+            link:"/admin/manage/course/add",
             dropdown:[]
         },
         {
@@ -41,24 +42,54 @@ export const sideBarData=[
     },
     {
         icon:<MdManageAccounts/>,
-        list:"ManageStudent",
+        list:"Manage Student",
         path:false,
-        dropdown:[]
+        dropdown:[{
+            name:"AddStudent",
+            icon:<CgUserAdd/>,
+            link:"/admin/manage/student"
+        
+        },
+        {
+            name:"StudentList",
+            icon:<FaUsers/>,
+            link:"/admin/manage/student/list",
+            dropdown:[]
+            
+        }]
     },
     {
         icon:<GiTeacher/>,
-        list:"ManageTeacher",
+        list:"Manage Teacher",
         path:false,
         dropdown:[{
             name:"AddTeacher",
             icon:<CgUserAdd/>,
-            link:"/admin/manage/teacher"
+            link:"/admin/manage/teacher/add"
         
         },
         {
             name:"TeacherList",
             icon:<FaUsers/>,
             link:"/admin/manage/teacher/list",
+            dropdown:[]
+            
+        }]
+    },
+    {
+        icon:<GiTeacher/>,
+        list:"Manage Session",
+        path:false,
+        dropdown:[{
+            name:"AddSession",
+            icon:<CgUserAdd/>,
+            link:"/admin/manage/session"
+        
+        },
+        {
+            name:"SessionList",
+            icon:<FaUsers/>,
+            link:"/admin/manage/session/list",
             dropdown:[]
             
         }]
