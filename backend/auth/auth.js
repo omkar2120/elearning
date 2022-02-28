@@ -55,8 +55,6 @@ exports.adminSignIn=async(req,res)=>{
           dataToSend.courses.push(toAdd)
         }
         res.status(200).send(dataToSend)
-
-
     }
     catch(err){
         console.log(err)

@@ -3,6 +3,7 @@ import { useSelector,useDispatch} from "react-redux"
 // import { createTeacher } from "../../redux/action/admin/Teacher";
 import { CircularProgress,Grid, Button, Typography, TextField, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 export default function AddTeacher() {
+  const adminState=useSelector((state)=>state.adminReducer)
   const [teacher,setTeacher]=useState({
     fullname:"",
     email:"",
@@ -17,7 +18,7 @@ export default function AddTeacher() {
     setTeacher({...teacher,[name]:value})
   }
   const sendData=async()=>{
-    // console.log(teacher)
+    console.log(teacher)
   }
   return (
     <div
@@ -32,7 +33,7 @@ export default function AddTeacher() {
         className="a-t-c-m"
         style={{
           width: "95%",
-          height: "70%",
+          height: "75%",
           backgroundColor: "",
           boxShadow: "rgba(100, 100, 111, 0.151) 0px 7px 29px 0px",
           padding: "2%",
@@ -84,7 +85,11 @@ export default function AddTeacher() {
               <FormControl fullWidth>
                   <InputLabel>select course</InputLabel>
           <Select label="select course" onChange={handleChanege} name="course" id="demo-simple-select">
-              <MenuItem >""</MenuItem>
+              {adminState.courses.map((c,k)=>(
+                 <MenuItem value={c._id}>{c.course}</MenuItem>
+
+              ))}
+             
               
           </Select>
           </FormControl>
@@ -101,10 +106,16 @@ export default function AddTeacher() {
           </Grid>
           <Grid item lg="6" md="12" style={{marginTop:"3%"}}><Button fullWidth variant='contained' color="error" >clear</Button></Grid>
     <Grid item lg="6" md="12" style={{marginTop:"3%"}}>
+      {adminState.isLoading
+      ?
+      <div style={{textAlign:"center"}}><CircularProgress/></div>
+      :
       <Button fullWidth variant='contained' color="success" onClick={sendData}>Add Teacher</Button>
+      }
+      
       </Grid>
     <Grid item lg="12" md="12" style={{marginTop:"0"}}>
-      {/* <b style={{color:"red",fontSize:"20px"}}>{!teacherState.err?"":teacherState.err}</b> */}
+      <b style={{color:"red",fontSize:"20px"}}>{!adminState.err?"":adminState.err}</b>
     </Grid>
 
         </Grid>
