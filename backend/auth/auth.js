@@ -46,8 +46,10 @@ exports.adminSignIn=async(req,res)=>{
         const totalCourse=await course.find({});
         for(let i=0;i<totalCourse.length;i++){
           let toAdd={}
-          toAdd.courseId=totalCourse[i]._id;
-          toAdd.courseName=totalCourse[i].cName
+          toAdd._id=totalCourse[i]._id;
+          toAdd.course=totalCourse[i].cName
+          toAdd.totalYear=totalCourse[i].Years.length
+          toAdd.totalSem=totalCourse[i].Semesters.length
           toAdd.totalStudent=await auth.count({role:"student",course:totalCourse[i]._id})
           toAdd.totalTeacher=await auth.count({role:"teacher",course:totalCourse[i]._id})
           dataToSend.courses.push(toAdd)

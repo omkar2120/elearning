@@ -1,4 +1,5 @@
 const route=require("express").Router()
-const {createCourse}=require("../controllers/course")
+const {createCourse,getCourse}=require("../controllers/course")
 route.post("/create/course",createCourse)
+route.get("/get/course",getCourse)
 module.exports=route

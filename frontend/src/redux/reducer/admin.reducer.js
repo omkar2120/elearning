@@ -31,6 +31,25 @@ const adminReducer=(state=initialState,action)=>{
                 isLoading:false,
                 err:action.err
             }
+        case admin.ADMIN_COURSE_REQUESTED:
+            return{
+                ...state,
+                isLoading:true,
+                err:false
+            }
+        case admin.ADMIN_COURSE_SUCCESS:
+            return{
+                ...state,
+                isLoading:false,
+                courses:action.course
+            }
+            case admin.ADMIN_COURSE_ERROR:
+                return{
+                    ...state,
+                    isLoading:false,
+                    err:action.err
+                }
+        
         default:
             return state
     }

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import {Typography,Grid, FormControl, Input, TextField,MenuItem,Select,InputLabel,Button} from "@mui/material"
 import { useDispatch,useSelector } from 'react-redux';
-// import { createCourse } from '../../redux/action/admin/Course';
+import { addCourse } from '../../redux/actions/admin.action';
+import {CircularProgress} from "@mui/material"
 export default function AddCourse() {
-  // const dispatch=useDispatch()
-  // const courseState=useSelector((state)=>state.courseReducer)
+  const dispatch=useDispatch()
+  const adminState=useSelector((state)=>state.adminReducer)
    const [course,setCourse]=useState({
     courseName:"",
     noOfYear:null,
@@ -15,7 +16,7 @@ export default function AddCourse() {
        setCourse({...course,[name]:value})
    }
    const send=async()=>{
-    //  await dispatch(createCourse(course))
+     await dispatch(addCourse(course))
      setCourse({
       courseName:"",
       noOfYear:null,
@@ -23,7 +24,7 @@ export default function AddCourse() {
      })
     }
 
-  return <div style={{width:"80%",height:"75%",padding:"3%",boxShadow: "rgba(100, 100, 111, 0.151) 0px 7px 29px 0px"}}>
+  return <div style={{width:"80%",height:"80%",padding:"2%",boxShadow: "rgba(100, 100, 111, 0.151) 0px 7px 29px 0px"}}>
       <Typography component="h4"
             variant="h3"
             style={{ textAlign: "center" ,wordSpacing:"7px" ,textTransform:"uppercase" ,fontSize:"30px",fontWeight:"bolder" ,color:"#060606"}}>
@@ -62,9 +63,15 @@ export default function AddCourse() {
     noOfYear:null,
     noOfSem:null,
    })}}>clear</Button></Grid>
-    <Grid item lg="6" md="12" style={{marginTop:"2%"}}><Button fullWidth variant='contained' color="success" onClick={send}>Add Course</Button></Grid>
+    <Grid item lg="6" md="12" style={{marginTop:"2%"}}>
+      {adminState.isLoading?
+      <div style={{textAlign:"center"}}><CircularProgress/></div>
+      :
+      <Button fullWidth variant='contained' color="success" onClick={send}>Add Course</Button>
+      }
+      </Grid>
     <Grid item lg="12" md="12" style={{marginTop:"0"}}>
-      {/* <b style={{color:"red",fontSize:"20px"}}>{!courseState.err?"":`*${courseState.err}`}</b> */}
+      <b style={{color:"red",fontSize:"20px"}}>{!adminState.err?"":`*${adminState.err}`}</b>
     </Grid>
 
 </Grid>

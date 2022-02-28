@@ -2,6 +2,7 @@ const Course=require("../models/course.schema")
 const user=require("../models/userSchema")
 exports.createCourse = async (req, res) => {
   try {
+    console.log("colled")
     let {courseName,noOfYear,noOfSem}=req.body
     if(!courseName||!noOfYear||!noOfSem)
     return res.status(404).send("all field is required!")
@@ -20,6 +21,7 @@ exports.createCourse = async (req, res) => {
       return res.status(200).send("course created!")
     }
   } catch (err) {
+    console.log(err)
     const split_Err = err.message.split(" ");
     if (split_Err[11] === "cName:")
       return res
@@ -31,6 +33,7 @@ exports.createCourse = async (req, res) => {
 // get CourseData..........
 
 exports.getCourse=async(req,res)=>{
+  console.log("colled2")
   try{
     const dataToSend=[]
     const course=await Course.find({})
