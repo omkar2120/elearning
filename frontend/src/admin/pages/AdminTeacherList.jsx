@@ -5,6 +5,8 @@ import Sidebar from '../../global/component/Sidebar2'
 import {TableContainer,Table,TableCell,TableBody,TableHead,TableRow,tableCellClasses,Button} from "@mui/material"
 import { styled } from '@mui/material/styles';
 import { useDispatch,useSelector } from 'react-redux'
+import { getAllTeachers } from '../../redux/actions/admin.action'
+import { useEffect } from 'react'
 // import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -27,7 +29,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
 export default function 
 () {
+  const dispatch=useDispatch()
     const adminState=useSelector((state)=>state.adminReducer)
+    useEffect(async()=>{await dispatch(getAllTeachers())},[dispatch])
   return (
     <div style={{height:"calc(100vh - 10%)"}}>
         <Topbar/>

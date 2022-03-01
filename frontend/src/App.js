@@ -9,6 +9,8 @@ import AdminAddCourse from "./admin/pages/AdminAddCourse";
 import AdminAddTeacher from "./admin/pages/AdminAddTeacher";
 import AdminCourseList from "./admin/pages/AdminCourseList";
 import AdminTeacherList from "./admin/pages/AdminTeacherList";
+import AdminAddStudent from "./admin/pages/AdminAddStudent";
+import AdminStudentList from "./admin/pages/AdminStudentList";
 import "./App.css"
 function App() {
   return (
@@ -23,8 +25,10 @@ function App() {
           <Route path="/admin/dashboard" element={<AdminDashboard2/>}/>
           <Route path="/admin/manage/course/add" element={<AdminAddCourse/>}/>
           <Route path="/admin/manage/teacher/add" element={<AdminAddTeacher/>}/>
+          <Route path="/admin/manage/student/add" element={<AdminAddStudent/>}/>
           <Route path="admin/course/list" element={<AdminCourseList/>}/>
           <Route path="/admin/teacher/list" element={<AdminTeacherList/>}/>
+          <Route path="/admin/student/list" element={<AdminStudentList/>}/>
         </Routes>
       </BrowserRouter>
     </div>

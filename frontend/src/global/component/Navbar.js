@@ -22,6 +22,7 @@ const Navbar = () => {
               
              <Toolbar sx={{display:"flex", justifyContent:'right' ,width:"100%"}}>
           <Link to="/teachlogin" style={{textDecoration:'none', marginRight:'5%'}}><Button color="inherit" variant='text' >Teacher</Button></Link>
+
             <Link to="/studlogin" style={{ textDecoration:'none'}}><Button color="inherit" variant='text' >Student </Button></Link>
              </Toolbar>
         </Toolbar>

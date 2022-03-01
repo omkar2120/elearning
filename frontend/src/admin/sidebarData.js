@@ -47,13 +47,13 @@ export const sideBarData=[
         dropdown:[{
             name:"AddStudent",
             icon:<CgUserAdd/>,
-            link:"/admin/manage/student"
+            link:"/admin/manage/student/add"
         
         },
         {
             name:"StudentList",
             icon:<FaUsers/>,
-            link:"/admin/manage/student/list",
+            link:"/admin/student/list",
             dropdown:[]
             
         }]

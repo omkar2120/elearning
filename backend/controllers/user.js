@@ -31,6 +31,34 @@ exports.getAllTeachers=async(req,res)=>{
     }
 }
 
+// get all student
+exports.getAllStudents=async(req,res)=>{
+    try{
+        const dataToSend=[]
+        const theStudents=await User.find({role:"student"});
+        for(let i=0;i<theStudents.length;i++){
+            
+            const {_id,fullname,email,mobile,role,course}=theStudents[i]
+            const theCourse=await Course.findById(course)
+            const teachers=await User.count({role:"teacher",course:theCourse._id})
+            const courseDeatils={_id:theCourse._id,cName:theCourse.cName,years:theCourse.Years.length,semesters:theCourse.Semesters.length}
+            let dataToAdd={
+                _id,fullname,email,mobile,role,course:courseDeatils,teachers
+            }
+            dataToSend.push(dataToAdd)
+        }
+        
+        if(theStudents){
+            res.status(200).send(dataToSend)
+        }
+
+    }
+    catch(err){
+        res.status(400).send("something went wrong!")
+        console.log(err)
+    }
+}
+
 //update user
 exports.updateuser = async (req,res)=>{
          try{

@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Topbar from '../../global/component/Topbar'
 import { sideBarData } from '../sidebarData'
 import Sidebar from '../../global/component/Sidebar2'
 import {TableContainer,Table,TableCell,TableBody,TableHead,TableRow,tableCellClasses,Button} from "@mui/material"
 import { styled } from '@mui/material/styles';
 import { useDispatch,useSelector } from 'react-redux'
-import { getCourse } from '../../redux/actions/admin.action'
+import { getAllStudents } from '../../redux/actions/admin.action'
+import { useEffect } from 'react'
 // import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -28,11 +29,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
 export default function 
 () {
+  const dispatch=useDispatch()
     const adminState=useSelector((state)=>state.adminReducer)
-    const dispatch=useDispatch()
-    useEffect(async()=>{
-      await dispatch(getCourse())
-    },[dispatch])
+    useEffect(async()=>{await dispatch(getAllStudents())},[dispatch])
   return (
     <div style={{height:"calc(100vh - 10%)"}}>
         <Topbar/>
@@ -46,24 +45,24 @@ export default function
                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
                    <TableHead>
           <TableRow>
-            <StyledTableCell align="center">CourseName</StyledTableCell>
-            <StyledTableCell align="center">Year</StyledTableCell>
-            <StyledTableCell align="center">Semester</StyledTableCell>
-            <StyledTableCell align="center">Teachers</StyledTableCell>
-            <StyledTableCell align="center">Students</StyledTableCell>
+            <StyledTableCell align="center">Fullname</StyledTableCell>
+            <StyledTableCell align="center">Email</StyledTableCell>
+            <StyledTableCell align="center">Mobile</StyledTableCell>
+            <StyledTableCell align="center">Course</StyledTableCell>
+            <StyledTableCell align="center">TotalTeachers</StyledTableCell>
             <StyledTableCell align="center">Edit</StyledTableCell>
             <StyledTableCell align="center">Delete</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-                {adminState.courses.map((d)=>(
+                {adminState.students.map((d)=>(
                     
                       <StyledTableRow>
-                    <StyledTableCell align="center">{d.course}</StyledTableCell>
-                    <StyledTableCell align="center">{d.totalYear}</StyledTableCell>
-                    <StyledTableCell align="center">{d.totalSem}</StyledTableCell>
-                    <StyledTableCell align="center">{d.totalTeacher}</StyledTableCell>
-                    <StyledTableCell align="center">{d.totalStudent}</StyledTableCell>
+                    <StyledTableCell align="center">{d.fullname}</StyledTableCell>
+                    <StyledTableCell align="center">{d.email}</StyledTableCell>
+                    <StyledTableCell align="center">{d.mobile}</StyledTableCell>
+                    <StyledTableCell align="center">{d.course.cName}</StyledTableCell>
+                    <StyledTableCell align="center">{d.teachers}</StyledTableCell>
                     <StyledTableCell align="center"><Button variant='text' color="success">Edit</Button></StyledTableCell>
                     <StyledTableCell align="center" ><Button variant='text' color='error'>Delete</Button></StyledTableCell>
                 
