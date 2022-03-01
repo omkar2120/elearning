@@ -7,8 +7,8 @@ require("dotenv").config()
 exports.addProfile = async (req, res) => {
   try {
     const { fullname, email, mobile, password, role,course } = req.body;
-    console.log(fullname, email, mobile, password, role);
-    if (!fullname || !email || !mobile || !password || !role)
+    console.log(req.body);
+    if (!fullname || !email || !mobile  || !role)
       return res.status(400).send("all field is required!");
     else if (!validator.isEmail(email))
       return res.status(400).send("invalid email!");
@@ -22,6 +22,7 @@ exports.addProfile = async (req, res) => {
     res.status(200).send("User Created!")
     console.log(theUser);
   } catch (err) {
+    console.log(err)
     const splitedErr = err.message.split(" ");
     if (splitedErr[11] == "email:" || splitedErr[11] == "mobile:")
       res.status(400).send("existing user with given email or mobile");

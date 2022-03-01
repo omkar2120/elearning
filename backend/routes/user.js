@@ -1,6 +1,8 @@
-const { updateuser, deleteuser, getuser, getusers } = require("../controllers/user");
+const { getAllTeachers,updateuser, deleteuser, getuser, getusers } = require("../controllers/user");
 const router = require("express").Router();
 
+// get All Teachers
+router.get("/get/all/teachers",getAllTeachers)
 //update a user
 router.put("/user/update/:id",updateuser);
 

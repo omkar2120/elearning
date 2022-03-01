@@ -6,7 +6,9 @@ const initialState={
     users:{},
     courses:[],
     err:false,
-    token:Cookie.get("e-learningadmintoken")
+    token:Cookie.get("e-learningadmintoken"),
+    teachers:[],
+    students:[]
 }
 const adminReducer=(state=initialState,action)=>{
     switch(action.type){
@@ -49,7 +51,24 @@ const adminReducer=(state=initialState,action)=>{
                     isLoading:false,
                     err:action.err
                 }
-        
+        case admin.ADMIN_ADD_TEACHER_REQUESTED:
+            return{
+                ...state,
+                isLoading:true,
+                err:false
+            }
+        case admin.ADMIN_ADD_TEACHER_SUCCESS:
+            return{
+                ...state,
+                isLoading:false,
+                teachers:action.teacher
+            }
+        case admin.ADMIN_ADD_TEACHER_ERROR:
+            return{
+                ...state,
+                isLoading:false,
+                err:action.err
+            }
         default:
             return state
     }

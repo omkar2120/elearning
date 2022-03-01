@@ -29,7 +29,7 @@ export const sideBarData=[
         {
             name:"CourseList",
             icon:<HiClipboardList/>,
-            link:"/admin/manage/course/list",
+            link:"/admin/course/list",
             dropdown:[]
         },
         {

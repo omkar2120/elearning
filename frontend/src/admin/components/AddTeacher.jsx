@@ -1,8 +1,9 @@
 import React,{useState} from "react";
 import { useSelector,useDispatch} from "react-redux"
-// import { createTeacher } from "../../redux/action/admin/Teacher";
+import { addTeacher } from "../../redux/actions/admin.action";
 import { CircularProgress,Grid, Button, Typography, TextField, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 export default function AddTeacher() {
+  const dispatch=useDispatch()
   const adminState=useSelector((state)=>state.adminReducer)
   const [teacher,setTeacher]=useState({
     fullname:"",
@@ -11,14 +12,23 @@ export default function AddTeacher() {
     password:"",
     course:"",
     gender:"",
-    role:"teacher"
+    role:"teacher",
+    password:""
   })
   const handleChanege=(e)=>{
     let {name,value}=e.target;
     setTeacher({...teacher,[name]:value})
   }
   const sendData=async()=>{
-    console.log(teacher)
+    await dispatch(addTeacher(teacher))
+    setTeacher({fullname:"",
+    email:"",
+    mobile:"",
+    password:"",
+    course:"",
+    gender:"",
+    role:"teacher",
+    password:""})
   }
   return (
     <div
@@ -33,7 +43,7 @@ export default function AddTeacher() {
         className="a-t-c-m"
         style={{
           width: "95%",
-          height: "75%",
+          height: "78%",
           backgroundColor: "",
           boxShadow: "rgba(100, 100, 111, 0.151) 0px 7px 29px 0px",
           padding: "2%",
@@ -115,7 +125,7 @@ export default function AddTeacher() {
       
       </Grid>
     <Grid item lg="12" md="12" style={{marginTop:"0"}}>
-      <b style={{color:"red",fontSize:"20px"}}>{!adminState.err?"":adminState.err}</b>
+      <b style={{color:"red",fontSize:"20px"}}>{!adminState.err?"":`*${adminState.err}`}</b>
     </Grid>
 
         </Grid>

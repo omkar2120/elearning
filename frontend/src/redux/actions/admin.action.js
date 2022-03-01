@@ -17,6 +17,7 @@ export const loginAdminAction = (data) => async (dispatch) => {
                user:adminData.data.user,
                courses:adminData.data.courses
             });
+            dispatch(getAllTeachers())
             
 
         } 
@@ -63,3 +64,34 @@ export const loginAdminAction = (data) => async (dispatch) => {
      }
  }
 
+ export const addTeacher=(data)=>async(dispatch)=>{
+     try{
+         dispatch({type:admin.ADMIN_ADD_TEACHER_REQUESTED})
+         const theTeacher=await axios.post("/auth/teacher/add",data)
+         if(theTeacher){
+             Swal.fire("Teacher Added")
+             dispatch(getAllTeachers())
+
+         }
+
+     }
+     catch(err){
+        dispatch({type:admin.ADMIN_ADD_TEACHER_ERROR,err:err.response.data})
+     }
+ }
+
+ export const getAllTeachers=()=>async(dispatch)=>{
+     try{
+         dispatch({type:admin.ADMIN_ADD_TEACHER_REQUESTED})
+         const theTeachers=await axios.get("/get/all/teachers")
+         if(theTeachers){
+             dispatch({type:admin.ADMIN_ADD_TEACHER_SUCCESS,teacher:theTeachers.data})
+         }
+
+
+     }
+     catch(err){
+         dispatch({type:admin.ADMIN_ADD_TEACHER_ERROR,err:err.response.data})
+
+     }
+ }
