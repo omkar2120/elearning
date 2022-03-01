@@ -71,7 +71,7 @@ export const sideBarData=[
         {
             name:"TeacherList",
             icon:<FaUsers/>,
-            link:"/admin/manage/teacher/list",
+            link:"/admin/teacher/list",
             dropdown:[]
             
         }]

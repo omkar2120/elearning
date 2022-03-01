@@ -41,24 +41,24 @@ export default function
                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
                    <TableHead>
           <TableRow>
-            <StyledTableCell align="center">CourseName</StyledTableCell>
-            <StyledTableCell align="center">Year</StyledTableCell>
-            <StyledTableCell align="center">Semester</StyledTableCell>
-            <StyledTableCell align="center">Teachers</StyledTableCell>
-            <StyledTableCell align="center">Students</StyledTableCell>
+            <StyledTableCell align="center">Fullname</StyledTableCell>
+            <StyledTableCell align="center">Mmail</StyledTableCell>
+            <StyledTableCell align="center">mobile</StyledTableCell>
+            <StyledTableCell align="center">Course</StyledTableCell>
+            <StyledTableCell align="center">TotalStudents</StyledTableCell>
             <StyledTableCell align="center">Edit</StyledTableCell>
             <StyledTableCell align="center">Delete</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-                {adminState.courses.map((d)=>(
+                {adminState.teachers.map((d)=>(
                     
                       <StyledTableRow>
-                    <StyledTableCell align="center">{d.course}</StyledTableCell>
-                    <StyledTableCell align="center">{d.totalYear}</StyledTableCell>
-                    <StyledTableCell align="center">{d.totalSem}</StyledTableCell>
-                    <StyledTableCell align="center">{d.totalTeacher}</StyledTableCell>
-                    <StyledTableCell align="center">{d.totalStudent}</StyledTableCell>
+                    <StyledTableCell align="center">{d.fullname}</StyledTableCell>
+                    <StyledTableCell align="center">{d.email}</StyledTableCell>
+                    <StyledTableCell align="center">{d.mobile}</StyledTableCell>
+                    <StyledTableCell align="center">{d.course.cName}</StyledTableCell>
+                    <StyledTableCell align="center">{d.students}</StyledTableCell>
                     <StyledTableCell align="center"><Button variant='text' color="success">Edit</Button></StyledTableCell>
                     <StyledTableCell align="center" ><Button variant='text' color='error'>Delete</Button></StyledTableCell>
                 

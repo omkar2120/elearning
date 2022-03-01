@@ -12,9 +12,10 @@ exports.getAllTeachers=async(req,res)=>{
             
             const {_id,fullname,email,mobile,role,course}=theTeachers[i]
             const theCourse=await Course.findById(course)
+            const students=await User.count({role:"student",course:theCourse._id})
             const courseDeatils={_id:theCourse._id,cName:theCourse.cName,years:theCourse.Years.length,semesters:theCourse.Semesters.length}
             let dataToAdd={
-                _id,fullname,email,mobile,role,course:courseDeatils
+                _id,fullname,email,mobile,role,course:courseDeatils,students
             }
             dataToSend.push(dataToAdd)
         }
