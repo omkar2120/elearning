@@ -11,6 +11,8 @@ import AdminCourseList from "./admin/pages/AdminCourseList";
 import AdminTeacherList from "./admin/pages/AdminTeacherList";
 import AdminAddStudent from "./admin/pages/AdminAddStudent";
 import AdminStudentList from "./admin/pages/AdminStudentList";
+import TeacherDashboard from "./teacher/pages/TeacherDashboard";
+import TeacherAddStudent from "./teacher/pages/TeacherAddStudent";
 import "./App.css"
 function App() {
   return (
@@ -29,6 +31,9 @@ function App() {
           <Route path="admin/course/list" element={<AdminCourseList/>}/>
           <Route path="/admin/teacher/list" element={<AdminTeacherList/>}/>
           <Route path="/admin/student/list" element={<AdminStudentList/>}/>
+          {/*  Teacher */}
+          <Route path="/teacher/dashboard" element={<TeacherDashboard/>}/>
+          <Route path="/teacher/student/add" element={<TeacherAddStudent/>}/>
         </Routes>
       </BrowserRouter>
     </div>

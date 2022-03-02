@@ -40,9 +40,9 @@ export default function
                 <Sidebar data={sideBarData}/>
 
             </div>
-            <div className="sidebarContaine" style={{padding:"1%",maxHeight:"calc(100vh - 10%)",overflow:"auto"}}>
+            <div className="sidebarContaine" style={{padding:"1%",maxHeight:"calc(100vh - 10%)",overflow:"auto",paddingTop:"0.05%"}}>
                <TableContainer component={"paper"}>
-                   <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                   <Table sx={{ minWidth: 700 }} aria-label="customized table" stickyHeader>
                    <TableHead>
           <TableRow>
             <StyledTableCell align="center">Fullname</StyledTableCell>
