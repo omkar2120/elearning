@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,9 +11,35 @@ import OTPInput, { ResendOTP } from "otp-input-react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Navbar from "../../global/component/Navbar";
+import { CircularProgress } from "@mui/material";
 import { display } from "@mui/system";
 import { FormControl, FormLabel } from "@mui/material";
+import axios from "../../axios"
 const TeachLogin = () => {
+  const [emailOrMobile,setEmailOrMobile]=useState("")
+  const [otp,setOtp]=useState()
+  const [toggle,setToggle]=useState(false)
+  const [errmsg,setErrmsg]=useState(false)
+  const [succMsg,setSuccMsg]=useState(false)
+  const [loading,setLoading]=useState(false)
+  const setData=(e)=>{setEmailOrMobile(e.target.value)}
+  const sendOtp=async()=>{
+    try{
+      setErrmsg(false)
+      setLoading(true)
+        const res=await axios.post("/auth/otp",{emailOrMobile})
+        if(res.data){
+          setLoading(false)
+          setSuccMsg(res.data)
+          setToggle(true)
+        }
+    }
+    catch(err){
+      setLoading(false)
+      setErrmsg(err.response.data)
+
+    }
+  }
   return (
     <>
       {" "}
@@ -27,6 +53,7 @@ const TeachLogin = () => {
           justifyContent: "space-around",
         }}
       >
+
         <Grid
           container
           component="main"
@@ -73,13 +100,14 @@ const TeachLogin = () => {
             >
               Teacher Login
             </Typography>
-
             <Grid container spacing={2}>
-              {/* <Grid item sm={12} md={12} xl={12} style={{marginTop:"8%"}}>
+            {!toggle?<>
+              <Grid item sm={12} md={12} xl={12} style={{marginTop:"10%"}}>
               <TextField
                 required
                 id="email"
-                label="Email Address"
+                label="Enter Email or mobile"
+                onChange={setData}
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -88,17 +116,28 @@ const TeachLogin = () => {
               </Grid>
               <Grid item sm={12} md={12} xl={12} left="30%">
                 <div style={{width:"100%",display:"flex",justifyContent:"right"}}>
+                  {loading?
+                 <CircularProgress/>
+                 :
                  <Button 
                    variant='contained'
                    style={{
                        borderRadius:'20px'
                        }}
+                       onClick={sendOtp}
                        >Send Otp
-                </Button> 
+                </Button>
+                } 
                 </div>
-                </Grid> */}
+                </Grid>
+                <Grid item sm={12} md={12} xl={12} left="30%">
+                  {!errmsg?" ":<b style={{color:"red"}}>{`*${errmsg}`}</b>}
+                </Grid>
+                </>
+                :
+                <>
               <Grid item sm={12} md={12} xl={12} textAlign="center">
-                <h3>OTP has been sent to your mobile number 917700838900 <Button variant="text">change</Button></h3>
+                <h3>{succMsg} <Button variant="text" onClick={()=>{setToggle(false)}}>change</Button></h3>
               </Grid>
               <Grid item sm={12} md={12} xl={12} marginTop="2%">
                 <div
@@ -108,7 +147,7 @@ const TeachLogin = () => {
                     justifyContent: "space-around",
                   }}
                 >
-                  <OTPInput OTPLength={4} value={1234} OTPType={Number} />
+                  <OTPInput OTPLength={4} value={otp} onChange={(e)=>{setOtp(e)}} OTPType={Number} />
                 </div>
               </Grid>
               <Grid item sm={6} md={6} xl={6} marginTop="5%">
@@ -126,7 +165,8 @@ const TeachLogin = () => {
                   Verified
                 </Button>
               </Grid>
-              
+              </>
+              }
             </Grid>
           </Grid>
         </Grid>

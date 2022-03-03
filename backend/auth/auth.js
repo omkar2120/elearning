@@ -2,7 +2,8 @@ const auth = require("../models/userSchema");
 const course=require("../models/course.schema")
 const validator = require("validator");
 const jwt=require("jsonwebtoken")
-const bcrypt=require("bcrypt")
+const bcrypt=require("bcrypt");
+const { default: isEmail } = require("validator/lib/isEmail");
 require("dotenv").config()
 exports.addProfile = async (req, res) => {
   try {
@@ -63,4 +64,40 @@ exports.adminSignIn=async(req,res)=>{
         res.status(400).send("Something went wrong!")
     }
 }
+
+
+
+
+// Teachet login with otp!!!
+
+exports.sendOtp=async(req,res)=>{
+  try{
+    let otp;
+    const {emailOrMobile}=req.body
+    if(!validator.isEmail(emailOrMobile)&&!validator.isMobilePhone(emailOrMobile,"en-IN"))
+    return res.status(400).send("invalid email or mobile!")
+    if(validator.isEmail(emailOrMobile)){
+     const isUser=await auth.findOne({email:emailOrMobile}) 
+     if(!isUser)
+     return res.status(400).send("email is not registered!")
+    otp=Math.floor((Math.random() * 10000) + 1);
+    return res.status(200).send(`OTP has been sent to your Email ${emailOrMobile}  `)
+
+  }
+    if(validator.isMobilePhone(emailOrMobile,"en-IN")){
+      const isUser=await auth.findOne({mobile:emailOrMobile}) 
+      if(!isUser)
+      return res.status(400).send("mobile is not registered!")
+     otp=Math.floor((Math.random() * 10000) + 1);
+     return res.status(200).send(`OTP has been sent to your Mobile ${emailOrMobile}  `)
+  }
+
+  }
+  catch(err){
+    // console.log(err)
+
+  }
+}
+
+
 
