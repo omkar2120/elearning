@@ -137,7 +137,7 @@ const TeachLogin = () => {
                 :
                 <>
               <Grid item sm={12} md={12} xl={12} textAlign="center">
-                <h3>{succMsg} <Button variant="text" onClick={()=>{setToggle(false)}}>change</Button></h3>
+                <h3>{succMsg} <Button variant="text" onClick={()=>{setToggle(false);setOtp("")}}>change</Button></h3>
               </Grid>
               <Grid item sm={12} md={12} xl={12} marginTop="2%">
                 <div

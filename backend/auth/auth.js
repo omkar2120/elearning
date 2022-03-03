@@ -1,5 +1,6 @@
 const auth = require("../models/userSchema");
 const course=require("../models/course.schema")
+const Otp=require("../models/otpSchema")
 const validator = require("validator");
 const jwt=require("jsonwebtoken")
 const bcrypt=require("bcrypt");
@@ -81,20 +82,25 @@ exports.sendOtp=async(req,res)=>{
      if(!isUser)
      return res.status(400).send("email is not registered!")
     otp=Math.floor((Math.random() * 10000) + 1);
+    const otpToSave=new Otp({user:isUser._id,otp})
+    const theSavedOtp=await otpToSave.save()
+    if(!theSavedOtp)
+    return res.status(400).send("Somthing went wrong!")
+
     return res.status(200).send(`OTP has been sent to your Email ${emailOrMobile}  `)
 
   }
     if(validator.isMobilePhone(emailOrMobile,"en-IN")){
-      const isUser=await auth.findOne({mobile:emailOrMobile}) 
-      if(!isUser)
-      return res.status(400).send("mobile is not registered!")
-     otp=Math.floor((Math.random() * 10000) + 1);
-     return res.status(200).send(`OTP has been sent to your Mobile ${emailOrMobile}  `)
+      // const isUser=await auth.findOne({mobile:emailOrMobile}) 
+      // if(!isUser)
+      return res.status(400).send("please enter email we are working on it!")
+    //  otp=Math.floor((Math.random() * 10000) + 1);
+    //  return res.status(200).send(`OTP has been sent to your Mobile ${emailOrMobile}  `)
   }
 
   }
   catch(err){
-    // console.log(err)
+    console.log(err)
 
   }
 }
