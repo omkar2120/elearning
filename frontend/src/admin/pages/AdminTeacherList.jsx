@@ -46,8 +46,8 @@ export default function
                    <TableHead>
           <TableRow>
             <StyledTableCell align="center">Fullname</StyledTableCell>
-            <StyledTableCell align="center">Mmail</StyledTableCell>
-            <StyledTableCell align="center">mobile</StyledTableCell>
+            <StyledTableCell align="center">Email</StyledTableCell>
+            <StyledTableCell align="center">Mobile</StyledTableCell>
             <StyledTableCell align="center">Course</StyledTableCell>
             <StyledTableCell align="center">TotalStudents</StyledTableCell>
             <StyledTableCell align="center">Edit</StyledTableCell>

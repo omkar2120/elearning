@@ -12,7 +12,7 @@ export const sideBarData=[
     {
         icon:<AiFillDashboard/>,
         list:"Dashboard",
-        path:"/dashboard",
+        path:"/admin/dashboard",
         dropdown:[]
     },
     {

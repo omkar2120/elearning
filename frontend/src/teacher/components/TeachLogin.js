@@ -49,7 +49,8 @@ const TeachLogin = () => {
       setErrmsg(false)
       const res=await axios.post(`/auth/verify/otp/${succMsg.verifyToken}`,{otp})
       setLoading(false)
-      Swal.fire(res.data)
+      console.log(res.data)
+      Swal.fire(res.data.msg)
 
 
     }

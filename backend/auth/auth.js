@@ -4,6 +4,7 @@ const Otp=require("../models/otpSchema")
 const validator = require("validator");
 const jwt=require("jsonwebtoken")
 const bcrypt=require("bcrypt");
+const {loadUser}=require("../controllers/loaduser")
 const { default: isEmail } = require("validator/lib/isEmail");
 require("dotenv").config()
 exports.addProfile = async (req, res) => {
@@ -44,20 +45,7 @@ exports.adminSignIn=async(req,res)=>{
         return res.status(400).send("invalid details!")
         if(!await bcrypt.compare(password,isValidUser.password))
         return res.status(400).send("invalid details!")
-        dataToSend.user=isValidUser
-        dataToSend.token=await jwt.sign({id:isValidUser._id},process.env.SECRETKEY)
-        dataToSend.courses=[]
-        const totalCourse=await course.find({});
-        for(let i=0;i<totalCourse.length;i++){
-          let toAdd={}
-          toAdd._id=totalCourse[i]._id;
-          toAdd.course=totalCourse[i].cName
-          toAdd.totalYear=totalCourse[i].Years.length
-          toAdd.totalSem=totalCourse[i].Semesters.length
-          toAdd.totalStudent=await auth.count({role:"student",course:totalCourse[i]._id})
-          toAdd.totalTeacher=await auth.count({role:"teacher",course:totalCourse[i]._id})
-          dataToSend.courses.push(toAdd)
-        }
+        dataToSend=await loadUser(isValidUser._id)
         res.status(200).send(dataToSend)
     }
     catch(err){
@@ -79,7 +67,7 @@ exports.sendOtp=async(req,res)=>{
     return res.status(400).send("invalid email or mobile!")
     if(validator.isEmail(emailOrMobile)){
      const isUser=await auth.findOne({email:emailOrMobile}) 
-     if(!isUser)
+     if(!isUser||isUser.role=="admin")
      return res.status(400).send("email is not registered!")
     otp=Math.floor((Math.random() * 10000) + 1);
     console.log(otp)
@@ -136,7 +124,8 @@ exports.otpVerify=async(req,res)=>{
     const isValidOtp=await bcrypt.compare(otp,theOtp.otp)
     if(!isValidOtp)
     return res.status(400).send("Invalid Otp!")
-    return res.status(200).send("verified!")
+    let dataToSend=await loadUser(userId)
+    return res.status(200).send({msg:"verified!",user:dataToSend})
 
   }
   catch(err){
