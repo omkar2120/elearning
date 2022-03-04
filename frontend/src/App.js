@@ -10,6 +10,7 @@ import AdminAddTeacher from "./admin/pages/AdminAddTeacher";
 import AdminCourseList from "./admin/pages/AdminCourseList";
 import AdminTeacherList from "./admin/pages/AdminTeacherList";
 import "./App.css"
+import StudDashboard from "./student/components/StudDashboard";
 function App() {
   return (
     <div className="App" style={{height:"100vh"}}>
@@ -25,6 +26,7 @@ function App() {
           <Route path="/admin/manage/teacher/add" element={<AdminAddTeacher/>}/>
           <Route path="admin/course/list" element={<AdminCourseList/>}/>
           <Route path="/admin/teacher/list" element={<AdminTeacherList/>}/>
+          <Route path="studlogin/studashboard" element={<StudDashboard/>} />
         </Routes>
       </BrowserRouter>
     </div>
