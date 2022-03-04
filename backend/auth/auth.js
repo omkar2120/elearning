@@ -82,20 +82,29 @@ exports.sendOtp=async(req,res)=>{
      if(!isUser)
      return res.status(400).send("email is not registered!")
     otp=Math.floor((Math.random() * 10000) + 1);
+    console.log(otp)
     const otpToSave=new Otp({user:isUser._id,otp})
     const theSavedOtp=await otpToSave.save()
     if(!theSavedOtp)
     return res.status(400).send("Somthing went wrong!")
+    const authToken=await jwt.sign({userId:isUser._id,otpId:theSavedOtp._id},process.env.SECRETKEYFORTOKEN,{expiresIn:120})
 
-    return res.status(200).send(`OTP has been sent to your Email ${emailOrMobile}  `)
+    return res.status(200).send({msg:`OTP has been sent to your Email ${emailOrMobile}  `,verifyToken:authToken})
 
   }
     if(validator.isMobilePhone(emailOrMobile,"en-IN")){
-      // const isUser=await auth.findOne({mobile:emailOrMobile}) 
-      // if(!isUser)
+      const isUser=await auth.findOne({mobile:emailOrMobile}) 
+      if(!isUser)
       return res.status(400).send("please enter email we are working on it!")
-    //  otp=Math.floor((Math.random() * 10000) + 1);
-    //  return res.status(200).send(`OTP has been sent to your Mobile ${emailOrMobile}  `)
+     otp=Math.floor((Math.random() * 10000) + 1);
+     console.log(otp)
+     const otpToSave=new Otp({user:isUser._id,otp})
+     const theSavedOtp=await otpToSave.save()
+     if(!theSavedOtp)
+     return res.status(400).send("Somthing went wrong!")
+     const authToken=await jwt.sign({userId:isUser._id,otpId:theSavedOtp._id},process.env.SECRETKEYFORTOKEN,{expiresIn:120})
+     console.log(authToken)
+     return res.status(200).send({msg:`OTP has been sent to your Mobile ${emailOrMobile}  `,verifyToken:authToken})
   }
 
   }
@@ -106,4 +115,34 @@ exports.sendOtp=async(req,res)=>{
 }
 
 
+// Verify otp...........
+
+exports.otpVerify=async(req,res)=>{
+  try{
+    const {otp}=req.body
+    console.log(otp)
+    const isValidAuthToken=await jwt.verify(req.params.verifyToken,process.env.SECRETKEYFORTOKEN)
+    if(!isValidAuthToken)
+    return res.status(400).send("Otp is Expired!")
+    const {userId,otpId}=isValidAuthToken
+    if(!userId||!otpId)
+    return res.status(400).send("Otp is Expired!")
+    const theUser=await auth.findById(userId)
+    if(!theUser)
+    return res.status(400).send("Otp is Expired!")
+    const theOtp=await Otp.findById(otpId)
+    if(!theOtp)
+    return res.status(400).send("Otp is Expired!")
+    const isValidOtp=await bcrypt.compare(otp,theOtp.otp)
+    if(!isValidOtp)
+    return res.status(400).send("Invalid Otp!")
+    return res.status(200).send("verified!")
+
+  }
+  catch(err){
+    console.log(err)
+    return res.status(400).send("Otp is Expired!")
+  }
+
+}
 
