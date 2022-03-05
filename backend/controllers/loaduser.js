@@ -40,7 +40,18 @@ exports.loadUser = async (_id) => {
         process.env.SECRETKEY
       );
       dataToSend.course=await course.findById(theUser.course)
-      dataToSend.students=await auth.find({role:"student",course:theUser.course})
+      dataToSend.students=await auth.find({role:"student",course:theUser.course}).select("-password")
+      return dataToSend
+    }
+    if (theUser.role == "student") {
+      let dataToSend = {};
+      dataToSend.user = theUser;
+      dataToSend.token = await jwt.sign(
+        { id: theUser._id },
+        process.env.SECRETKEY
+      );
+      dataToSend.course=await course.findById(theUser.course)
+      dataToSend.teachers=await auth.find({role:"teacher",course:theUser.course}).select("-password")
       return dataToSend
     }
   } catch (err) {
