@@ -44,7 +44,7 @@ function Sidebar() {
 
 const Container = styled.div`
   width: 20%;
-  height: 100% !important;
+  height: 60% !important;
   border-radius: 2rem;
   background-color: #091322;
   display: flex;
@@ -89,30 +89,30 @@ const Links = styled.ul`
   display: flex;
   flex-direction: column;
   padding-top: 2rem;
-  height: 60%;
+  height: 75%;
 `;
 
 const Link = styled.li`
-  margin-left: 25%;
+  margin-left: 1%;
   margin-bottom: 2rem;
   display: flex;
   gap: 1rem;
   color: #e4e4e4;
   cursor: pointer;
   h3 {
-    font-weight: 300;
+    font-weight: 200;
   }
   svg {
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     margin-top: 3%;
   }
 `;
 
 const ContactContainer = styled.div`
-  width: 60%;
+  width: 85%;
   background-color: #091322;
   color: #c4c4c4;
-  height: 15%;
+  height: 18%;
   margin: auto auto;
   border-radius: 1rem;
   display: flex;

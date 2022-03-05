@@ -34,7 +34,7 @@ function ReviewByTeacher() {
 
 const TeacherReview = styled.div`
   border-radius: 1rem;
-  height: 130%;
+  height: 145%;
   padding: 1rem;
   background-color: white;
   width: 27.5vw;
@@ -78,35 +78,35 @@ const Avatar = styled.div`
   }
 `;
 const Info = styled.div``;
-const InfoName = styled.h3`
+const InfoName = styled.h4`
   font-weight: 500;
 `;
-const InfoUpdate = styled.h5`
+const InfoUpdate = styled.h6`
   font-weight: 300;
 `;
 const Title = styled.h4`
   font-weight: 500;
 `;
-const ProjectInfo = styled.p`
+const ProjectInfo = styled.h4`
   margin: 0;
   padding: 0;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #3b3b3b;
   margin-bottom: 0.5em;
 `;
-const PriceContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  background-color: rgba(146, 166, 255, 0.3);
-  @media screen and (min-width: 320px) and (max-width: 1080px) {
-    flex-direction: column;
+// const PriceContainer = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   margin: 0 1rem;
+//   padding: 0.5rem 1rem;
+//   border-radius: 1rem;
+//   background-color: rgba(146, 166, 255, 0.3);
+//   @media screen and (min-width: 320px) and (max-width: 1080px) {
+//     flex-direction: column;
 
-    gap: 0.4rem;
-  }
-`;
+//     gap: 0.4rem;
+//   }
+// `;
 
 export default ReviewByTeacher;

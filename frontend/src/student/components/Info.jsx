@@ -18,7 +18,7 @@ function Info() {
       <Card>
         <CardContent>
           <Row>
-            <Digit>32</Digit>
+            <Digit>9</Digit>
             <InfoContainer>
               <Title>Total Subjects</Title>
             </InfoContainer>
@@ -53,7 +53,7 @@ const Card = styled.div`
 `;
 
 const CardContent = styled.div`
-  padding: 0.7rem 1rem 0.3rem 1rem;
+  padding: 0.6rem 1rem 0.3rem 1rem;
 `;
 
 const Row = styled.div`
@@ -69,14 +69,14 @@ const Row = styled.div`
 `;
 const Digit = styled.div`
   background-color: ${themeColor};
-  padding: 0.8rem 1rem;
+  padding: 0.7rem 1rem;
   font-size: 1.3rem;
   border-radius: 1rem;
 `;
 const InfoContainer = styled.div`
   margin-left: 0.7rem;
 `;
-const Title = styled.h3`
+const Title = styled.h5`
   color: black;
 `;
 const SubTitle = styled.h5`

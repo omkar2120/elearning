@@ -15,7 +15,7 @@ function Projects() {
           <SubTitle>1 day remaining</SubTitle>
         </Detail>
       </Project>
-      <Project>
+      {/* <Project>
         <Avatar>
           <img src={AvatarImage4} alt="" />
         </Avatar>
@@ -23,14 +23,14 @@ function Projects() {
           <Title>ABC Project/Assignment</Title>
           <SubTitle>5 days remaining</SubTitle>
         </Detail>
-      </Project>
+      </Project> */}
       <AllProjects>See all projects</AllProjects>
     </YourProjects>
   );
 }
 
 const YourProjects = styled.div`
-  height: 70%;
+  height: 64%;
   background-color: white;
   margin: 0;
   padding: 1rem;
@@ -50,7 +50,7 @@ const YourProjects = styled.div`
 const Project = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
 `;
 const Avatar = styled.div`
   img {
@@ -62,7 +62,7 @@ const Avatar = styled.div`
 const Detail = styled.div`
   margin-left: 1rem;
 `;
-const Title = styled.h3`
+const Title = styled.h4`
   font-weight: 500;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     font-size: 1rem;

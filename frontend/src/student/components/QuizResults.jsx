@@ -47,7 +47,7 @@ const QuizResultContainer = styled.div`
   border-radius: 1rem;
   margin-top: 1rem;
   background-color: white;
-  height: 140%;
+  height: 150%;
   box-shadow: ${cardShadow};
   transition: 0.4s ease-in-out;
   &:hover {

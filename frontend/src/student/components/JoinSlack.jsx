@@ -72,7 +72,7 @@ const SlackText = styled.div`
   color: white;
 `;
 
-const SlackHead = styled.h2`
+const SlackHead = styled.h3`
   font-weight: 500;
 `;
 const SlackFoot = styled.h5`

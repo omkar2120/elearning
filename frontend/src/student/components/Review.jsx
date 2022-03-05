@@ -10,9 +10,9 @@ function Review() {
         <Chart>
           <IoStatsChart />
         </Chart>
-        <ReviewText>Review/Improvements</ReviewText>
+        <ReviewText>Improvements</ReviewText>
         <Reviews>Grade A</Reviews>
-        <ReviewIncrease>10% improvement since last month</ReviewIncrease>
+        {/* <ReviewIncrease>10% improvement since last month</ReviewIncrease> */}
       </CardContent>
     </ReviewCard>
   );
@@ -36,7 +36,7 @@ const ReviewCard = styled.div`
 `;
 
 const CardContent = styled.div`
-  margin: 1rem;
+  margin: 0.5rem;
 `;
 
 const Chart = styled.div`
@@ -48,13 +48,13 @@ const Chart = styled.div`
   }
 `;
 
-const ReviewText = styled.h3`
+const ReviewText = styled.h4`
   text-align: center;
   font-weight: normal;
   padding: 0.4rem 0;
 `;
 
-const Reviews = styled.h2`
+const Reviews = styled.h4`
   text-align: center;
 `;
 
