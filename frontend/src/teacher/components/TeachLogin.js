@@ -29,7 +29,7 @@ const TeachLogin = () => {
       setOtp("")
       setErrmsg(false)
       setLoading(true)
-        const res=await axios.post("/auth/otp",{emailOrMobile})
+        const res=await axios.post("/auth/teacher/otp",{emailOrMobile})
         if(res.data){
           setLoading(false)
           setSuccMsg({...succMsg,msg:res.data.msg,verifyToken:res.data.verifyToken})
