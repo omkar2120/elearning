@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import AvatarImage4 from "../assets/avatarImage4.jpg";
-import { cardShadow, hoverEffect, themeColor } from "../utils";
+import AvatarImage4 from "../../images/avatarImage4.jpg";
+import { cardShadow, hoverEffect, themeColor } from "./utils/untils.js";
 
 function Projects() {
   return (

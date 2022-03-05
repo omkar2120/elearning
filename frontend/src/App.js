@@ -14,8 +14,8 @@ import AdminStudentList from "./admin/pages/AdminStudentList";
 import TeacherDashboard from "./teacher/pages/TeacherDashboard";
 import TeacherAddStudent from "./teacher/pages/TeacherAddStudent";
 import styled from "styled-components";
-import Sidebar from "./components/Sidebar";
-import MainContent from "./components/MainContent";
+import Sidebar from "./student/components/Sidebar";
+import MainContent from "./student/components/MainContent";
 import "./App.css";
 function App() {
   return (

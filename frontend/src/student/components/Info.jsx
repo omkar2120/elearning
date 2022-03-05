@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { cardShadow, hoverEffect, themeColor } from "../utils";
+import { cardShadow, hoverEffect, themeColor } from "./utils/untils.js";
 function Info() {
   return (
     <InfoCard>

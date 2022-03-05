@@ -4,8 +4,8 @@ import { RiHomeLine, RiFileCopyLine } from "react-icons/ri";
 import { FaWallet } from "react-icons/fa";
 import { AiOutlinePieChart } from "react-icons/ai";
 import Badge from "./Badge";
-import AvatarImage4 from "../assets/avatarImage4.jpg";
-import { darkThemeColor } from "../utils";
+import AvatarImage4 from "../../images/avatarImage4.jpg";
+import { darkThemeColor } from "./utils/untils.js";
 function Sidebar() {
   return (
     <Container>
