@@ -6,25 +6,31 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Container, CssBaseline, Divider } from '@mui/material';
 import { Link } from 'react-router-dom'
-import { TabScrollButton } from '@mui/material';
+
 const Navbar = () => {
   return (
-    <div style={{height:"9%"}}>
+    <div style={{}}>
          <Box sx={{ flexGrow: 1  }} >
          <CssBaseline/>
-           <AppBar position="fixed" color='inherit'  sx={{boxShadow:0, justifySelf:'flex-start'}}>
+           <AppBar position="fixed" color='inherit'  sx={{boxShadow:0, justifySelf:'flex-start', height:'13%'}}>
              <Toolbar>
              <Link to="/" style={{textDecoration:'none'}}>
-               <Typography variant="h6" sx={{ flexGrow: 3 }}>
-                ELearning
-              </Typography>
+                <Typography variant="h6" 
+                    sx={{
+                       flexGrow: 3, 
+                       fontFamily:'Quicksand,sans-serif',
+                       fontSize:'30px', 
+                       fontWeight:'800',
+                       color:'#0B2060' 
+                       }}
+                       >
+                  eLearning
+                </Typography>
               </Link>
               
-             <Toolbar sx={{display:"flex", justifyContent:'right' ,width:"100%"}}>
-          <Link to="/teachlogin" style={{textDecoration:'none', marginRight:'2%'}}><Button color="inherit" variant='outlined' sx={{borderRadius:'50px'}} >Teacher</Button></Link>
-            <Link to="/studlogin" style={{ textDecoration:'none'}}><Button  variant='contained' sx={{borderRadius:'50px', backgroundColor:'blue'}} >Student </Button></Link>
-            <TabScrollButton><Button>Admin</Button>
-            <Button>Admin</Button></TabScrollButton>
+             <Toolbar sx={{display:"flex", justifyContent:'right' ,width:"100%", marginTop:'5px'}}>
+          <Link to="/teachlogin" style={{textDecoration:'none', marginRight:'1%'}}><Button color="inherit" variant='outlined' sx={{borderRadius:'50px', height:'40px', width:'115px'}} >Teacher</Button></Link>
+            <Link to="/studlogin" style={{ textDecoration:'none'}}><Button  variant='contained' sx={{borderRadius:'50px', backgroundColor:'#5913B0', height:'40px',width:'115px' }} >Student </Button></Link>
              </Toolbar>
         </Toolbar>
       </AppBar>
