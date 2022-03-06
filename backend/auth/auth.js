@@ -5,33 +5,10 @@ const validator = require("validator");
 const jwt=require("jsonwebtoken")
 const bcrypt=require("bcrypt");
 const {loadUser}=require("../controllers/loaduser")
-const { default: isEmail } = require("validator/lib/isEmail");
 const {smsOtpSend} =require("../controllers/otpSender")
 require("dotenv").config()
-var unirest = require("unirest");
-
-
-// method 1 for send sms
-// const Vonage = require('@vonage/server-sdk')
-// const vonage = new Vonage({
-//   apiKey: "463897cd",
-//   apiSecret: "GyPw7OSqWkAsyvVU"
-// })
-// const from = "Vonage APIs"
-// const to = `91${emailOrMobile}`
-// const text = `Your Otp is ${otp}`
-
-// vonage.message.sendSms(from, to, text, (err, responseData) => {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         if(responseData.messages[0]['status'] === "0") {
-//             console.log("Message sent successfully.");
-//         } else {
-//             console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-//         }
-//     }
-// })
+const {nodemaileConfig,emailTemplate}=require("../nodemailer.config")
+const nodemailer=require("nodemailer")
 exports.addProfile = async (req, res) => {
   try {
     const { fullname, email, mobile, password, role,course } = req.body;
@@ -100,10 +77,16 @@ exports.sendOtp=async(req,res)=>{
     const theSavedOtp=await otpToSave.save()
     if(!theSavedOtp)
     return res.status(400).send("Somthing went wrong!")
- 
-
+    const mail=nodemailer.createTransport(nodemaileConfig)
+    const themail=await mail.sendMail({
+      from:"E-Learning Team:<elearning.oraganization@gmail.com>",
+      to:emailOrMobile,
+      subject:"SignIn",
+      html:emailTemplate(otp,isUser.fullname)
+    })
+   if(!themail.messageId)
+   return res.status(404).send("Something Went Wrong!")
     const authToken=await jwt.sign({userId:isUser._id,otpId:theSavedOtp._id},process.env.SECRETKEYFORTOKEN,{expiresIn:120})
-
     return res.status(200).send({msg:`OTP has been sent to your Email ${emailOrMobile}  `,verifyToken:authToken})
 
   }
