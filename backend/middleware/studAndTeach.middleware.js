@@ -57,3 +57,7 @@ exports.studentMiddleware=async(req,res,next)=>{
         return res.status(400).send("something went wrong")
     }
 }
+
+
+
+// You need to complete one transaction of ₹100.00 or more before Sending Bulk SMS.

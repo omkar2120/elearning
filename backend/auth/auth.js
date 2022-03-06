@@ -6,7 +6,32 @@ const jwt=require("jsonwebtoken")
 const bcrypt=require("bcrypt");
 const {loadUser}=require("../controllers/loaduser")
 const { default: isEmail } = require("validator/lib/isEmail");
+const {smsOtpSend} =require("../controllers/otpSender")
 require("dotenv").config()
+var unirest = require("unirest");
+
+
+// method 1 for send sms
+// const Vonage = require('@vonage/server-sdk')
+// const vonage = new Vonage({
+//   apiKey: "463897cd",
+//   apiSecret: "GyPw7OSqWkAsyvVU"
+// })
+// const from = "Vonage APIs"
+// const to = `91${emailOrMobile}`
+// const text = `Your Otp is ${otp}`
+
+// vonage.message.sendSms(from, to, text, (err, responseData) => {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         if(responseData.messages[0]['status'] === "0") {
+//             console.log("Message sent successfully.");
+//         } else {
+//             console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+//         }
+//     }
+// })
 exports.addProfile = async (req, res) => {
   try {
     const { fullname, email, mobile, password, role,course } = req.body;
@@ -75,12 +100,15 @@ exports.sendOtp=async(req,res)=>{
     const theSavedOtp=await otpToSave.save()
     if(!theSavedOtp)
     return res.status(400).send("Somthing went wrong!")
+ 
+
     const authToken=await jwt.sign({userId:isUser._id,otpId:theSavedOtp._id},process.env.SECRETKEYFORTOKEN,{expiresIn:120})
 
     return res.status(200).send({msg:`OTP has been sent to your Email ${emailOrMobile}  `,verifyToken:authToken})
 
   }
     if(validator.isMobilePhone(emailOrMobile,"en-IN")){
+      return res.status(400).send("we are working on it!")
       const isUser=await auth.findOne({mobile:emailOrMobile}) 
       if(!isUser)
       return res.status(400).send("please enter email we are working on it!")
@@ -90,6 +118,10 @@ exports.sendOtp=async(req,res)=>{
      const theSavedOtp=await otpToSave.save()
      if(!theSavedOtp)
      return res.status(400).send("Somthing went wrong!")
+    //  sending otp
+    const isMsg=await smsOtpSend(otp,emailOrMobile)
+    if(!isMsg)
+    return res.status(400).send("Somthing went wrong")
      const authToken=await jwt.sign({userId:isUser._id,otpId:theSavedOtp._id},process.env.SECRETKEYFORTOKEN,{expiresIn:120})
      console.log(authToken)
      return res.status(200).send({msg:`OTP has been sent to your Mobile ${emailOrMobile}  `,verifyToken:authToken})
@@ -98,6 +130,7 @@ exports.sendOtp=async(req,res)=>{
   }
   catch(err){
     console.log(err)
+    return res.status(400).send("Somthing went wrong!")
 
   }
 }
