@@ -3,10 +3,25 @@ import { CssBaseline, Grid, Typography , Paper, Button, Box} from '@mui/material
 import { color, textAlign } from '@mui/system'
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import '../../index.css'
+import { Theme } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+// const theme = createTheme({
+//   typography: (
+//     fontFamily:'Quicksand,sans-serif',
+//   )
+const theme = createTheme({
+  typography:{
+    fontFamily:'Quicksand,sans-serif',
+  }
+})
 
 const HomeHeader = () => {
+
   return (
     <> 
+    <ThemeProvider theme={theme}>
     <div //first div 
         style={{
             height:'100vh',
@@ -59,17 +74,15 @@ const HomeHeader = () => {
                      fontSize:'65px', 
                      margin:'0' , 
                      color:"#0B2060",  
-                     fontFamily:'Quicksand,sans-serif', 
                      fontWeight:"600"
                      }}
-                     >Experince a learning platform that take you next level
+                     >
+                     Experince a learning platform that take you next level
               </Typography>
               <Typography 
                    style={{
                      fontSize:'20px', 
                      margin:'10px',
-                     fontFamily:'Quicksand,sans-serif', 
-
                      }}
                      >
                      There are many variation of pasages of avaliable but the majority have suffered
@@ -111,16 +124,16 @@ const HomeHeader = () => {
       
     </div>
 
-    {/* second header */}
+    {/* second header Our Service */}
     <div>
-       <Box style={{height:'60vh', backgroundColor:'#0B2060', }}>
+       <Box style={{height:'60vh', backgroundColor:'#0B2060' }}>
            <Box style={{ textAlign:'center'}}>
-             <Typography style={{ fontSize:'50px', color:'white',fontFamily:'Quicksand,sans-serif'}}>Our Services for you</Typography>
+             <Typography style={{ fontSize:'50px',fontWeight:'400', color:'white'}}>Our Services for you</Typography>
              <Typography style={{ fontSize:'20px', color:'white'}}>There are many variation of passages avaliable homorouse  of randomised  Lorem beliavable.</Typography>
            </Box>
           
            <Box style={{ margin:'80px', display:'flex', color:'white'}}> 
-              <Box ml={8} >
+              <Box ml={10} >
                  <Box sx={{display:'flex'}}>
                    <EventNoteIcon/>
                       <Typography sx={{fontSize:'20px'}}>Flexible Time Schedule</Typography>
@@ -128,7 +141,7 @@ const HomeHeader = () => {
                    <Typography>There are many variation of  passagesof Lorem avalible , but the majority alteration in form</Typography>
             </Box>
 
-              <Box ml={8}>
+              <Box ml={10}>
                 <Box sx={{display:'flex'}}>
                    <EventNoteIcon/>
                     <Typography sx={{fontSize:'20px'}}>Flexible Time Schedule</Typography>
@@ -136,7 +149,7 @@ const HomeHeader = () => {
                  <Typography>There are many variation of  passagesof Lorem avalible , but the majority alteration in form</Typography>
               </Box>
 
-              <Box ml={8}>
+              <Box ml={10}>
                 <Box sx={{display:'flex'}}>
                   <EventNoteIcon/>
                     <Typography sx={{fontSize:'20px'}}>Flexible Time Schedule</Typography>
@@ -147,19 +160,20 @@ const HomeHeader = () => {
        </Box>
     </div>
 
+   {/* benifits of online learning */}
    <div>
 
    <Box sx={{backgroundColor:'white', margin:'80px', height:'90vh', display:'flex'}}>
      <Grid 
         item 
         xs={6}
-        md={7}
+        md={6}
         style={{
-          margin:'80px'
+          margin:'40px'
         }}
         
         >
-        <img src='https://cdni.iconscout.com/illustration/premium/thumb/online-education-1804689-1530107.png'>
+        <img src='https://media.istockphoto.com/photos/online-remote-education-concept-child-girl-studying-at-home-picture-id1217114479?k=20&m=1217114479&s=612x612&w=0&h=laEqsuJLLqDuEp8qWjjgxe8MdOnVGl52RHWywtGZ7Ec='>
 
         </img>
            
@@ -167,71 +181,113 @@ const HomeHeader = () => {
      <Grid 
         item
         xs={6}
-        md={8}
+        md={7}
         style={{ 
-          margin:'80px'
+          margin:'20px',
         }}
         >
-        <Typography variant='h2'>Bebifit of online Learning</Typography>
-        <Typography variant='h5'>There are many variation of passages of Lorem ipsum availible
+        <Typography 
+            style={{ 
+              fontSize:'60px',
+              fontWeight:'600',
+              color:'#0B2060'
+              }}
+              >
+              Benifits of online Learning
+        </Typography>
+        <Typography 
+              style={{
+           fontFamily:'Quicksand,sans-serif', 
+           fontSize:'20px'
+           }}
+           >
+                 There are many variation of passages of Lorem ipsum availible
                  but the majority have suffered alteration in some form by look slightly believable
         </Typography>
 
-        <Box sx={{display:'flex', margin:'50px'}}>
-            <Typography margin={1}><EventNoteIcon/> Beginer Level</Typography>
-            <Typography margin={1}><EventNoteIcon/> Beginer Level</Typography>
-            <Typography margin={1}><EventNoteIcon/> Beginer Level</Typography>
-            <Typography margin={1}><EventNoteIcon/> Beginer Level</Typography>
+        <Box sx={{display:'flex'}}>
+            <Typography m={2}><EventNoteIcon/> Beginer Level</Typography>
+            <Typography m={2} ml={30}><EventNoteIcon/> Beginer Level</Typography>
+            </Box>
+            <Box sx={{display:'flex'}}>
+            <Typography m={2}><EventNoteIcon/> Beginer Level</Typography>
+            <Typography m={2} ml={30}><EventNoteIcon/> Beginer Level</Typography>
 
         </Box>
-        <Button variant='contained'>Get Started</Button>
-          
+        <Button
+                style={{
+                  height:'45px',
+                  backgroundColor:'#5913B0',
+                  borderRadius:'50px',
+                  color:'white',
+                  width:'130px',
+                  outline:'none'
+                  
+                }}
+              >Get started</Button>          
      </Grid>
    </Box>
 
    </div>
 
+  {/* track your online activity */}
+
    <div>
-     <Box sx={{backgroundColor:"white", height:'60vh',display:'flex', marginTop:'70px', marginLeft:'80px'}}>
+     <Box sx={{backgroundColor:"white", height:'60vh',display:'flex', marginLeft:'80px'}}>
        <Grid
           item
-          xs={5}
-          md={8}
-          margin={3}
+          xs={6}
+          md={6}
+
        >
-        <Typography variant='h3'>Track your study activity</Typography>
+        <Typography style={{fontSize:'60px',fontWeight:'600',color:'#0B2060'}}>Track your study activity daily</Typography>
         <Typography variant='h6'>There are variation of pasages availible homourous of randomised Lorem Ipsum beliavable</Typography>
         
-        <Box marginTop={4} >
-          <Typography><CheckCircleIcon/>Well Educated Staff</Typography>
-          <Typography><CheckCircleIcon/>Well Educated Staff</Typography>
-          <Typography><CheckCircleIcon/>Well Educated Staff</Typography>
+        <Box m={1} marginTop={2} >
+          <Typography m={1}><CheckCircleIcon color='primary'/>Well Educated Staff</Typography>
+          <Typography m={1}><CheckCircleIcon color='primary'/>Well Educated Staff</Typography>
+          <Typography m={1}><CheckCircleIcon color='primary'/>Well Educated Staff</Typography>
 
         </Box>
-        <Button variant='contained'>Explore Courses</Button>
-        
+        <Button
+                style={{
+                  height:'45px',
+                  backgroundColor:'#5913B0',
+                  borderRadius:'50px',
+                  color:'white',
+                  width:'130px',
+                  outline:'none',
+                  
+                }}
+              >Explore More</Button> 
 
        </Grid>
        <Grid
          item
          xs={5}
          md={8}
+         ml={23}
        >
-         
+      {/* <img src="https://campustechnology.com/-/media/EDU/CampusTechnology/2019-Images/20190422strada.jpg">
       
+      </img>   */}
+      <img height={400} width={600} src="https://campustechnology.com/-/media/EDU/CampusTechnology/2019-Images/20190422strada.jpg">
+        
+      </img>
       </Grid>
      </Box>
    </div>
   
-    <div style={{ height:'40vh', backgroundColor:'darkblue',textAlign:'center'}}>
+  {/* what student say about  */}
+    <div style={{ height:'40vh',textAlign:'center',marginTop:'100px'}}>
       <Box>
-        <Typography variant='h2'>What student say about us ?</Typography>
+        <Typography style={{ fontSize:'60px', fontWeight:'600', color:'#0B2060'}}>What student say about us ?</Typography>
         <Typography variant='h6'>There are many of passages availible humourouse of randomised Loreum Ipsum beliavable</Typography>
 
       </Box>
     </div>
 
-
+</ThemeProvider>
     </>
   )
 }
