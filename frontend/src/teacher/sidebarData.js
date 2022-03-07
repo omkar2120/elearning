@@ -28,7 +28,7 @@ export const sideBarData=[
         {
             name:"StudentList",
             icon:<FaUsers/>,
-            link:"/admin/student/list",
+            link:"/teacher/student/list",
             dropdown:[]
             
         }]

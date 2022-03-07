@@ -12,11 +12,13 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Navbar from "../../global/component/Navbar";
 import Swal from "sweetalert2";
+import Cookies from "js-cookie";
 import axios from "../../axios"
+import { useDispatch } from "react-redux";
 import { display } from "@mui/system";
 import { FormControl, FormLabel,CircularProgress } from "@mui/material";
 const TeachLogin = () => {
-  
+  const dispatch=useDispatch()
   const [emailOrMobile,setEmailOrMobile]=useState("")
   const [otp,setOtp]=useState()
   const [toggle,setToggle]=useState(false)
@@ -48,9 +50,9 @@ const TeachLogin = () => {
       setLoading(true)
       setErrmsg(false)
       const res=await axios.post(`/auth/verify/otp/${succMsg.verifyToken}`,{otp})
-      setLoading(false)
-      console.log(res.data)
-      Swal.fire(res.data.msg)
+      Cookies.set("e-learningadmintoken",res.data.token)
+      dispatch({type:"LOAD_USER_SUCCESS",payload:res.data})
+      Swal.fire("Verifyed!")
 
 
     }
@@ -67,7 +69,7 @@ const TeachLogin = () => {
       <div
         style={{
           width: "100%",
-          height: "calc(100vh - 9%)",
+          height: "calc(100vh - 13%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-around",

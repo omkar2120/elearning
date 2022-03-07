@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <div style={{}}>
+    <div style={{height:'13%'}}>
          <Box sx={{ flexGrow: 1  }} >
          <CssBaseline/>
            <AppBar position="fixed" color='inherit'  sx={{boxShadow:0, justifySelf:'flex-start', height:'13%'}}>

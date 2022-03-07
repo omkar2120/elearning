@@ -1,5 +1,7 @@
 import Cookie from "js-cookie";
 import * as admin from "../constant/admin.Constant";
+import * as global from "../constant/global.constatnt";
+
 const initialState = {
   isLogedin: false,
   isLoading: false,
@@ -87,6 +89,26 @@ const adminReducer = (state = initialState, action) => {
         isLoading: false,
         err: action.err,
       };
+    case global.LOAD_USER_REQUESTED:
+      return{
+        ...state,
+        isLoading:true,
+        err:false
+      }
+      case global.LOAD_USER_SUCCESS:
+        return{
+          ...state,
+          isLoading:false,
+          isLogedin:true,
+          users:action.payload.user,
+          token: Cookie.get("e-learningadmintoken"),
+        }
+        case global.LOAD_USER_ERROR:
+          return{
+            ...state,
+            isLoading:false,
+            err:action.err
+          }
     default:
       return state;
   }

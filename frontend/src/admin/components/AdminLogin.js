@@ -102,7 +102,7 @@ const AdminLogin = () => {
                 xl={12}
                 style={{ marginTop: "2%", borderRadius: "60%" }}
               >
-                <TextField fullWidth name="email" value={user.email} placeholder="Enter Email" onChange={handleChange}></TextField>
+                <TextField fullWidth name="email" value={user.email} label="Enter Email" onChange={handleChange}></TextField>
               </Grid>
               <Grid
                 item
@@ -116,7 +116,7 @@ const AdminLogin = () => {
                   type="password"
                   name="password" 
                   value={user.password}
-                  placeholder="Enter password"
+                  label="Enter password"
                   onChange={handleChange}
                 ></TextField>
               </Grid>
@@ -145,7 +145,7 @@ const AdminLogin = () => {
                 }}
               >
                 {adminState.isLoading?
-                <Button variant="contained" style={{ width: "30%" }} onClick={sendLogin} style={{fonSize:"5px",textTransform:"capitalize"}}>
+                <Button variant="contained" style={{ width: "30%",fonSize:"5px",textTransform:"capitalize" }} onClick={sendLogin}>
                  <CircularProgress color="secondary" size={20}/> 
                 <b style={{marginLeft:"12px"}}>Wait..</b> 
               </Button>

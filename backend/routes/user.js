@@ -1,10 +1,11 @@
 const {getAllStudents, getAllTeachers,updateuser, deleteuser, getuser, getusers } = require("../controllers/user");
+const {AdminAndTeacherMiddleware} =require("../middleware/index")
 const router = require("express").Router();
 
 // get All Teachers
 router.get("/get/all/teachers",getAllTeachers)
 // get All Student
-router.get("/get/all/students",getAllStudents)
+router.get("/get/all/students",AdminAndTeacherMiddleware,getAllStudents)
 //update a user
 router.put("/user/update/:id",updateuser);
 

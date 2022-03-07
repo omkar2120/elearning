@@ -16,8 +16,13 @@ import { display } from "@mui/system";
 import { FormControl, FormLabel } from "@mui/material";
 import axios from "../../axios"
 import Swal from "sweetalert2"
+import Cookies from "js-cookie";
+import { Navigate } from "react-router-dom";
+import { loadUser } from "../../redux/actions/global.action";
+import {useDispatch, useSelector} from "react-redux"
 const TeachLogin = () => {
-  
+  const dispatch=useDispatch()
+  const theState=useSelector((state)=>state.adminReducer)
   const [emailOrMobile,setEmailOrMobile]=useState("")
   const [otp,setOtp]=useState()
   const [toggle,setToggle]=useState(false)
@@ -50,25 +55,36 @@ const TeachLogin = () => {
       setErrmsg(false)
       const res=await axios.post(`/auth/verify/otp/${succMsg.verifyToken}`,{otp})
       setLoading(false)
-      console.log(res.data)
-      Swal.fire(res.data.msg)
-
+      Cookies.set("e-learningadmintoken",res.data.token)
+      dispatch({type:"ADMIN_USER_LOGIN_SUCCESS",user:res.data.user,courses:res.data.course})
+      Swal.fire("Verifyed!")
 
     }
     catch(err){
       setLoading(false)
       setErrmsg(err.response.data)
-
     }
   }
+  if(theState.isLogedin)
+  {
+    if(theState.users.role!="teacher")
+    {
+      return (<h1>404</h1>)
+
+    }
+    return <Navigate to={'/teacher/dashboard'}/>
+    
+
+  }
+  else
+  {
   return (
     <>
-      {" "}
       <Navbar />
       <div
         style={{
           width: "100%",
-          height: "calc(100vh - 9%)",
+          height: "calc(100vh - 13%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-around",
@@ -204,6 +220,7 @@ const TeachLogin = () => {
       </div>
     </>
   );
+}
 };
 
 export default TeachLogin;

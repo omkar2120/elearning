@@ -30,6 +30,7 @@ exports.loadUser = async (_id) => {
         });
         dataToSend.courses.push(toAdd);
       }
+      console.log(dataToSend)
       return dataToSend;
     }
     if (theUser.role == "teacher") {
@@ -39,7 +40,8 @@ exports.loadUser = async (_id) => {
         { id: theUser._id },
         process.env.SECRETKEY
       );
-      dataToSend.course=await course.findById(theUser.course)
+      const theCourse=await course.findById(theUser.course)
+      dataToSend.course=[{_id:theCourse._id,course:theCourse.cName,totalYear:theCourse.Years.length,totalSem:theCourse.Semesters.length}]
       dataToSend.students=await auth.find({role:"student",course:theUser.course}).select("-password")
       return dataToSend
     }
@@ -50,7 +52,7 @@ exports.loadUser = async (_id) => {
         { id: theUser._id },
         process.env.SECRETKEY
       );
-      dataToSend.course=await course.findById(theUser.course)
+      dataToSend.courses=await course.findById(theUser.course)
       dataToSend.teachers=await auth.find({role:"teacher",course:theUser.course}).select("-password")
       return dataToSend
     }

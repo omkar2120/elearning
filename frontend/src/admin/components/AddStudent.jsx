@@ -5,6 +5,7 @@ import { CircularProgress,Grid, Button, Typography, TextField, Select, MenuItem,
 export default function AddStudent() {
   const dispatch=useDispatch()
   const adminState=useSelector((state)=>state.adminReducer)
+  console.log(adminState)
   const [teacher,setTeacher]=useState({
     fullname:"",
     email:"",

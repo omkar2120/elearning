@@ -116,9 +116,9 @@ export const loginAdminAction = (data) => async (dispatch) => {
 export const getAllStudents=()=>async(dispatch)=>{
     try{
         dispatch({type:admin.ADMIN_ADD_STUDENT_REQUESTED})
-        const theTeachers=await axios.get("/get/all/students")
-        if(theTeachers){
-            dispatch({type:admin.ADMIN_ADD_STUDENT_SUCCESS,student:theTeachers.data})
+        const theStudents=await axios.get("/get/all/students",{headers:{authorization: Cookies.get("e-learningadmintoken")}})
+        if(theStudents){
+            dispatch({type:admin.ADMIN_ADD_STUDENT_SUCCESS,student:theStudents.data})
         }
 
 

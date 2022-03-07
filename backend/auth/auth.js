@@ -141,7 +141,7 @@ exports.otpVerify=async(req,res)=>{
     if(!isValidOtp)
     return res.status(400).send("Invalid Otp!")
     let dataToSend=await loadUser(userId)
-    return res.status(200).send({msg:"verified!",user:dataToSend})
+    return res.status(200).send(dataToSend)
 
   }
   catch(err){
@@ -151,3 +151,24 @@ exports.otpVerify=async(req,res)=>{
 
 }
 
+
+exports.LoadUser=async(req,res)=>{
+  try{
+    const {authorization}=req.headers
+    console.log(authorization)
+    if(!authorization||authorization=="undefined")
+    return  res.status(400).send("token is required")
+    const isValidToken= await jwt.verify(authorization,process.env.SECRETKEY)
+
+console.log(isValidToken)
+    if(!isValidToken)
+    return res.status(404).send("invalid token!")
+    const {id}=isValidToken
+    const dataToSend=await loadUser(id)
+    return res.status(200).send(dataToSend)
+
+  }
+  catch(err){
+    console.log(err)
+  }
+}
