@@ -8,6 +8,10 @@ import AdminDashboard2 from "./admin/pages/AdminDashboard2";
 import AdminAddCourse from "./admin/pages/AdminAddCourse";
 import AdminAddTeacher from "./admin/pages/AdminAddTeacher";
 import "./App.css"
+import TechDash from "./teacher/pages/TeachDashBoard/TechDash";
+import AttendanceCom from "./teacher/components/Attendance/AttendanceCom";
+import ClassListAttendance from './teacher/components/ClassList/ClassListAttendance'
+
 function App() {
   return (
     <div className="App" style={{height:"100vh"}}>
@@ -17,6 +21,9 @@ function App() {
           <Route  path="/studlogin" element={<StudLogin/>} />
           <Route  path="/teachlogin" element={<TeachLogin/>} />
           <Route  path="/admin" element={<AdminLogin/>}/>
+          <Route  path="/TechDash" element={<TechDash/>}/>
+          <Route path="/teacher/components/ClassList/ClassListAttendance" element={<ClassListAttendance/>}/>
+          <Route path="/teacher/pages/Attendance/Attendance" element={<AttendanceCom/>}/>
           {/* <Route  path="/admin/dashboard" element={<AdimDashBoard/>}/> */}
           <Route path="/admin/dashboard" element={<AdminDashboard2/>}/>
           <Route path="/admin/manage/course/add" element={<AdminAddCourse/>}/>
