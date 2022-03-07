@@ -4,8 +4,7 @@ import Sidebar from '../../../global/component/Sidebar2'
 import { TechSideBarData } from '../../../teacher/TechSideBarData';
 import TeacherDashBoard from '../../components/DashBoard/TeacherDashBoard';
 
-export default function 
-() {
+export default function () {
   return (
     <div style={{height:"calc(100vh - 10%)"}}>
         <Topbar/>
