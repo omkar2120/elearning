@@ -12,3 +12,10 @@
     font-family: 'Quicksand', sans-serif;
 
   } */
+
+.inputRounded .MuiOutlinedInput-root{
+    border-radius: 50px;
+    width: 300px;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+ }

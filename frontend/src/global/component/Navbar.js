@@ -5,6 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Container, CssBaseline, Divider } from '@mui/material';
+
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
@@ -15,7 +16,7 @@ const Navbar = () => {
            <AppBar position="fixed" color='inherit'  sx={{boxShadow:0, justifySelf:'flex-start', height:'13%'}}>
              <Toolbar>
              <Link to="/" style={{textDecoration:'none'}}>
-                <Typography variant="h6" 
+                <Typography 
                     sx={{
                        flexGrow: 3, 
                        fontFamily:'Quicksand,sans-serif',

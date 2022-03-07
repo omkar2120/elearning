@@ -6,11 +6,9 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import '../../index.css'
 import { Theme } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Footer from './Footer';
+import Corosouel from './Corosouel';
 
-// const theme = createTheme({
-//   typography: (
-//     fontFamily:'Quicksand,sans-serif',
-//   )
 const theme = createTheme({
   typography:{
     fontFamily:'Quicksand,sans-serif',
@@ -53,18 +51,17 @@ const HomeHeader = () => {
              style={{
                  boxShadow:'none'                 
              }}
-            //  font-family: 'Quicksand', sans-serif;
              >
              <Box  sx={{justifyContent:"center",margin:'60px'}}>
               <Typography 
                    style={{ 
-                     backgroundColor:'#DDD4D1', 
+                     backgroundColor:'#E0E0D8', 
                      width:'300px', 
                      height:'35px', 
                      borderRadius:'20px', 
                      justifyContent:'center', 
                      textAlign:'center', 
-                     marginTop:'5px',
+                     padding:'8px'
                      }}
                      >
                      100% Trusted Platform in the India
@@ -112,9 +109,9 @@ const HomeHeader = () => {
            sx={{
             backgroundImage:
                 "url(https://www.pngitem.com/pimgs/m/57-574351_nursery-school-student-png-transparent-png.png)",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+                 backgroundRepeat: "no-repeat",
+                 backgroundSize: "cover",
+                 backgroundPosition: "center",
               
             
            }}
@@ -128,10 +125,9 @@ const HomeHeader = () => {
     <div>
        <Box style={{height:'60vh', backgroundColor:'#0B2060' }}>
            <Box style={{ textAlign:'center'}}>
-             <Typography style={{ fontSize:'50px',fontWeight:'400', color:'white'}}>Our Services for you</Typography>
+             <Typography style={{ fontSize:'50px',fontWeight:'500', color:'white'}}>Our Services for you</Typography>
              <Typography style={{ fontSize:'20px', color:'white'}}>There are many variation of passages avaliable homorouse  of randomised  Lorem beliavable.</Typography>
            </Box>
-          
            <Box style={{ margin:'80px', display:'flex', color:'white'}}> 
               <Box ml={10} >
                  <Box sx={{display:'flex'}}>
@@ -287,9 +283,20 @@ const HomeHeader = () => {
       </Box>
     </div>
 
+    <Corosouel />
+
+    <div>
+      <Box sx={{textAlign:'center', height:'40vh', backgroundColor:'#E2D775'}}>
+         <Typography style={{fontSize:'60px',paddingTop:'50px', fontWeight:'600', color:'#0B2060'}}>Learn from a distance with us</Typography>
+         <Typography style={{marginTop:"10px"}}>There are many variation of passages avalible humorous random beliavable</Typography>
+
+      </Box>
+    </div>
+    <Footer />
+
 </ThemeProvider>
     </>
   )
 }
 
-export default HomeHeader
+export default HomeHeader;
