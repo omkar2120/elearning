@@ -14,6 +14,7 @@ import Home from "./home/component/Home";
 import "./App.css"
 import StudDashboard from "./student/components/StudDashboard";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import NotFound from "./home/component/NotFound";
 
 const theme = createTheme({
   typography:{
@@ -39,6 +40,7 @@ function App() {
           <Route path="admin/course/list" element={<AdminCourseList/>}/>
           <Route path="/admin/teacher/list" element={<AdminTeacherList/>}/>
           <Route path="studlogin/studashboard" element={<StudDashboard/>} />
+          <Route path="*" element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
     </div>
