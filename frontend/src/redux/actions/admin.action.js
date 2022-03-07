@@ -95,3 +95,36 @@ export const loginAdminAction = (data) => async (dispatch) => {
 
      }
  }
+
+
+ export const addStudent=(data)=>async(dispatch)=>{
+    try{
+        dispatch({type:admin.ADMIN_ADD_STUDENT_REQUESTED})
+        const theTeacher=await axios.post("/auth/student/add",data)
+        if(theTeacher){
+            Swal.fire("Student Added")
+            dispatch(getAllStudents())
+
+        }
+
+    }
+    catch(err){
+       dispatch({type:admin.ADMIN_ADD_STUDENT_ERROR,err:err.response.data})
+    }
+}
+
+export const getAllStudents=()=>async(dispatch)=>{
+    try{
+        dispatch({type:admin.ADMIN_ADD_STUDENT_REQUESTED})
+        const theTeachers=await axios.get("/get/all/students")
+        if(theTeachers){
+            dispatch({type:admin.ADMIN_ADD_STUDENT_SUCCESS,student:theTeachers.data})
+        }
+
+
+    }
+    catch(err){
+        dispatch({type:admin.ADMIN_ADD_STUDENT_ERROR,err:err.response.data})
+
+    }
+}

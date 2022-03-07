@@ -5,6 +5,8 @@ import Sidebar from '../../global/component/Sidebar2'
 import {TableContainer,Table,TableCell,TableBody,TableHead,TableRow,tableCellClasses,Button} from "@mui/material"
 import { styled } from '@mui/material/styles';
 import { useDispatch,useSelector } from 'react-redux'
+import { getAllTeachers } from '../../redux/actions/admin.action'
+import { useEffect } from 'react'
 // import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -27,7 +29,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
 export default function 
 () {
+  const dispatch=useDispatch()
     const adminState=useSelector((state)=>state.adminReducer)
+    useEffect(async()=>{await dispatch(getAllTeachers())},[dispatch])
   return (
     <div style={{height:"calc(100vh - 10%)"}}>
         <Topbar/>
@@ -36,14 +40,14 @@ export default function
                 <Sidebar data={sideBarData}/>
 
             </div>
-            <div className="sidebarContaine" style={{padding:"1%",maxHeight:"calc(100vh - 10%)",overflow:"auto"}}>
+            <div className="sidebarContaine" style={{padding:"1%",maxHeight:"calc(100vh - 10%)",overflow:"auto",paddingTop:"0.05%"}}>
                <TableContainer component={"paper"}>
-                   <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                   <Table sx={{ minWidth: 700 }} aria-label="customized table" stickyHeader>
                    <TableHead>
           <TableRow>
             <StyledTableCell align="center">Fullname</StyledTableCell>
-            <StyledTableCell align="center">Mmail</StyledTableCell>
-            <StyledTableCell align="center">mobile</StyledTableCell>
+            <StyledTableCell align="center">Email</StyledTableCell>
+            <StyledTableCell align="center">Mobile</StyledTableCell>
             <StyledTableCell align="center">Course</StyledTableCell>
             <StyledTableCell align="center">TotalStudents</StyledTableCell>
             <StyledTableCell align="center">Edit</StyledTableCell>

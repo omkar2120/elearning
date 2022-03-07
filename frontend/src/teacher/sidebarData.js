@@ -12,33 +12,8 @@ export const sideBarData=[
     {
         icon:<AiFillDashboard/>,
         list:"Dashboard",
-        path:"/admin/dashboard",
+        path:"/teacher/dashboard",
         dropdown:[]
-    },
-    {
-        icon:<BiBookReader/>,
-        list:"Manage Course",
-        path:false,
-        dropdown:[
-             {
-            name:"AddCourse",
-            icon:<MdAddModerator/>,
-            link:"/admin/manage/course/add",
-            dropdown:[]
-        },
-        {
-            name:"CourseList",
-            icon:<HiClipboardList/>,
-            link:"/admin/course/list",
-            dropdown:[]
-        },
-        {
-            name:"SyllabusList",
-            icon:<GiBookCover/>,
-            link:false,
-            dropdown:[]
-            
-        }]
     },
     {
         icon:<MdManageAccounts/>,
@@ -47,7 +22,7 @@ export const sideBarData=[
         dropdown:[{
             name:"AddStudent",
             icon:<CgUserAdd/>,
-            link:"/admin/manage/student/add"
+            link:"/teacher/student/add"
         
         },
         {
@@ -60,18 +35,18 @@ export const sideBarData=[
     },
     {
         icon:<GiTeacher/>,
-        list:"Manage Teacher",
+        list:"Manage Attendance",
         path:false,
         dropdown:[{
-            name:"AddTeacher",
+            name:"TakeAttendance",
             icon:<CgUserAdd/>,
-            link:"/admin/manage/teacher/add"
+            link:"/admin/manage/session"
         
         },
         {
-            name:"TeacherList",
+            name:"ModifyAttendance",
             icon:<FaUsers/>,
-            link:"/admin/teacher/list",
+            link:"/admin/manage/session/list",
             dropdown:[]
             
         }]
