@@ -16,11 +16,12 @@ export default function Sidebar({data}) {
                     button
                     style={{
                       width: "100%",
+                      color:'blue',
                     }}>
                     <ListItemText  style={{fontWeight:"bold",wordSpacing:"5px",letterSpacing:"5px"}}>{d.list}</ListItemText>
                     </ListItem>
                     :
-                    <NavLink to={d.path} style={{textDecoration: 'none',color:"#141414"}}>
+                    <NavLink to={d.path} style={{textDecoration: 'none',color:"blue"}}>
                    
                     <ListItem
                       button

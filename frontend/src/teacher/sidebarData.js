@@ -40,7 +40,7 @@ export const sideBarData=[
         dropdown:[{
             name:"TakeAttendance",
             icon:<CgUserAdd/>,
-            link:"/admin/manage/session"
+            link:"/teacher/manage/attendance"
         
         },
         {

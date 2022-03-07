@@ -21,6 +21,11 @@ import { useEffect } from "react";
 import  {useDispatch,useSelector} from "react-redux"
 import { loadUser } from "./redux/actions/global.action";
 import TeacherStudentList from "./teacher/pages/TeacherStudentList";
+// import "./App.css"
+import TechDash from "./teacher/pages/TeachDashBoard/TechDash";
+import AttendanceCom from "./teacher/components/Attendance/AttendanceCom";
+import ClassListAttendance from './teacher/components/ClassList/ClassListAttendance'
+import NotFound from "./home/component/NotFound";
 const theme = createTheme({
   // typography:{
   //   fontFamily:'Quicksand,sans-serif',
@@ -43,9 +48,11 @@ function App() {
           <Route  path="/studlogin" element={<StudLogin/>} />
           <Route  path="/teachlogin" element={<TeachLogin/>} />
           <Route  path="/admin" element={<AdminLogin/>}/>
+          <Route path="/teacher/manage/attendance" element={<ClassListAttendance/>}/>
+          <Route path="/teacher/pages/Attendance/Attendance" element={<AttendanceCom/>}/>
           {/* <Route  path="/admin/dashboard" element={<AdimDashBoard/>}/> */}
           <Route path="/admin/dashboard" element={<AdminDashboard2/>}/>
-          <Route path="/teacher/dashboard" element={<TeacherDashboard/>}/>
+          <Route path="/teacher/dashboard" element={<TechDash/>}/>
           <Route path="/admin/manage/course/add" element={<AdminAddCourse/>}/>
           <Route path="/admin/manage/teacher/add" element={<AdminAddTeacher/>}/>
           <Route path="/admin/manage/student/add" element={<AdminAddStudent/>}/>
@@ -54,7 +61,9 @@ function App() {
           <Route path="/admin/teacher/list" element={<AdminTeacherList/>}/>
           <Route path="/admin/student/list" element={<AdminStudentList/>}/>
           <Route path="/teacher/student/list" element={<TeacherStudentList/>}/>
-          <Route path="student/dashboard" element={<StudDashboard/>} />
+          <Route path="student/dashboard" element={<StudDashboard/>} /> 
+         <Route path="studlogin/studashboard" element={<StudDashboard/>} />
+          <Route path="*" element={<NotFound/>} />\
         </Routes>
       </BrowserRouter>
     </div>
