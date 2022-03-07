@@ -17,6 +17,7 @@ export const loginAdminAction = (data) => async (dispatch) => {
                user:adminData.data.user,
                courses:adminData.data.courses
             });
+            dispatch(getAllTeachers())
             
 
         } 
@@ -63,3 +64,67 @@ export const loginAdminAction = (data) => async (dispatch) => {
      }
  }
 
+ export const addTeacher=(data)=>async(dispatch)=>{
+     try{
+         dispatch({type:admin.ADMIN_ADD_TEACHER_REQUESTED})
+         const theTeacher=await axios.post("/auth/teacher/add",data)
+         if(theTeacher){
+             Swal.fire("Teacher Added")
+             dispatch(getAllTeachers())
+
+         }
+
+     }
+     catch(err){
+        dispatch({type:admin.ADMIN_ADD_TEACHER_ERROR,err:err.response.data})
+     }
+ }
+
+ export const getAllTeachers=()=>async(dispatch)=>{
+     try{
+         dispatch({type:admin.ADMIN_ADD_TEACHER_REQUESTED})
+         const theTeachers=await axios.get("/get/all/teachers")
+         if(theTeachers){
+             dispatch({type:admin.ADMIN_ADD_TEACHER_SUCCESS,teacher:theTeachers.data})
+         }
+
+
+     }
+     catch(err){
+         dispatch({type:admin.ADMIN_ADD_TEACHER_ERROR,err:err.response.data})
+
+     }
+ }
+
+
+ export const addStudent=(data)=>async(dispatch)=>{
+    try{
+        dispatch({type:admin.ADMIN_ADD_STUDENT_REQUESTED})
+        const theTeacher=await axios.post("/auth/student/add",data)
+        if(theTeacher){
+            Swal.fire("Student Added")
+            dispatch(getAllStudents())
+
+        }
+
+    }
+    catch(err){
+       dispatch({type:admin.ADMIN_ADD_STUDENT_ERROR,err:err.response.data})
+    }
+}
+
+export const getAllStudents=()=>async(dispatch)=>{
+    try{
+        dispatch({type:admin.ADMIN_ADD_STUDENT_REQUESTED})
+        const theTeachers=await axios.get("/get/all/students")
+        if(theTeachers){
+            dispatch({type:admin.ADMIN_ADD_STUDENT_SUCCESS,student:theTeachers.data})
+        }
+
+
+    }
+    catch(err){
+        dispatch({type:admin.ADMIN_ADD_STUDENT_ERROR,err:err.response.data})
+
+    }
+}

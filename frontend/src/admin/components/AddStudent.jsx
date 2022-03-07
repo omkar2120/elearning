@@ -1,8 +1,8 @@
 import React,{useState} from "react";
 import { useSelector,useDispatch} from "react-redux"
-import { addTeacher } from "../../redux/actions/admin.action";
+import { addStudent } from "../../redux/actions/admin.action";
 import { CircularProgress,Grid, Button, Typography, TextField, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
-export default function AddTeacher() {
+export default function AddStudent() {
   const dispatch=useDispatch()
   const adminState=useSelector((state)=>state.adminReducer)
   const [teacher,setTeacher]=useState({
@@ -12,7 +12,7 @@ export default function AddTeacher() {
     password:"",
     course:"",
     gender:"",
-    role:"teacher",
+    role:"student",
     password:""
   })
   const handleChanege=(e)=>{
@@ -20,14 +20,14 @@ export default function AddTeacher() {
     setTeacher({...teacher,[name]:value})
   }
   const sendData=async()=>{
-    await dispatch(addTeacher(teacher))
+    await dispatch(addStudent(teacher))
     setTeacher({fullname:"",
     email:"",
     mobile:"",
     password:"",
     course:"",
     gender:"",
-    role:"teacher",
+    role:"student",
     password:""})
   }
   return (
@@ -61,7 +61,7 @@ export default function AddTeacher() {
             color: "#060606",
           }}
         >
-          Add Teacher
+          Add Student
         </Typography>
         <Grid container spacing={3}>
           <Grid item md="12" lg="12" style={{ marginTop: "3%" }}>

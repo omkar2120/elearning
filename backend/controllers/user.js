@@ -1,5 +1,63 @@
 const User = require("../models/userSchema");
+const Course=require("../models/course.schema")
 const bcrypt = require("bcrypt");
+
+
+// get all teachers
+exports.getAllTeachers=async(req,res)=>{
+    try{
+        const dataToSend=[]
+        const theTeachers=await User.find({role:"teacher"});
+        for(let i=0;i<theTeachers.length;i++){
+            
+            const {_id,fullname,email,mobile,role,course}=theTeachers[i]
+            const theCourse=await Course.findById(course)
+            const students=await User.count({role:"student",course:theCourse._id})
+            const courseDeatils={_id:theCourse._id,cName:theCourse.cName,years:theCourse.Years.length,semesters:theCourse.Semesters.length}
+            let dataToAdd={
+                _id,fullname,email,mobile,role,course:courseDeatils,students
+            }
+            dataToSend.push(dataToAdd)
+        }
+        
+        if(theTeachers){
+            res.status(200).send(dataToSend)
+        }
+
+    }
+    catch(err){
+        res.status(400).send("something went wrong!")
+        console.log(err)
+    }
+}
+
+// get all student
+exports.getAllStudents=async(req,res)=>{
+    try{
+        const dataToSend=[]
+        const theStudents=await User.find({role:"student"});
+        for(let i=0;i<theStudents.length;i++){
+            
+            const {_id,fullname,email,mobile,role,course}=theStudents[i]
+            const theCourse=await Course.findById(course)
+            const teachers=await User.count({role:"teacher",course:theCourse._id})
+            const courseDeatils={_id:theCourse._id,cName:theCourse.cName,years:theCourse.Years.length,semesters:theCourse.Semesters.length}
+            let dataToAdd={
+                _id,fullname,email,mobile,role,course:courseDeatils,teachers
+            }
+            dataToSend.push(dataToAdd)
+        }
+        
+        if(theStudents){
+            res.status(200).send(dataToSend)
+        }
+
+    }
+    catch(err){
+        res.status(400).send("something went wrong!")
+        console.log(err)
+    }
+}
 
 //update user
 exports.updateuser = async (req,res)=>{
