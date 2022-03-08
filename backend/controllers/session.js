@@ -1,5 +1,6 @@
 const Subject = require("../models/subject.schema");
 const user = require("../models/userSchema");
+const Session = require("../models/session.schema")
 
 //create session
 exports.createsession = async(req,res)=>{
@@ -69,4 +70,33 @@ exports.getsession = async (req,res)=>{
          
      }
 
+}
+
+
+//get session according to the query
+exports.getsesbyquery = async (req,res)=>{
+    const datequery = req.query.date
+    const subquery = req.query.subject;
+    try{
+        let sessions 
+
+      if(datequery){
+          sessions = await Session.find().sort({createdAT:-1}).limit(6);
+      }
+      else if(subquery){
+        sessions = await Session.find({
+            subject:{
+                $in:[subquery]
+            }
+        })
+    }
+     else{
+         sessions = await Session.findById(req.params.id)
+     }
+     return res.status(200).json(sessions);
+
+    }catch(err){
+        res.status(400).json(err)
+        console.log(err);
+    }
 }

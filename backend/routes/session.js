@@ -1,8 +1,15 @@
-const { createsession } = require("../controllers/session");
+const { createsession, getsession, getsesbyquery } = require("../controllers/session");
 
 const router = require("express").Router();
 
 
-router.post("/",createsession)
+router.post("/session",createsession);
+
+router.get("/getsession",getsession)
+
+router.get("/get/session",getsesbyquery)
+
+router.get("/get/session/:id",getsesbyquery)
+
 
 module.exports=router
