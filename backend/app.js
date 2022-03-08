@@ -8,6 +8,7 @@ const authRoute=require("./routes/auth")
 const courseRoute=require("./routes/course.route")
 const userRoute=require("./routes/user");
 const adminRoute=require("./routes/admin");
+const sessionroute=require("./routes/session");
 const theMainRoute="/ursacaps/api"
 
 require("./database/connect");
@@ -19,6 +20,7 @@ app.use(theMainRoute,authRoute)
 app.use(theMainRoute,courseRoute)
 app.use(theMainRoute,userRoute)
 app.use(theMainRoute,adminRoute)
+app.use(theMainRoute,sessionroute)
 
 app.get("/",(req,res)=>{
     res.status(200).json("hello there!");
