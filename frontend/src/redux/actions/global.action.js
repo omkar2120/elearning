@@ -7,7 +7,7 @@ export const loadUser=()=>async(dispatch)=>{
     dispatch({type:user.ADMIN_USER_LOGIN_REQUESTED})
     const theUser=await axios.get("/auth/load/user",{headers:{authorization:Cookies.get("e-learningadmintoken") }})
     if(theUser)
-    dispatch({type:user.ADMIN_USER_LOGIN_SUCCESS,user:theUser.data.user,courses:theUser.data.course})
+    dispatch({type:user.ADMIN_USER_LOGIN_SUCCESS,user:theUser.data.user,courses:theUser.data.courses})
     if(theUser.data.user.role=="admin")
     dispatch(getAllTeachers())
     if(theUser.data.user.role=="admin"||theUser.data.user.role=="teacher")

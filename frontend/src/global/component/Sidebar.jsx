@@ -4,6 +4,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { NavLink, Navigate } from "react-router-dom";
+import { Button } from "@mui/material";
 import "./Sidebar.css";
 import img from "./Avtar2.jpg";
 import { useSelector } from "react-redux";
@@ -21,16 +22,17 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
         }}
       ></div>
       <div className="sidebarContentContainer">
-        <div className="profileContainer">
+        <div style={{display:"flex" ,justifyContent:"right"}}><Button color="error">LogOut</Button></div>
+        <div className="profileContainer" style={{marginTop:"4%"}}>
           <div className="dp">
             <img src={img} />
           </div>
           <div className="dpDetails">
-            <div className="dpDetailsName">
-              <h4>{userState.users.fullname}</h4>
+            <div className="dpDetailsName" style={{marginTop:"5%"}}>
+              <h5>{userState.users.fullname}</h5>
             </div>
-            <div className="dpDetailsClass">
-              <b style={{ color: "red" }}>{userState.users.role}</b>
+            <div className="dpDetailsClass" style={{padddingBottom:"15%"}}>
+              <b style={{ color: "red" }}>{userState.courses.cName}</b>
             </div>
           </div>
           </div>

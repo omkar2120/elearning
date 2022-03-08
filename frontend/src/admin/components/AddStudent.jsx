@@ -121,7 +121,7 @@ export default function AddStudent() {
       ?
       <div style={{textAlign:"center"}}><CircularProgress/></div>
       :
-      <Button fullWidth variant='contained' color="success" onClick={sendData}>Add Teacher</Button>
+      <Button fullWidth variant='contained' color="success" onClick={sendData}>Add Student</Button>
       }
       
       </Grid>
