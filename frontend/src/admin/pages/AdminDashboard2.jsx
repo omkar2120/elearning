@@ -2,8 +2,14 @@ import React from 'react'
 import Topbar from "../../global/component/Topbar"
 import Sidebar from '../../global/component/Sidebar2'
 import { sideBarData } from '../sidebarData'
+import {useSelector} from "react-redux"
+import NotFound from '../../home/component/NotFound'
 export default function 
 () {
+  const theState=useSelector((state)=>state.adminReducer)
+  if(!theState.isLogedin||theState.users.role!=="admin")
+  return <NotFound/>
+  else 
   return (
     <div style={{height:"calc(100vh - 10%)"}}>
         <Topbar/>

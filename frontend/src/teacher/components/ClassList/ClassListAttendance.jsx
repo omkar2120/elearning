@@ -6,6 +6,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { BiBookReader } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import NotFound from "../../../home/component/NotFound";
 import {
   TableContainer,
   Table,
@@ -34,6 +35,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 export default function Attendance() {
   console.log("inside");
   const theState = useSelector((state) => state.adminReducer);
+  if(!theState.isLogedin||theState.users.role!=="teacher")
+  return <NotFound/>
+  else 
   return (
     <div style={{ height: "calc(100vh - 10%)" }}>
       <Topbar />

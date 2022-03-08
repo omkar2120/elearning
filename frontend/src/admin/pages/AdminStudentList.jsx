@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles';
 import { useDispatch,useSelector } from 'react-redux'
 import { getAllStudents } from '../../redux/actions/admin.action'
 import { useEffect } from 'react'
+import NotFound from "../../home/component/NotFound"
 // import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -32,6 +33,9 @@ export default function
   const dispatch=useDispatch()
     const adminState=useSelector((state)=>state.adminReducer)
     useEffect(async()=>{await dispatch(getAllStudents())},[dispatch])
+    if(!adminState.isLogedin||adminState.users.role!=="admin")
+  return <NotFound/>
+  else 
   return (
     <div style={{height:"calc(100vh - 10%)"}}>
         <Topbar/>
