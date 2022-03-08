@@ -15,7 +15,7 @@ import AdminStudentList from "./admin/pages/AdminStudentList";
 import TeacherAddStudent from "./teacher/pages/TeacherAddStudent"
 import StudentDashboard from "./student/Pages/StudentDashboard";
 import Home from "./home/component/Home";
-import "./app.css"
+//import "./app.css"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useEffect } from "react";
 import  {useDispatch,useSelector} from "react-redux"
