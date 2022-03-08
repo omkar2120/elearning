@@ -4,7 +4,13 @@ import Sidebar from "../../global/component/Sidebar2"
 import AddTeacher from "../components/AddTeacher"
 import { sideBarData } from '../sidebarData'
 import { Grid } from '@mui/material'
+import { useSelector } from 'react-redux'
+import NotFound from '../../home/component/NotFound'
 function AdminAddTeacher() {
+  const theState=useSelector((state)=>state.adminReducer)
+  if(!theState.isLogedin||theState.users.role!=="admin")
+  return <NotFound/>
+  else 
   return (
     <div style={{height:"calc(100vh - 10%)"}}>
         <Topbar/>

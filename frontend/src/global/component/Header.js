@@ -10,7 +10,7 @@ function Header({list}) {
   if(userState.users.role=="admin") isAdmin=true
   const [sidebar,setSidebar]=useState(false)
   return<><div className="header">
-    <h3>{isAdmin?"ADMIN":"BBA-CA"}</h3>
+    <h3>{userState.courses.cName}</h3>
     <FaBars className='iconBar' onClick={()=>{setSidebar(!sidebar)}}/>
     </div>
      <Sidebar sidebar={sidebar} setSidebar={setSidebar} list={list}/>

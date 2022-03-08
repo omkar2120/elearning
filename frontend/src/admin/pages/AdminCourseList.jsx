@@ -6,6 +6,7 @@ import {TableContainer,Table,TableCell,TableBody,TableHead,TableRow,tableCellCla
 import { styled } from '@mui/material/styles';
 import { useDispatch,useSelector } from 'react-redux'
 import { getCourse } from '../../redux/actions/admin.action'
+import NotFound from '../../home/component/NotFound'
 // import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -34,6 +35,9 @@ export default function
     useEffect(async()=>{
       await dispatch(getCourse())
     },[dispatch])
+  if(!adminState.isLogedin||adminState.users.role!=="admin")
+  return <NotFound/>
+  else 
   return (
     <div style={{height:"calc(100vh - 10%)"}}>
         <Topbar/>

@@ -39,9 +39,7 @@
   object-fit: cover;
   object-position: center center;
 }
-.dpDetails {
-  padding-top: 7%;
-}
+
 /* .listContainer{
     display: flex;
     flex-direction: column;

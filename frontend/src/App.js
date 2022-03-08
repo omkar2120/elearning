@@ -13,9 +13,9 @@ import AdminTeacherList from "./admin/pages/AdminTeacherList";
 import AdminAddStudent from "./admin/pages/AdminAddStudent";
 import AdminStudentList from "./admin/pages/AdminStudentList";
 import TeacherAddStudent from "./teacher/pages/TeacherAddStudent"
+import StudentDashboard from "./student/Pages/StudentDashboard";
 import Home from "./home/component/Home";
 import "./app.css"
-import StudDashboard from "./student/components/StudDashboard";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useEffect } from "react";
 import  {useDispatch,useSelector} from "react-redux"
@@ -53,6 +53,7 @@ function App() {
           {/* <Route  path="/admin/dashboard" element={<AdimDashBoard/>}/> */}
           <Route path="/admin/dashboard" element={<AdminDashboard2/>}/>
           <Route path="/teacher/dashboard" element={<TechDash/>}/>
+          <Route path="/student/dashboard" element={<StudentDashboard/>}/>
           <Route path="/admin/manage/course/add" element={<AdminAddCourse/>}/>
           <Route path="/admin/manage/teacher/add" element={<AdminAddTeacher/>}/>
           <Route path="/admin/manage/student/add" element={<AdminAddStudent/>}/>
@@ -61,8 +62,6 @@ function App() {
           <Route path="/admin/teacher/list" element={<AdminTeacherList/>}/>
           <Route path="/admin/student/list" element={<AdminStudentList/>}/>
           <Route path="/teacher/student/list" element={<TeacherStudentList/>}/>
-          <Route path="student/dashboard" element={<StudDashboard/>} /> 
-         <Route path="studlogin/studashboard" element={<StudDashboard/>} />
           <Route path="*" element={<NotFound/>} />\
         </Routes>
       </BrowserRouter>
