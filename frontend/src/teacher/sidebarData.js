@@ -68,5 +68,23 @@ export const sideBarData=[
             dropdown:[]
             
         }]
+    },
+    {
+        icon:<GiTeacher/>,
+        list:"Manage Subject",
+        path:false,
+        dropdown:[{
+            name:"AddSubject",
+            icon:<CgUserAdd/>,
+            link:"/teacher/subject/add"
+        
+        },
+        {
+            name:"SubjectList",
+            icon:<FaUsers/>,
+            link:"/teacher/subject/list",
+            dropdown:[]
+            
+        }]
     }
 ]

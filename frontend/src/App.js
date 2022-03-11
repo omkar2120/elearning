@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import  {useDispatch,useSelector} from "react-redux"
 import { loadUser } from "./redux/actions/global.action";
 import TeacherStudentList from "./teacher/pages/TeacherStudentList";
+import TeacherAddSubject from "./teacher/pages/TeacherAddSubject";
 // import "./App.css"
 import TechDash from "./teacher/pages/TeachDashBoard/TechDash";
 import AttendanceCom from "./teacher/components/Attendance/AttendanceCom";
@@ -58,11 +59,12 @@ function App() {
           <Route path="/admin/manage/teacher/add" element={<AdminAddTeacher/>}/>
           <Route path="/admin/manage/student/add" element={<AdminAddStudent/>}/>
           <Route path="/teacher/student/add" element={<TeacherAddStudent/>}/>
+          <Route path="/teacher/subject/add" element={<TeacherAddSubject/>}/>
           <Route path="admin/course/list" element={<AdminCourseList/>}/>
           <Route path="/admin/teacher/list" element={<AdminTeacherList/>}/>
           <Route path="/admin/student/list" element={<AdminStudentList/>}/>
           <Route path="/teacher/student/list" element={<TeacherStudentList/>}/>
-          <Route path="*" element={<NotFound/>} />\
+          <Route path="*" element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
     </div>
