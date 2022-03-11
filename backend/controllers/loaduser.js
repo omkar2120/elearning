@@ -41,7 +41,7 @@ exports.loadUser = async (_id) => {
         process.env.SECRETKEY
       );
       const theCourse=await course.findById(theUser.course)
-      dataToSend.course=[{_id:theCourse._id,course:theCourse.cName,totalYear:theCourse.Years.length,totalSem:theCourse.Semesters.length}]
+      dataToSend.courses=[{_id:theCourse._id,course:theCourse.cName,totalYear:theCourse.Years.length,totalSem:theCourse.Semesters.length}]
       dataToSend.students=await auth.find({role:"student",course:theUser.course}).select("-password")
       return dataToSend
     }

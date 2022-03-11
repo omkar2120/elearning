@@ -14,11 +14,13 @@ import Navbar from "../../global/component/Navbar";
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 import axios from "../../axios"
-import { useDispatch } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { useDispatch,useSelector } from "react-redux";
 import { display } from "@mui/system";
 import { FormControl, FormLabel,CircularProgress } from "@mui/material";
 const TeachLogin = () => {
   const dispatch=useDispatch()
+  const theState=useSelector((state)=>state.adminReducer)
   const [emailOrMobile,setEmailOrMobile]=useState("")
   const [otp,setOtp]=useState()
   const [toggle,setToggle]=useState(false)
@@ -52,7 +54,8 @@ const TeachLogin = () => {
       const res=await axios.post(`/auth/verify/otp/${succMsg.verifyToken}`,{otp})
       setLoading(false)
       Cookies.set("e-learningadmintoken",res.data.token)
-      dispatch({type:"LOAD_USER_SUCCESS",payload:res.data})
+      console.log(res.data)
+      dispatch({type:"ADMIN_USER_LOGIN_SUCCESS",user:res.data.user,courses:res.data.courses})
       Swal.fire("Verifyed!")
 
 
@@ -63,6 +66,19 @@ const TeachLogin = () => {
 
     }
   }
+  if(theState.isLogedin)
+  {
+    if(theState.users.role!="student")
+    {
+      return (<h1>404</h1>)
+
+    }
+    return <Navigate to={'/student/dashboard'}/>
+    
+
+  }
+  else
+  {
   return (
     <>
       {" "}
@@ -206,6 +222,7 @@ const TeachLogin = () => {
       </div>
     </>
   );
+    }
 };
 
 export default TeachLogin;
