@@ -93,5 +93,36 @@ export const sideBarData=[
             dropdown:[]
             
         }]
+    },
+    {
+        icon:<GiTeacher/>,
+        list:"Manage Subject&Syllabus",
+        path:false,
+        dropdown:[{
+            name:"AddSubject",
+            icon:<CgUserAdd/>,
+            link:"/admin/add/subject"
+        
+        },
+        {
+            name:"SubjectList",
+            icon:<FaUsers/>,
+            link:"/admin/subject/list",
+            dropdown:[]
+            
+        },
+        {
+            name:"AddTopic",
+            icon:<CgUserAdd/>,
+            link:"/admin/add/topic"
+        
+        },
+        {
+            name:"TopicList",
+            icon:<FaUsers/>,
+            link:"/admin/topic/list",
+            dropdown:[]
+            
+        }]
     }
 ]

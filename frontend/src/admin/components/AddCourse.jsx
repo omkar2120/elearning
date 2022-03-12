@@ -30,7 +30,7 @@ export default function AddCourse() {
             style={{ textAlign: "center" ,wordSpacing:"7px" ,textTransform:"uppercase" ,fontSize:"30px",fontWeight:"bolder" ,color:"#060606"}}>
                 Add Course
 </Typography>
-<Grid container container spacing={8} style={{marginTop:"0.4%"}}>
+<Grid container  spacing={8} style={{marginTop:"0.4%"}}>
     <Grid item lg="12" md="12">
             <TextField fullWidth name='courseName' label="Course Name" variant='standard' onChange={handleChange}  autoCorrect="false" value={course.courseName} size="medium" style={{fontSize:"30px"}}></TextField>
 

@@ -65,8 +65,8 @@ export default function
                     
                       <StyledTableRow>
                     <StyledTableCell align="center">{d.course}</StyledTableCell>
-                    <StyledTableCell align="center">{d.totalYear}</StyledTableCell>
-                    <StyledTableCell align="center">{d.totalSem}</StyledTableCell>
+                    <StyledTableCell align="center">{d.totalYear.length}</StyledTableCell>
+                    <StyledTableCell align="center">{d.totalSem.length}</StyledTableCell>
                     <StyledTableCell align="center">{d.totalTeacher}</StyledTableCell>
                     <StyledTableCell align="center">{d.totalStudent}</StyledTableCell>
                     <StyledTableCell align="center"><Button variant='text' color="success">Edit</Button></StyledTableCell>

@@ -16,3 +16,8 @@ const subjectSchema=new mongoose.Schema({
     topics:[]
 })
 module.exports= mongoose.model("subject",subjectSchema)
+
+
+
+
+

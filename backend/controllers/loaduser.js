@@ -18,8 +18,8 @@ exports.loadUser = async (_id) => {
         let toAdd = {};
         toAdd._id = totalCourse[i]._id;
         toAdd.course = totalCourse[i].cName;
-        toAdd.totalYear = totalCourse[i].Years.length;
-        toAdd.totalSem = totalCourse[i].Semesters.length;
+        toAdd.totalYear = totalCourse[i].Years;
+        toAdd.totalSem = totalCourse[i].Semesters;
         toAdd.totalStudent = await auth.count({
           role: "student",
           course: totalCourse[i]._id,
@@ -41,7 +41,8 @@ exports.loadUser = async (_id) => {
         process.env.SECRETKEY
       );
       const theCourse=await course.findById(theUser.course)
-      dataToSend.courses=[{_id:theCourse._id,course:theCourse.cName,totalYear:theCourse.Years.length,totalSem:theCourse.Semesters.length}]
+      console.log(theCourse)
+      dataToSend.courses=[{_id:theCourse._id,course:theCourse.cName,totalYear:theCourse.Years,totalSem:theCourse.Semesters}]
       dataToSend.students=await auth.find({role:"student",course:theUser.course}).select("-password")
       return dataToSend
     }

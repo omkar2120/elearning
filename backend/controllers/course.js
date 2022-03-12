@@ -43,8 +43,8 @@ exports.getCourse=async(req,res)=>{
       const studentCount=await user.count({role:"student",course:course[i]._id})
       dataToAdd._id=course[i]._id
       dataToAdd.course=course[i].cName
-      dataToAdd.totalYear=course[i].Years.length
-      dataToAdd.totalSem=course[i].Semesters.length
+      dataToAdd.totalYear=course[i].Years
+      dataToAdd.totalSem=course[i].Semesters
       dataToAdd.totalTeacher=teacherCount
       dataToAdd.totalStudent=studentCount
       dataToSend.push(dataToAdd)

@@ -87,15 +87,15 @@ export const sideBarData=[
             
         },
         {
-            name:"AddSyllabus",
+            name:"AddTopic",
             icon:<CgUserAdd/>,
-            link:"/teacher/add/syllabus"
+            link:"/teacher/add/topic"
         
         },
         {
-            name:"SyllabusList",
+            name:"TopicList",
             icon:<FaUsers/>,
-            link:"/teacher/syllabus/list",
+            link:"/teacher/topic/list",
             dropdown:[]
             
         }]
