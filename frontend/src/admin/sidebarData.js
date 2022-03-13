@@ -7,6 +7,7 @@ import {CgUserAdd} from "react-icons/cg"
 import {GiBookCover} from "react-icons/gi"
 import {HiClipboardList} from "react-icons/hi"
 import {MdAddModerator} from "react-icons/md"
+import { BsFillBookmarkPlusFill } from "react-icons/bs"
 import {Add,TrendingUp} from '@mui/icons-material';
 export const sideBarData=[
     {
@@ -100,7 +101,7 @@ export const sideBarData=[
         path:false,
         dropdown:[{
             name:"AddSubject",
-            icon:<CgUserAdd/>,
+            icon:<BsFillBookmarkPlusFill/>,
             link:"/admin/add/subject"
         
         },

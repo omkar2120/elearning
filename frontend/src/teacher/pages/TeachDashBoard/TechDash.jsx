@@ -1,7 +1,7 @@
 import React from 'react'
 import Topbar from "../../../global/component/Topbar"
 import Sidebar from '../../../global/component/Sidebar2'
-import { sideBarData } from "../../sidebarData";
+import {sideBarData} from "../../sidebarData"
 import TeacherDashBoard from '../../components/DashBoard/TeacherDashBoard';
 import { useSelector } from 'react-redux';
 import NotFound from '../../../home/component/NotFound';

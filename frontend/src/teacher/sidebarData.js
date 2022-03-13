@@ -1,12 +1,12 @@
 import {AiFillDashboard} from "react-icons/ai"
 import {MdManageAccounts} from "react-icons/md"
-import {BiBookReader} from "react-icons/bi"
+import {BsFillBookmarkPlusFill,BsFillBookmarksFill} from "react-icons/bs"
 import {GiTeacher} from "react-icons/gi"
 import {FaUsers} from "react-icons/fa"
 import {CgUserAdd} from "react-icons/cg"
-import {GiBookCover} from "react-icons/gi"
+import {GiBookCover,GiNotebook} from "react-icons/gi"
 import {HiClipboardList} from "react-icons/hi"
-import {MdAddModerator} from "react-icons/md"
+import {MdAddModerator,MdOutlineCollections} from "react-icons/md"
 import {Add,TrendingUp} from '@mui/icons-material';
 export const sideBarData=[
     {
@@ -75,26 +75,26 @@ export const sideBarData=[
         path:false,
         dropdown:[{
             name:"AddSubject",
-            icon:<CgUserAdd/>,
+            icon:<BsFillBookmarkPlusFill/>,
             link:"/teacher/add/subject"
         
         },
         {
             name:"SubjectList",
-            icon:<FaUsers/>,
+            icon:<BsFillBookmarksFill/>,
             link:"/teacher/subject/list",
             dropdown:[]
             
         },
         {
             name:"AddTopic",
-            icon:<CgUserAdd/>,
+            icon:<GiNotebook/>,
             link:"/teacher/add/topic"
         
         },
         {
             name:"TopicList",
-            icon:<FaUsers/>,
+            icon:<MdOutlineCollections/>,
             link:"/teacher/topic/list",
             dropdown:[]
             
