@@ -24,6 +24,7 @@ import TeacherStudentList from "./teacher/pages/TeacherStudentList";
 import TeacherAddSubject from "./teacher/pages/TeacherAddSubject";
 import AdminAddSubject from "./admin/pages/AdminAddSubject";
 import TeacherAddTopic from "./teacher/pages/TeacherAddTopic";
+import AdminAddTopic from "./admin/pages/AdminAddTopic";
 // import "./App.css"
 import TechDash from "./teacher/pages/TeachDashBoard/TechDash";
 import AttendanceCom from "./teacher/components/Attendance/AttendanceCom";
@@ -66,6 +67,7 @@ function App() {
           <Route path="/admin/student/list" element={<AdminStudentList/>}/>
           <Route path="/teacher/add/subject" element={<TeacherAddSubject/>}/>
           <Route path="/teacher/add/topic" element={<TeacherAddTopic/>}/>
+          <Route path="/admin/add/topic" element={<AdminAddTopic/>}/>
           <Route path="/admin/add/subject" element={<AdminAddSubject/>}/>
           <Route path="/teacher/student/list" element={<TeacherStudentList/>}/>
           <Route path="*" element={<NotFound/>} />\

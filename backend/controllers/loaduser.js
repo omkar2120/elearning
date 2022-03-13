@@ -1,5 +1,6 @@
 const auth = require("../models/userSchema");
 const course = require("../models/course.schema");
+const subject=require("../models/subject.schema")
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 exports.loadUser = async (_id) => {
@@ -30,6 +31,7 @@ exports.loadUser = async (_id) => {
         });
         dataToSend.courses.push(toAdd);
       }
+      dataToSend.subjects=await subject.find({})
       console.log(dataToSend)
       return dataToSend;
     }
@@ -44,6 +46,7 @@ exports.loadUser = async (_id) => {
       console.log(theCourse)
       dataToSend.courses=[{_id:theCourse._id,course:theCourse.cName,totalYear:theCourse.Years,totalSem:theCourse.Semesters}]
       dataToSend.students=await auth.find({role:"student",course:theUser.course}).select("-password")
+      dataToSend.subjects=await subject.find({course:theUser.course})
       return dataToSend
     }
     if (theUser.role == "student") {

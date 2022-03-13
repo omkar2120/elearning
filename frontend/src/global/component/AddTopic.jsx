@@ -50,9 +50,9 @@ export default function AddTopic() {
                 <FormControl fullWidth>
                     <InputLabel>Select Subject</InputLabel>
                 <Select fullWidth label="Select Subject">
-                    {theState.courses.map((d)=>(
+                    {theState.subjects.map((d)=>(
                     <MenuItem value={d._id}>
-                   {d.course}
+                   {d.Name}
                     </MenuItem>
 
                     ))}

@@ -11,6 +11,7 @@ const initialState = {
   token: Cookie.get("e-learningadmintoken"),
   teachers: [],
   students: [],
+  subjects:[]
 };
 const adminReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -27,6 +28,7 @@ const adminReducer = (state = initialState, action) => {
         isLogedin: true,
         users: action.user,
         courses: action.courses,
+        subjects:action.subjects,
         token: Cookie.get("e-learningadmintoken"),
       };
     case admin.ADMIN_USER_LOGIN_ERROR:
