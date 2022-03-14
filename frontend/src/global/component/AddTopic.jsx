@@ -36,6 +36,8 @@ export default function AddTopic() {
     subTopic4: "",
     subTopic5: "",
     subTopic6: "",
+    subTopic7: "",
+    subTopic8: "",
     subTopic9: "",
     subTopic10: "",
     subTopic11: "",
@@ -51,6 +53,8 @@ export default function AddTopic() {
       subTopic4: "",
       subTopic5: "",
       subTopic6: "",
+      subTopic7: "",
+      subTopic8: "",
       subTopic9: "",
       subTopic10: "",
       subTopic11: "",
@@ -65,7 +69,36 @@ const theState = useSelector((state) => state.adminReducer);
   };
 
   const sendTopic = async () => {
-      dispatch(addTopic(topic))
+    const dataToSend={}
+     dataToSend.Name=topic.topicName
+     dataToSend.subject=topic.subject
+     dataToSend.SubTopics=[]
+     if(topic.subTopic0)
+     dataToSend.SubTopics.push(topic.subTopic0)
+     if(topic.subTopic1)
+     dataToSend.SubTopics.push(topic.subTopic1)
+     if(topic.subTopic2)
+     dataToSend.SubTopics.push(topic.subTopic2)
+     if(topic.subTopic3)
+     dataToSend.SubTopics.push(topic.subTopic3)
+     if(topic.subTopic4)
+     dataToSend.SubTopics.push(topic.subTopic4)
+     if(topic.subTopic5)
+     dataToSend.SubTopics.push(topic.subTopic5)
+     if(topic.subTopic6)
+     dataToSend.SubTopics.push(topic.subTopic6)
+     if(topic.subTopic7)
+     dataToSend.SubTopics.push(topic.subTopic7)
+     if(topic.subTopic8)
+     dataToSend.SubTopics.push(topic.subTopic8)
+     if(topic.subTopic9)
+     dataToSend.SubTopics.push(topic.subTopic9)
+     if(topic.subTopic10)
+     dataToSend.SubTopics.push(topic.subTopic10)
+     if(topic.subTopic11)
+     dataToSend.SubTopics.push(topic.subTopic11)
+     
+      dispatch(addTopic(dataToSend))
   }
   
   return (
