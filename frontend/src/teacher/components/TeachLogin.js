@@ -56,7 +56,7 @@ const TeachLogin = () => {
       const res=await axios.post(`/auth/verify/otp/${succMsg.verifyToken}`,{otp})
       setLoading(false)
       Cookies.set("e-learningadmintoken",res.data.token)
-      dispatch({type:"ADMIN_USER_LOGIN_SUCCESS",user:res.data.user,courses:res.data.courses})
+      dispatch({type:"ADMIN_USER_LOGIN_SUCCESS",user:res.data.user,courses:res.data.courses,subjects:res.data.subjects})
       Swal.fire("Verifyed!")
 
     }

@@ -15,7 +15,8 @@ export const loginAdminAction = (data) => async (dispatch) => {
            dispatch({ 
                type: admin.ADMIN_USER_LOGIN_SUCCESS,
                user:adminData.data.user,
-               courses:adminData.data.courses
+               courses:adminData.data.courses,
+               subjects:adminData.data.subjects
             });
             dispatch(getAllTeachers())
             

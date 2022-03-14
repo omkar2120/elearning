@@ -13,8 +13,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 function AddSubject() {
   const theState = useSelector((state) => state.adminReducer);
-  const [thesem,setTheSem]=useState([])
- 
+  const [thesem, setTheSem] = useState([]);
+
   const [sub, setSub] = useState({
     subName: "",
     course: "",
@@ -24,16 +24,11 @@ function AddSubject() {
     const { name, value } = e.target;
     setSub({ ...sub, [name]: value });
   };
-  const manageSem=(cid)=>{
-   
-    theState.courses.map((d)=>{
-      if(d._id==cid)
-      return setTheSem(d.totalSem)
-    })
-    
-
-  }
-
+  const manageSem = (cid) => {
+    theState.courses.map((d) => {
+      if (d._id == cid) return setTheSem(d.totalSem);
+    });
+  };
 
   return (
     <div
@@ -88,7 +83,10 @@ function AddSubject() {
                 label="Select Course"
                 name="course"
                 value={sub.course}
-                onChange={async(e)=>{setSubject(e);manageSem(e.target.value)}}
+                onChange={async (e) => {
+                  setSubject(e);
+                  manageSem(e.target.value);
+                }}
                 fullWidth
               >
                 {theState.courses.map((d, k) => (
@@ -107,7 +105,7 @@ function AddSubject() {
                 onChange={setSubject}
                 fullWidth
               >
-                {thesem.map((d)=>(
+                {thesem.map((d) => (
                   <MenuItem value={d}>{d}</MenuItem>
                 ))}
               </Select>
