@@ -129,3 +129,23 @@ export const getAllStudents=()=>async(dispatch)=>{
 
     }
 }
+
+
+export const addSubject=(data)=>async(dispatch)=>{
+    try{
+        const theSubject =  await axios.post('/subject/add',data,{headers:{authorization: Cookies.get("e-learningadmintoken")}})
+        if(theSubject)
+        Swal.fire("Subject Added")
+
+
+    }
+    catch (err){
+        console.log(err)
+        dispatch({ type:admin.ADMIN_ADD_SUBJECT_ERROR,err:err.response.data})
+
+    }
+}
+
+export const addTopic=(data)=> async(dispatch)=>{
+    console.log(data);
+}

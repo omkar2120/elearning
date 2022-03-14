@@ -7,18 +7,22 @@ import {
   FormControl,
   InputLabel,
   Button,
+  CircularProgress
 } from "@mui/material";
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
+import { useSelector, useDispatch } from "react-redux";
+import { addSubject } from "../../redux/actions/admin.action";
 function AddSubject() {
+  const dispatch=useDispatch()
+
   const theState = useSelector((state) => state.adminReducer);
   const [thesem, setTheSem] = useState([]);
 
   const [sub, setSub] = useState({
-    subName: "",
+    Name: "",
     course: "",
-    sem: "",
+    Semester: "",
   });
   const setSubject = (e) => {
     const { name, value } = e.target;
@@ -29,6 +33,16 @@ function AddSubject() {
       if (d._id == cid) return setTheSem(d.totalSem);
     });
   };
+  const sendData=async()=>{
+    try{
+      await dispatch(addSubject(sub))
+
+    }
+    catch(err)
+    {
+      console.log(err)
+    }
+  }
 
   return (
     <div
@@ -44,7 +58,7 @@ function AddSubject() {
       <div
         style={{
           width: "93%",
-          height: "78%",
+          minHeight: "78%",
           backgroundColor: "",
           boxShadow: "rgba(100, 100, 111, 0.151) 0px 7px 29px 0px",
           padding: "4%",
@@ -71,8 +85,8 @@ function AddSubject() {
               label="Subject Name"
               fullWidth
               variant="standard"
-              name="subName"
-              value={sub.subName}
+              name="Name"
+              value={sub.Name}
               onChange={setSubject}
             />
           </Grid>
@@ -100,8 +114,8 @@ function AddSubject() {
               <InputLabel>Select Semester</InputLabel>
               <Select
                 label="Select Semester"
-                name="sem"
-                value={sub.sem}
+                name="Semester"
+                value={sub.Semester}
                 onChange={setSubject}
                 fullWidth
               >
@@ -119,15 +133,21 @@ function AddSubject() {
           </Grid>
 
           <Grid item xs={6} md={6} xl={6} lg={6} textAlign={"center"}>
+          {theState.isLoading?<CircularProgress/>  : 
             <Button
               variant="contained"
               color="success"
-              onClick={() => console.log(sub)}
+              onClick={sendData}
               fullWidth
             >
               Add Subject
             </Button>
+          }
           </Grid>
+          <Grid item xs={12} md={12} xl={12} lg={12} textAlign={"center"} style={{marginBottom:"10px",color:"red"}}>
+             <b style={{paddinBottom:"10px",fontSize:"20px"}}>{theState.err?`*${theState.err}`:" "}</b>
+          </Grid>
+          
         </Grid>
       </div>
     </div>

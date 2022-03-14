@@ -15,6 +15,7 @@ import AdminStudentList from "./admin/pages/AdminStudentList";
 import TeacherAddStudent from "./teacher/pages/TeacherAddStudent"
 import StudentDashboard from "./student/Pages/StudentDashboard";
 import Home from "./home/component/Home";
+import TeacherSubjectList from "./teacher/pages/TeacherSubjectList";
 //import "./app.css"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useEffect } from "react";
@@ -65,6 +66,7 @@ function App() {
           <Route path="admin/course/list" element={<AdminCourseList/>}/>
           <Route path="/admin/teacher/list" element={<AdminTeacherList/>}/>
           <Route path="/admin/student/list" element={<AdminStudentList/>}/>
+          <Route path="/teacher/subject/list" element={<TeacherSubjectList/>}/>
           <Route path="/teacher/add/subject" element={<TeacherAddSubject/>}/>
           <Route path="/teacher/add/topic" element={<TeacherAddTopic/>}/>
           <Route path="/admin/add/topic" element={<AdminAddTopic/>}/>

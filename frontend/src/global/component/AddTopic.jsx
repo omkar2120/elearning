@@ -10,7 +10,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { addTopic } from "../../redux/actions/admin.action";
 const count = [
   "First",
   "Second",
@@ -55,11 +56,18 @@ export default function AddTopic() {
       subTopic11: "",
     });
   };
+const  dispatch =  useDispatch();
+const theState = useSelector((state) => state.adminReducer);
+
   const manageTopic = (e) => {
     const { name, value } = e.target;
     setTopic({ ...topic, [name]: value });
   };
-  const theState = useSelector((state) => state.adminReducer);
+
+  const sendTopic = async () => {
+      dispatch(addTopic(topic))
+  }
+  
   return (
     <div
       style={{
@@ -180,9 +188,7 @@ export default function AddTopic() {
               variant="contained"
               color="success"
               fullWidth
-              onClick={() => {
-                console.log(topic);
-              }}
+              onClick={sendTopic}
             >
               Add Topic
             </Button>

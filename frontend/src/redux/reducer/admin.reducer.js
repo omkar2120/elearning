@@ -111,6 +111,43 @@ const adminReducer = (state = initialState, action) => {
             isLoading:false,
             err:action.err
           }
+         case admin.ADMIN_ADD_SUBJECT_REQUESTED:
+           return{
+             ...state,
+             isLoading:true,
+             err:false
+
+           }
+           case admin.ADMIN_ADD_SUBJECT_SUCCESS:
+           return{
+             ...state,
+             isLoading:false,
+           }
+           case admin.ADMIN_ADD_SUBJECT_ERROR:
+           return{
+             ...state,
+             isLoading:false,
+             err:action.err
+           }
+           case admin.ADMIN_ADD_TOPIC_REQUESTED:
+              return {
+                ...state.courses,
+                isLoading:true,
+                err:false,
+              }
+          case admin.ADMIN_ADD_TOPIC_SUCCESS:
+            return{
+              ...state,
+              isLoading:false,
+            }
+          case admin.ADMIN_ADD_SUBJECT_ERROR:
+            return{
+              ...state,
+              isLoading:false,
+              err:action.err
+            }  
+       
+
     default:
       return state;
   }
