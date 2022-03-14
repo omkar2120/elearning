@@ -131,7 +131,7 @@ const adminReducer = (state = initialState, action) => {
            }
            case admin.ADMIN_ADD_TOPIC_REQUESTED:
               return {
-                ...state.courses,
+                ...state,
                 isLoading:true,
                 err:false,
               }
@@ -140,7 +140,7 @@ const adminReducer = (state = initialState, action) => {
               ...state,
               isLoading:false,
             }
-          case admin.ADMIN_ADD_SUBJECT_ERROR:
+          case admin.ADMIN_ADD_TOPIC_ERROR:
             return{
               ...state,
               isLoading:false,

@@ -9,6 +9,7 @@ import {
   Select,
   TextField,
   Typography,
+  CircularProgress
 } from "@mui/material";
 import { useSelector,useDispatch } from "react-redux";
 import { addTopic } from "../../redux/actions/admin.action";
@@ -27,7 +28,7 @@ const count = [
 export default function AddTopic() {
   const [subtopic, setSubtopic] = useState([]);
   const [topic, setTopic] = useState({
-    topicName: "",
+    Name: "",
     subject: "",
     subTopic0: "",
     subTopic1: "",
@@ -36,8 +37,6 @@ export default function AddTopic() {
     subTopic4: "",
     subTopic5: "",
     subTopic6: "",
-    subTopic7: "",
-    subTopic8: "",
     subTopic9: "",
     subTopic10: "",
     subTopic11: "",
@@ -53,8 +52,6 @@ export default function AddTopic() {
       subTopic4: "",
       subTopic5: "",
       subTopic6: "",
-      subTopic7: "",
-      subTopic8: "",
       subTopic9: "",
       subTopic10: "",
       subTopic11: "",
@@ -70,7 +67,7 @@ const theState = useSelector((state) => state.adminReducer);
 
   const sendTopic = async () => {
     const dataToSend={}
-     dataToSend.Name=topic.topicName
+     dataToSend.Name=topic.Name
      dataToSend.subject=topic.subject
      dataToSend.SubTopics=[]
      if(topic.subTopic0)
@@ -97,8 +94,7 @@ const theState = useSelector((state) => state.adminReducer);
      dataToSend.SubTopics.push(topic.subTopic10)
      if(topic.subTopic11)
      dataToSend.SubTopics.push(topic.subTopic11)
-     
-      dispatch(addTopic(dataToSend))
+     dispatch(addTopic(dataToSend))
   }
   
   return (
@@ -140,9 +136,9 @@ const theState = useSelector((state) => state.adminReducer);
           <Grid item md={12} sm={12} xl={12} style={{ marginTop: "10px" }}>
             <TextField
               label="Topic Name"
-              name="topicName"
+              name="Name"
               onChange={manageTopic}
-              value={topic.topicName}
+              value={topic.Name}
               variant="standard"
               fullWidth
               required
@@ -216,15 +212,20 @@ const theState = useSelector((state) => state.adminReducer);
               Reset
             </Button>
           </Grid>
-          <Grid item md={6} sm={6} xl={6}>
+          <Grid item xs={6} md={6} xl={6} lg={6} textAlign={"center"}>
+          {theState.isLoading?<CircularProgress/>  : 
             <Button
               variant="contained"
               color="success"
-              fullWidth
               onClick={sendTopic}
+              fullWidth
             >
-              Add Topic
+              Add Subject
             </Button>
+          }
+          </Grid>
+          <Grid item xs={12} md={12} xl={12} lg={12} textAlign={"center"} style={{marginBottom:"10px",color:"red"}}>
+             <b style={{paddinBottom:"10px",fontSize:"20px"}}>{theState.err ?`*${theState.err}`:""}</b>
           </Grid>
         </Grid>
       </div>

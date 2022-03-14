@@ -21,6 +21,7 @@ exports.addTopic=async(req,res)=>{
     try{
         const {subid}=req.params
         let {Name,SubTopics}=req.body
+        console.log(req.body)
         Name=Name.toUpperCase()
     
         if(!subid)

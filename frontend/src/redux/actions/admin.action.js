@@ -133,9 +133,11 @@ export const getAllStudents=()=>async(dispatch)=>{
 
 export const addSubject=(data)=>async(dispatch)=>{
     try{
+        dispatch({type:admin.ADMIN_ADD_SUBJECT_REQUESTED})
         const theSubject =  await axios.post('/subject/add',data,{headers:{authorization: Cookies.get("e-learningadmintoken")}})
-        if(theSubject)
-        Swal.fire("Subject Added")
+        if(theSubject){
+        dispatch({type:admin.ADMIN_ADD_SUBJECT_SUCCESS})
+        Swal.fire("Subject Added")}
 
 
     }
@@ -147,5 +149,18 @@ export const addSubject=(data)=>async(dispatch)=>{
 }
 
 export const addTopic=(data)=> async(dispatch)=>{
-    console.log(data);
+    try{
+        dispatch({ type:admin.ADMIN_ADD_TOPIC_REQUESTED})
+        const theTopic = await axios.post(`/topic/add/${data.subject}`,data,{headers:{authorization:Cookies.get("e-learningadmintoken")}})
+        if(!theTopic)
+        return dispatch({type:admin.ADMIN_ADD_TOPIC_ERROR,err:"Something Went Wrong"})
+        dispatch({type:admin.ADMIN_ADD_TOPIC_SUCCESS})
+        Swal.fire("Topic Added")
+
+
+    }
+    catch(err){
+        return dispatch({type:admin.ADMIN_ADD_TOPIC_ERROR,err:err.response.data})
+    }
+       
 }
