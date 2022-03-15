@@ -199,7 +199,7 @@ const theState = useSelector((state) => state.adminReducer);
                 required
                 name={`subTopic${k}`}
                 onChange={manageTopic}
-                label={`1.${k} ${d} SubTopic`}
+                label={`1.${k+1} ${d} SubTopic`}
                 fullWidth
                 variant="standard"
                 style={{ marginBottom: "20px" }}
