@@ -24,7 +24,7 @@ app.use(theMainRoute,userRoute)
 app.use(theMainRoute,adminRoute)
 app.use(theMainRoute,sessionRoute)
 app.use(theMainRoute,subjectRoute)
-app.use(feedbackRoute)
+app.use(theMainRoute,feedbackRoute)
 
 app.get("/",(req,res)=>{
     res.status(200).json("hello there!");
