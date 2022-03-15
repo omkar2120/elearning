@@ -10,6 +10,7 @@ const userRoute=require("./routes/user");
 const adminRoute=require("./routes/admin");
 const sessionRoute=require("./routes/session");
 const subjectRoute=require("./routes/subject.route")
+const feedbackRoute=require("./routes/feedback");
 const theMainRoute="/ursacaps/api"
 
 require("./database/connect");
@@ -23,6 +24,7 @@ app.use(theMainRoute,userRoute)
 app.use(theMainRoute,adminRoute)
 app.use(theMainRoute,sessionRoute)
 app.use(theMainRoute,subjectRoute)
+app.use(theMainRoute,feedbackRoute)
 
 app.get("/",(req,res)=>{
     res.status(200).json("hello there!");
