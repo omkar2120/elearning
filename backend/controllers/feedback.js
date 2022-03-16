@@ -47,3 +47,43 @@ exports.getfeedback = async (req,res)=>{
        res.status(400).json("feedback not found");
     }  
 }
+
+
+//update feedback
+exports.updatefb = async (req,res)=>{
+     try{
+       const feedid = req.params.id
+       console.log(feedid)
+
+        const updatedfeed = await Feedback.findByIdAndUpdate(feedid,
+            { $set: req.body },
+             { new: true }
+          )
+          console.log(updatedfeed)
+        if(updatedfeed){
+            return res.status(200).json("feedback updated");
+        } 
+     }catch(err){
+        console.log(err)
+         return res.status(400).json("feedback not updated")
+         
+     }
+}
+
+
+
+//delete feedback
+exports.delfeed = async (req,res)=>{
+    try{
+       const feedid = req.params.id
+       if(feedid){
+           const deletefeed = await Feedback.findByIdAndDelete(feedid)
+            if(deletefeed){
+                res.status(200).json("feedback deleted");
+            }
+       }
+    }catch(err){
+        console.log(err)
+        return  res.status(400).json("something went wrong");
+    }
+}
