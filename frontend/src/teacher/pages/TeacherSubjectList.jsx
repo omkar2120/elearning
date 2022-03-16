@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllStudents } from '../../redux/actions/admin.action'
 import { useEffect } from 'react'
+import { getSubjects } from '../../redux/actions/subject.action'
 import NotFound from '../../home/component/NotFound'
 import {VscFilePdf} from "react-icons/vsc"
 // import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -29,10 +30,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
         border: 0,
     },
 }));
+
 export default function
     () {
     const dispatch = useDispatch()
     const theState = useSelector((state) => state.adminReducer)
+    const theSubjectState=useSelector((state)=>state.subjectReducer)
+    useEffect(async()=>{await dispatch(getSubjects())},[dispatch])
     if (!theState.isLogedin || theState.users.role !== "teacher")
         return <NotFound />
     else
@@ -61,7 +65,7 @@ export default function
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {theState.subjects.map((d, k) =>(
+                                    {theSubjectState.subjects.map((d, k) =>(
                                         <TableRow>
                                             <StyledTableCell align="center">{theState.courses[0].course}</StyledTableCell>
                                             <StyledTableCell align="center">{d.Name}</StyledTableCell>

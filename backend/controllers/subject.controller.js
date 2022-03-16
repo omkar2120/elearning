@@ -39,3 +39,50 @@ exports.addTopic=async(req,res)=>{
         return res.status(400).send(`Something went Wrong`)
     }
 }
+
+
+exports.getSubjectByTopic=async(req,res)=>{
+    try{
+        const {sid}=req.params
+        if(!sid)
+        return res.status(404).send("subject id is required!")
+        const theSub= await subject.findById(sid)
+        return res.status(200).send(theSub)
+
+    }
+    catch(err){
+        console.log(err)
+        return res.status(404).send("subject id is required!")
+
+    }
+}
+
+exports.updateSubject=async(req,res)=>{
+    try{
+        const {sid}=req.params
+        const {Name,topics}=req.body
+        const theUpdatedSubject=await subject.findByIdAndUpdate(sid,{Name,topics})
+        return res.status(200).send("Topics Updated!")
+
+    }
+    catch(err){
+        console.log(err)
+        return res.status(400).send("Something Went Wrong!")
+
+    }
+}
+
+exports.getSubjectsByCourseId=async(req,res)=>{
+    try{
+        const {cid} =req.params
+        const theSubjects=await subject.find({}).where({course:cid})
+       if(!theSubjects)
+       return res.status(400).send("Something Went Wrong!")
+       return res.status(200).send(theSubjects)
+    }
+    catch(err){
+        console.log(err)
+        return res.status(400).send("Something Went Wrong!")
+
+    }
+}
