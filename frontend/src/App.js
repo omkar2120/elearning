@@ -32,6 +32,7 @@ import TechDash from "./teacher/pages/TeachDashBoard/TechDash";
 import AttendanceCom from "./teacher/components/Attendance/AttendanceCom";
 import ClassListAttendance from './teacher/components/ClassList/ClassListAttendance'
 import NotFound from "./home/component/NotFound";
+import AdminFooter from "./admin/pages/AdminFooter";
 const theme = createTheme({
   // typography:{
   //   fontFamily:'Quicksand,sans-serif',
@@ -73,8 +74,9 @@ function App() {
           <Route path="/teacher/add/topic" element={<TeacherAddTopic/>}/>
           <Route path="/admin/add/topic" element={<AdminAddTopic/>}/>
           <Route path="/admin/add/subject" element={<AdminAddSubject/>}/>
+          <Route path="admin/footer" element={<AdminFooter/>} />
           <Route path="/teacher/student/list" element={<TeacherStudentList/>}/>
-          <Route path="*" element={<NotFound/>} />\
+          <Route path="*" element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
     </div>
