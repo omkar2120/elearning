@@ -33,6 +33,7 @@ import AttendanceCom from "./teacher/components/Attendance/AttendanceCom";
 import ClassListAttendance from './teacher/components/ClassList/ClassListAttendance'
 import NotFound from "./home/component/NotFound";
 import AdminFooter from "./admin/pages/AdminFooter";
+import TeacherTopicEdit from "./teacher/pages/TeacherTopicEdit";
 const theme = createTheme({
   // typography:{
   //   fontFamily:'Quicksand,sans-serif',
@@ -70,6 +71,7 @@ function App() {
           <Route path="/admin/student/list" element={<AdminStudentList/>}/>
           <Route path="/teacher/subject/list" element={<TeacherSubjectList/>}/>
           <Route path="/teacher/topic/list" element={<TeacherTopicList/>}/>
+          <Route path="/teacher/topic/list/edit/:sid" element={<TeacherTopicEdit/>}/>
           <Route path="/teacher/add/subject" element={<TeacherAddSubject/>}/>
           <Route path="/teacher/add/topic" element={<TeacherAddTopic/>}/>
           <Route path="/admin/add/topic" element={<AdminAddTopic/>}/>

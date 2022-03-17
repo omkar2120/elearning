@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import Topbar from "../../global/component/Topbar";
 import { sideBarData } from "../sidebarData";
 import Sidebar from "../../global/component/Sidebar2";
@@ -19,6 +19,7 @@ import {
   ListItem,
   ListItemText,
   TreeVi,
+  Modal,Box,Typography
 } from "@mui/material";
 import { FaFileDownload } from "react-icons/fa";
 import { styled } from "@mui/material/styles";
@@ -29,6 +30,8 @@ import NotFound from "../../home/component/NotFound";
 import { VscFilePdf } from "react-icons/vsc";
 import { TreeView, TreeItem } from "@material-ui/lab";
 import { ExpandMore, ChevronRight } from "@mui/icons-material";
+import { NavLink } from "react-router-dom";
+import { getSubjects } from '../../redux/actions/subject.action'
 // import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -52,6 +55,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function () {
   const dispatch = useDispatch();
   const theState = useSelector((state) => state.adminReducer);
+  const theSubjectState=useSelector((state)=>state.subjectReducer)
+  useEffect(async()=>{await dispatch(getSubjects())},[dispatch])
+
   if (!theState.isLogedin || theState.users.role !== "teacher")
     return <NotFound />;
   else
@@ -116,39 +122,39 @@ export default function () {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {theState.subjects.map((d) => (
+                  {theSubjectState.subjects.map((d) => (
                     <TableRow>
                       <StyledTableCell align="center">{d.Name}</StyledTableCell>
                       <StyledTableCell align="center">
                         {d.Semester}
                       </StyledTableCell>
-                      <StyledTableCell
-                      >
-                          <TreeView
+                      <StyledTableCell>
+                        <TreeView
                           aria-label="file system navigator"
                           defaultCollapseIcon={<ExpandMore />}
                           defaultExpandIcon={<ChevronRight />}
                           sx={{
-                            minHeight:"100%",
+                            minHeight: "100%",
                             flexGrow: 0.1,
                             maxWidth: 400,
                             overflowY: "auto",
                           }}
                         >
-                            {d.topics.map((t,k)=>(
-                                 <TreeItem nodeId={k} label={t.Name} style={{margin:"10px"}}>
-                                 {t.SubTopics.map((st,sk)=>(
-                                     <TreeItem nodeId={st+sk} label={st}/>
-                                 ))}
-                               </TreeItem>
-
-                            ))}
-                         
+                          {d.topics.map((t, k) => (
+                            <TreeItem
+                              nodeId={k}
+                              label={t.Name}
+                              style={{ margin: "10px" }}
+                            >
+                              {t.SubTopics.map((st, sk) => (
+                                <TreeItem nodeId={st + sk} label={st} />
+                              ))}
+                            </TreeItem>
+                          ))}
                         </TreeView>
-                        
                       </StyledTableCell>
                       <StyledTableCell align="center">
-                        <Button color="success">Edit</Button>
+                       <NavLink to={`edit/${d._id}`} style={{textDecoration:"none"}}><Button color="success">Edit</Button></NavLink>
                       </StyledTableCell>
                       <StyledTableCell align="center">
                         <Button color="error">Delete</Button>
