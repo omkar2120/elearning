@@ -42,10 +42,12 @@ const theme = createTheme({
 
 function App() {
  const dispatch=useDispatch()
-
-  useEffect(async()=>{
-    await dispatch(loadUser())
-  },[dispatch])
+ const load=async()=>{await dispatch(loadUser())
+console.log("colled")}
+load()
+  // useEffect(async()=>{
+  //   await dispatch(loadUser())
+  // },[dispatch])
 
   return (
     <ThemeProvider theme={theme}>

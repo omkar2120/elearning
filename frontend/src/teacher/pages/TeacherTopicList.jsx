@@ -19,7 +19,7 @@ import {
   ListItem,
   ListItemText,
   TreeVi,
-  Modal,Box,Typography
+  Modal,Box,Typography, CircularProgress
 } from "@mui/material";
 import { FaFileDownload } from "react-icons/fa";
 import { styled } from "@mui/material/styles";
@@ -56,7 +56,11 @@ export default function () {
   const dispatch = useDispatch();
   const theState = useSelector((state) => state.adminReducer);
   const theSubjectState=useSelector((state)=>state.subjectReducer)
-  useEffect(async()=>{await dispatch(getSubjects())},[dispatch])
+  
+  useEffect(async()=>{
+    await dispatch(getSubjects())
+  },[dispatch])
+    
 
   if (!theState.isLogedin || theState.users.role !== "teacher")
     return <NotFound />;
@@ -121,6 +125,10 @@ export default function () {
                     <StyledTableCell align="center">Download</StyledTableCell>
                   </TableRow>
                 </TableHead>
+                {theSubjectState.isLoading
+                ?
+                <CircularProgress/>
+                :
                 <TableBody>
                   {theSubjectState.subjects.map((d) => (
                     <TableRow>
@@ -165,6 +173,7 @@ export default function () {
                     </TableRow>
                   ))}
                 </TableBody>
+                }
               </Table>
             </TableContainer>
           </div>
