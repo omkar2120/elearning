@@ -124,6 +124,13 @@ export const sideBarData=[
             link:"/admin/topic/list",
             dropdown:[]
             
+        },
+        {
+            name:"Feedback",
+            icon:<FaUsers/>,
+            link:"/admin/footer",
+            dropdown:[]
+            
         }]
     }
 ]
