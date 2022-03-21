@@ -1,4 +1,4 @@
-const { createfeedback, getfeedback, updatefb, delfeed } = require("../controllers/feedback")
+const { createfeedback, getfeedback, updatefb, delfeed,getAllFeedback } = require("../controllers/feedback")
 
 const router=require("express").Router()
 
@@ -9,7 +9,7 @@ router.post("/createfb",createfeedback);
 router.get("/getfb/:feedid",getfeedback);
 
 //getallfeedback
-router.get("/getfb",getfeedback);
+router.get("/getfb",getAllFeedback);
 
 //updatefeedback
 router.put("/updatefb/:id",updatefb);

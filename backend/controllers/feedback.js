@@ -48,6 +48,21 @@ exports.getfeedback = async (req,res)=>{
     }  
 }
 
+//get all feedbacks
+exports.getAllFeedback = async (req,res)=>{
+      try{
+        const data = await Feedback.find();
+        if(!data){
+            return res.status(400).json("something went wrong");
+        }
+        return res.status(200).json(data);
+        console.log(data);
+      }
+    catch(err){
+       res.status(400).json("feedback not found");
+    }  
+}
+
 
 //update feedback
 exports.updatefb = async (req,res)=>{
