@@ -8,6 +8,8 @@ import { Button } from "@mui/material";
 import "./Sidebar.css";
 import img from "./Avtar2.jpg";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 export default function Sidebar({ sidebar, setSidebar, list }) {
   const [dropdown, setDropdown] = useState({
     isOpen: false,
@@ -15,14 +17,14 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
   });
   const userState = useSelector((state) => state.adminReducer);
   return (
-    <div className={sidebar ? "sideBarMain" : "sideBarNone"}>
+    <div className={sidebar ? "sideBarMain" : "sideBarNone"} >
       <div
         onClick={() => {
           setSidebar(!sidebar);
         }}
       ></div>
       <div className="sidebarContentContainer">
-        <div style={{display:"flex" ,justifyContent:"right"}}><Button color="error">LogOut</Button></div>
+      <Link to="/student/dashboard/profile" style={{textDecoration:'none'}}>
         <div className="profileContainer" style={{marginTop:"4%"}}>
           <div className="dp">
             <img src={img} />
@@ -36,6 +38,7 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
             </div>
           </div>
           </div>
+          </Link>
           <div className="listContainer">
             <List>
               {list.map((d, k) => (
@@ -78,6 +81,11 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
                 </>
               ))}
             </List>
+            <div style={{display:"flex" ,justifyContent:"left"}}>
+            {/* <Button variant="contained" color="error">LogOut</Button> */}
+            <Button  variant='contained' sx={{borderRadius:'50px', backgroundColor:'#5913B0', height:'40px',width:'115px' }} >Logout </Button>
+            </div>
+
         </div>
       </div>
     </div>

@@ -19,11 +19,17 @@ export const sideBarData=[
         dropdown:[]
     },
     {
-        icon:<MdQuiz/>,
-        list:"Quiz",
-        path:"/student/auiz",
+        icon:<MdAssignment/>,
+        list:"Notice Board",
+        path:"",
         dropdown:[]
     },
+    // {
+    //     icon:<MdQuiz/>,
+    //     list:"Quiz",
+    //     path:"/student/auiz",
+    //     dropdown:[]
+    // },
     
     {
         icon:<GiTeacher/>,
@@ -44,5 +50,8 @@ export const sideBarData=[
         list:"Assignment",
         path:"/student/session",
         dropdown:[]
-    }
+    },
+    
+
+    
 ]

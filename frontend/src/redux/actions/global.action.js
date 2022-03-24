@@ -3,7 +3,6 @@ import axios from "../../axios"
 import Cookies from "js-cookie"
 import { getAllTeachers, getAllStudents } from "./admin.action"
 import * as global from "../constant/global.constatnt"
-import globalReducer from "../reducer/global.reducer"
 
 export const loadUser = () => async (dispatch) => {
     try {

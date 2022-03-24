@@ -34,10 +34,13 @@ import ClassListAttendance from './teacher/components/ClassList/ClassListAttenda
 import NotFound from "./home/component/NotFound";
 import AdminFooter from "./admin/pages/AdminFooter";
 import TeacherTopicEdit from "./teacher/pages/TeacherTopicEdit";
+import StudentNavbar from "./student/Pages/StudentNavbar";
+import StudentProfile from "./student/Pages/StudentProfile";
+
 const theme = createTheme({
-  // typography:{
-  //   fontFamily:'Quicksand,sans-serif',
-  // }
+  typography:{
+    fontFamily:'Quicksand,sans-serif',
+  }
 })
 
 function App() {
@@ -62,6 +65,8 @@ function App() {
           <Route path="/admin/dashboard" element={<AdminDashboard2/>}/>
           <Route path="/teacher/dashboard" element={<TechDash/>}/>
           <Route path="/student/dashboard" element={<StudentDashboard/>}/>
+          <Route path="/student/dashboard/navbar" element={<StudentNavbar/>}/>
+          <Route path="/student/dashboard/profile" element={<StudentProfile/>}/>
           <Route path="/admin/manage/course/add" element={<AdminAddCourse/>}/>
           <Route path="/admin/manage/teacher/add" element={<AdminAddTeacher/>}/>
           <Route path="/admin/manage/student/add" element={<AdminAddStudent/>}/>
