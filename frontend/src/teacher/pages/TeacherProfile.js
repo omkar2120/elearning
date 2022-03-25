@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { CircularProgress, Grid, Button, Typography, TextField, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import img from "../../global/component/Avtar2.jpg";
 import { width } from '@mui/system';
@@ -6,29 +6,24 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllStudents } from '../../redux/actions/admin.action';
 import Navbar from '../../global/component/Navbar';
-import StudentNavbar from './StudentNavbar';
 import { sideBarData } from '../sidebarData';
+import TeacherNavbar from './TeacherNavbar';
 
 
-
-const StudentProfile = () => {
-    const dispatch = useDispatch()
-
-    const adminState = useSelector((state) => state.adminReducer)
-//  console.log(adminState)
-
-
-    return (
-        <div style={{height: "calc(100vh - 10%)"}} >
-             <StudentNavbar list={sideBarData}/>
-
+const TeacherProfile = () => {
+    const adminState=useSelector((state)=>state.adminReducer)
+    // console.log(adminState)
+  return (
+ <div >
+ <TeacherNavbar/>
+             {/* <StudentNavbar list={sideBarData}/> */}
             <div
                 style={{
                     height: "100%",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-around",
-                    marginTop:'20px'
+                    marginTop:'100px'
                 }}
             >
 
@@ -51,7 +46,6 @@ const StudentProfile = () => {
                             fontSize: "28px",
                             fontWeight: "bolder",
                             color: "#060606",
-                            marginTop: '10px',
 
                         }}
                     >
@@ -70,16 +64,13 @@ const StudentProfile = () => {
                                     <Typography fontSize={25} marginLeft={1}>{adminState.users.fullname}</Typography>
                                 </div>
                                 <div style={{ display: "flex" }}>
-                                    <Typography fontSize={25}> Course Name :</Typography>
-                                    <Typography fontSize={25} marginLeft={1} >{adminState.courses.cName}</Typography>
+                                    <Typography fontSize={25}> Email :</Typography>
+                                    <Typography fontSize={25} marginLeft={1} >{adminState.users.email}</Typography>
                                 </div>
-                                <div style={{ display: "flex" }}>
-                                    <Typography fontSize={25}> Year :   </Typography>
-                                    <Typography fontSize={25} marginLeft={1}>{adminState.courses.Years}</Typography>
-                                </div>
+                               
                                 <div style={{ display: "flex" }}>
                                     <Typography fontSize={25}> Semister :</Typography>
-                                    <Typography fontSize={25} marginLeft={1} > {adminState.courses.Semesters}</Typography>
+                                    <Typography fontSize={25} marginLeft={1} > </Typography>
                                 </div>
 
                                 <div style={{ display: 'flex' }}>
@@ -89,25 +80,27 @@ const StudentProfile = () => {
                                 </div>
                                 <div style={{ display: 'flex' }}>
                                     <Typography fontSize={25} > Email Id :  </Typography>
-                                    <Typography fontSize={25} marginLeft={1}>{adminState.users.email}</Typography>
+                                    <Typography fontSize={25} marginLeft={1}>{}</Typography>
+
+                                </div>
+                                <div style={{ display: 'flex' }}>
+                                    <Typography fontSize={25} > Subjects :  </Typography>
+                                    <Typography fontSize={25} marginLeft={1}>{}</Typography>
 
                                 </div>
                                 
                                 
                             </div>
-                        
-
-
 
                     </Grid>
-                    <Link to="/">
+                    <Link to="/teacher/dashboard">
                         <Button variant='contained' sx={{ borderRadius: '50px', backgroundColor: '#5913B0', height: '40px', width: '115px' }} >Back</Button>
                     </Link>
                 </div>
 
             </div>
-        </div>
-    )
+    </div>
+  )
 }
 
-export default StudentProfile;
+export default TeacherProfile;

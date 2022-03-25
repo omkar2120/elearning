@@ -71,7 +71,7 @@ export const sideBarData=[
     },
     {
         icon:<GiTeacher/>,
-        list:"Manage Subject&Syllabus",
+        list:"Manage Subject & Syllabus",
         path:false,
         dropdown:[{
             name:"AddSubject",

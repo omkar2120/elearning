@@ -39,7 +39,7 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
           </div>
           </div>
           </Link>
-          <div className="listContainer">
+          <div className="listContainer" style={{}}>
             <List>
               {list.map((d, k) => (
                 <>
@@ -48,7 +48,7 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
                     button
                     style={{
                       fontSize: "30px",
-                      marginTop: "30px",
+                      marginTop: "15px",
                       width: "100%",
                     }}
                     onClick={()=>{
@@ -83,7 +83,7 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
             </List>
             <div style={{display:"flex" ,justifyContent:"left"}}>
             {/* <Button variant="contained" color="error">LogOut</Button> */}
-            <Button  variant='contained' sx={{borderRadius:'50px', backgroundColor:'#5913B0', height:'40px',width:'115px' }} >Logout </Button>
+            <Button  variant='outlined' sx={{borderRadius:'50px', height:'40px',width:'115px' }} >Logout </Button>
             </div>
 
         </div>

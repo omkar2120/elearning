@@ -24,12 +24,12 @@ export const sideBarData=[
         path:"",
         dropdown:[]
     },
-    // {
-    //     icon:<MdQuiz/>,
-    //     list:"Quiz",
-    //     path:"/student/auiz",
-    //     dropdown:[]
-    // },
+    {
+        icon:<MdQuiz/>,
+        list:"Quiz",
+        path:"/student/auiz",
+        dropdown:[]
+    },
     
     {
         icon:<GiTeacher/>,

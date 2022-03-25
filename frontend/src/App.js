@@ -36,6 +36,7 @@ import AdminFooter from "./admin/pages/AdminFooter";
 import TeacherTopicEdit from "./teacher/pages/TeacherTopicEdit";
 import StudentNavbar from "./student/Pages/StudentNavbar";
 import StudentProfile from "./student/Pages/StudentProfile";
+import TeacherProfile from "./teacher/pages/TeacherProfile"; 
 
 const theme = createTheme({
   typography:{
@@ -79,6 +80,7 @@ function App() {
           <Route path="/teacher/topic/list/edit/:sid" element={<TeacherTopicEdit/>}/>
           <Route path="/teacher/add/subject" element={<TeacherAddSubject/>}/>
           <Route path="/teacher/add/topic" element={<TeacherAddTopic/>}/>
+          <Route path="/teacher/dashboard/profile" element={<TeacherProfile/>}/>
           <Route path="/admin/add/topic" element={<AdminAddTopic/>}/>
           <Route path="/admin/add/subject" element={<AdminAddSubject/>}/>
           <Route path="admin/footer" element={<AdminFooter/>} />

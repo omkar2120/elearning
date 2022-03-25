@@ -9,9 +9,11 @@ import { Container, CssBaseline, Divider } from '@mui/material';
 import { FaBars } from "react-icons/fa"
 import { Link } from 'react-router-dom'
 import Sidebar from '../../global/component/Sidebar'
+import { useSelector } from 'react-redux';
 
 const StudentNavbar = ({ list }) => {
   const [sidebar, setSidebar] = useState(false)
+  const adminState = useSelector((state) => state.adminReducer)
 
   return (
     <div>
@@ -21,7 +23,7 @@ const StudentNavbar = ({ list }) => {
           <AppBar position="fixed" color='inherit' sx={{ boxShadow: 1, justifySelf: 'flex-start', height: '13%' }}>
             <Toolbar>
               <Link to="/" style={{ textDecoration: 'none' }}>
-                <Typography
+                <Typography 
                   sx={{
                     flexGrow: 3,
                     fontFamily: 'Quicksand,sans-serif',
@@ -33,17 +35,20 @@ const StudentNavbar = ({ list }) => {
                   eLearning
                 </Typography>
               </Link>
-              <div style={{ textAlign: 'center', marginLeft: '35%' }}>
+              <Toolbar sx={{ display:'flex', width:'80%',  justifyContent:'center'}} >
                 <Typography
                   sx={{
-                      fontSize: '30px',
-                    fontWeight: '800',
-                    color: '#0B2060'
+                    fontSize: '30px',
+                    fontWeight: '400',
+                    color: '#0B2060',
+                    marginLeft:'80px'
+                  
+              
                   }}
-                >StudentDashboard</Typography>
-              </div>
+                >{`Welcome Mr ${adminState.users.fullname}`}</Typography>
+              </Toolbar>
 
-              <Toolbar sx={{ display: "flex", justifyContent: 'right', width: "100%", marginTop: '5px' }}>
+              <Toolbar sx={{ display: "flex", justifyContent: 'right', width: "20%", marginTop: '5px' }}>
                 <div>
                   <FaBars className='iconBar' onClick={() => { setSidebar(!sidebar) }} />
 
@@ -61,4 +66,4 @@ const StudentNavbar = ({ list }) => {
   )
 }
 
-export default StudentNavbar
+export default StudentNavbar;

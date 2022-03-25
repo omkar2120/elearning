@@ -5,6 +5,7 @@ import {sideBarData} from "../../sidebarData"
 import TeacherDashBoard from '../../components/DashBoard/TeacherDashBoard';
 import { useSelector } from 'react-redux';
 import NotFound from '../../../home/component/NotFound';
+import TeacherNavbar from '../TeacherNavbar';
 // Test commit
 export default function () {
   
@@ -14,7 +15,8 @@ export default function () {
   else 
   return (
     <div style={{height:"calc(100vh - 10%)"}}>
-        <Topbar/>
+        {/* <Topbar/> */}
+        <TeacherNavbar />
         <div className="mainContainer" style={{height:"100%",display:'grid',gridTemplateColumns:"17% 1fr"}}>
             <div className="sidebarContaine">
                 <Sidebar data={sideBarData}/>
