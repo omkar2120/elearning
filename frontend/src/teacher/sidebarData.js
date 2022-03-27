@@ -58,7 +58,7 @@ export const sideBarData=[
         dropdown:[{
             name:"AddSession",
             icon:<CgUserAdd/>,
-            link:"/admin/manage/session"
+            link:"/teacher/create/session"
         
         },
         {

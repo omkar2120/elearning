@@ -34,6 +34,7 @@ import AttendanceCom from "./teacher/components/Attendance/AttendanceCom";
 import ClassListAttendance from './teacher/components/ClassList/ClassListAttendance'
 import NotFound from "./home/component/NotFound";
 import TeacherTopicEdit from "./teacher/pages/TeacherTopicEdit";
+import TeacherAddSession from "./teacher/pages/TeacherAddSession";
 const theme = createTheme({
   // typography:{
   //   fontFamily:'Quicksand,sans-serif',
@@ -45,9 +46,6 @@ function App() {
  const load=async()=>{await dispatch(loadUser())
 console.log("colled")}
 load()
-  // useEffect(async()=>{
-  //   await dispatch(loadUser())
-  // },[dispatch])
 
   return (
     <ThemeProvider theme={theme}>
@@ -75,6 +73,7 @@ load()
           <Route path="/teacher/topic/list" element={<TeacherTopicList/>}/>
           <Route path="/teacher/topic/list/edit/:sid" element={<TeacherTopicEdit/>}/>
           <Route path="/teacher/add/subject" element={<TeacherAddSubject/>}/>
+          <Route path="/teacher/create/session" element={<TeacherAddSession/>}/>
           <Route path="/teacher/add/topic" element={<TeacherAddTopic/>}/>
           <Route path="/admin/add/topic" element={<AdminAddTopic/>}/>
           <Route path="/admin/add/subject" element={<AdminAddSubject/>}/>

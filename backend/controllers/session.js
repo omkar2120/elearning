@@ -5,6 +5,7 @@ const Session = require("../models/session.schema")
 //create session
 exports.createsession = async(req,res)=>{
     try{
+        return console.log(req.body)
       const {sessioname,subject,teacher,date} = req.body
        if(!sessioname || !subject || !teacher || !date){
            return res.status(400).json({message:"enter all the details"})
