@@ -9,8 +9,20 @@ import "./Sidebar.css";
 import img from "./Avtar2.jpg";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 
 export default function Sidebar({ sidebar, setSidebar, list }) {
+
+
+  const studentLogout = () => {
+    Cookies.remove('e-learningadmintoken')
+    Swal.fire("Success","Student Logout succesffully ")
+    window.location.href='/studlogin';
+
+
+  }
+
   const [dropdown, setDropdown] = useState({
     isOpen: false,
     key: false,
@@ -83,7 +95,7 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
             </List>
             <div style={{display:"flex" ,justifyContent:"left"}}>
             {/* <Button variant="contained" color="error">LogOut</Button> */}
-            <Button  variant='outlined' sx={{borderRadius:'50px', height:'40px',width:'115px' }} >Logout </Button>
+            <Button  variant='outlined' onClick={studentLogout} sx={{borderRadius:'50px', height:'40px',width:'115px' }} >Logout </Button>
             </div>
 
         </div>

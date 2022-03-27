@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -16,10 +16,24 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'
+import { ListItem } from '@mui/material';
+import Swal from 'sweetalert2';
 
 const TeacherNavbar = () => {
 
-    const adminState=useSelector((state)=>state.adminReducer)
+    const navigate = useNavigate()
+
+
+
+    const techerLogout = () => {
+        Cookies.remove('e-learningadmintoken',)
+        Swal.fire("Teacher Logout Successfully")
+        window.location.href = '/teachlogin'
+    }
+
+    const adminState = useSelector((state) => state.adminReducer)
 
 
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -50,7 +64,7 @@ const TeacherNavbar = () => {
                                 eLearning
                             </Typography>
                         </Link>
-                        <div style={{ marginLeft: '30%', width:'100%' }}>
+                        <div style={{ marginLeft: '30%', width: '100%' }}>
                             <Typography
                                 sx={{
                                     fontSize: '30px',
@@ -62,11 +76,11 @@ const TeacherNavbar = () => {
 
                         <Toolbar sx={{ display: "flex", justifyContent: 'right', width: "100%", marginTop: '5px' }}>
                             <Box sx={{ flexGrow: 0 }}>
-                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <img src={img} height={65} width={65} style={{ borderRadius: '50px' }}>
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                    <img src={img} height={65} width={65} style={{ borderRadius: '50px' }}>
 
-                                        </img>
-                                    </IconButton>
+                                    </img>
+                                </IconButton>
                                 <Menu
                                     PaperProps={{
                                         style: {
@@ -90,12 +104,12 @@ const TeacherNavbar = () => {
                                     onClose={handleCloseUserMenu}
                                 >
                                     <MenuItem>
-                                        <Link to="/teacher/profile" style={{ textDecoration:'none',color:'black'}}>
-                                            <Typography>Profile</Typography>
+                                        <Link to="/teacher/dashboard/profile" style={{ textDecoration: 'none', color: 'black' }}>
+                                            <ListItem>Profile</ListItem>
                                         </Link>
                                     </MenuItem>
                                     <MenuItem>
-                                        <Typography textAlign="center">Logout</Typography>
+                                        <ListItem onClick={techerLogout}>Logout</ListItem>
 
                                     </MenuItem>
                                 </Menu>
