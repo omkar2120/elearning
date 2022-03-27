@@ -8,6 +8,13 @@ const Session=mongoose.Schema({
           type:mongoose.Types.ObjectId,
           ref: "subjectSchema"          
         },
+        topic:{
+          type:String,
+        },
+        subtopic:{
+          type:String,
+        },
+
       teacher:{
         type:mongoose.Types.ObjectId,
         ref: "User"
