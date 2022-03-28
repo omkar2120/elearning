@@ -146,6 +146,19 @@ const adminReducer = (state = initialState, action) => {
               isLoading:false,
               err:action.err
             }  
+          case global.LOGOUT:
+            return{
+              ...state,
+              isLogedin: false,
+              isLoading: false,
+              users: {},
+              courses: [],
+              err: false,
+              token: Cookie.get("e-learningadmintoken"),
+              teachers: [],
+              students: [],
+              subjects:[]
+            }
        
 
     default:

@@ -10,11 +10,11 @@ export default function TeacherDashboard() {
   return <NotFound/>
   else 
   return (
-    <div style={{height:"calc(100vh - 10%)"}}>
+    <div style={{height:"calc(100vh - 10%)" }}>
         <Topbar/>
         <div className="mainContainer" style={{height:"100%",display:'grid',gridTemplateColumns:"17% 1fr"}}>
-            <div className="sidebarContaine">
-                <Sidebar data={sideBarData}/>
+            <div className="sidebarContaine" >
+                <Sidebar data={sideBarData} />
 
             </div>
             <div className="sidebarContaine">

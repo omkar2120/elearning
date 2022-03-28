@@ -3,26 +3,42 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink, Navigate,useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import "./Sidebar.css";
 import img from "./Avtar2.jpg";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import Swal from "sweetalert2";
+import { logOut } from "../../redux/actions/global.action";
+
 export default function Sidebar({ sidebar, setSidebar, list }) {
+
+
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+
+     const getLogOut = async() => {
+        const isLogedOut= await dispatch(logOut())
+       if(isLogedOut)
+       navigate("/")
+    }
+
   const [dropdown, setDropdown] = useState({
     isOpen: false,
     key: false,
   });
   const userState = useSelector((state) => state.adminReducer);
   return (
-    <div className={sidebar ? "sideBarMain" : "sideBarNone"}>
+    <div className={sidebar ? "sideBarMain" : "sideBarNone"} >
       <div
         onClick={() => {
           setSidebar(!sidebar);
         }}
       ></div>
       <div className="sidebarContentContainer">
-        <div style={{display:"flex" ,justifyContent:"right"}}><Button color="error">LogOut</Button></div>
+      <Link to="/student/dashboard/profile" style={{textDecoration:'none'}}>
         <div className="profileContainer" style={{marginTop:"4%"}}>
           <div className="dp">
             <img src={img} />
@@ -36,7 +52,8 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
             </div>
           </div>
           </div>
-          <div className="listContainer">
+          </Link>
+          <div className="listContainer" style={{}}>
             <List>
               {list.map((d, k) => (
                 <>
@@ -45,7 +62,7 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
                     button
                     style={{
                       fontSize: "30px",
-                      marginTop: "30px",
+                      marginTop: "15px",
                       width: "100%",
                     }}
                     onClick={()=>{
@@ -77,7 +94,13 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
                   </List>
                 </>
               ))}
+           
+             <ListItem style={{marginTop:"60px"}}>
+            {/* <Button variant="contained" color="error">LogOut</Button> */}
+            <Button  variant='outlined' onClick={getLogOut} sx={{borderRadius:'50px', height:'40px',width:'115px' }} >Logout </Button>
+            </ListItem>
             </List>
+
         </div>
       </div>
     </div>
