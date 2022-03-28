@@ -91,7 +91,7 @@ exports.sendOtp=async(req,res)=>{
 
   }
     if(validator.isMobilePhone(emailOrMobile,"en-IN")){
-      return res.status(400).send("we are working on it!")
+      // return res.status(400).send("we are working on it!")
       const isUser=await auth.findOne({mobile:emailOrMobile}) 
       if(!isUser)
       return res.status(400).send("please enter email we are working on it!")

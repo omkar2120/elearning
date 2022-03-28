@@ -3,6 +3,7 @@ import axios from "../../axios";
 import Cookies from "js-cookie";
 import { getSubjects } from "./subject.action";
 import { getAllTeachers, getAllStudents } from "./admin.action";
+import * as global from "../constant/global.constatnt"
 export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: user.ADMIN_USER_LOGIN_REQUESTED });
@@ -28,3 +29,30 @@ export const loadUser = () => async (dispatch) => {
     dispatch({ type: user.ADMIN_USER_LOGIN_ERROR, err: false });
   }
 };
+export const getfeedback = () => async (dispatch) => {
+  
+  try {
+      dispatch({ type: global.ADMIN_FEEDBACK_GET_REQUESTED})
+          const getData = await  axios.get('/getfb',{headers:{authorization:Cookies.get("e-learningadmintoken")}})
+          console.log(getData)
+          dispatch({ type: global.ADMIN_FEEDBACK_GET_SUCCESS,data:getData.data})
+
+  } catch(err){
+      dispatch({ type: global.ADMIN_FEEDBACK_GET_ERROR,err:err.response.data})
+  }
+  
+}
+export const logOut=()=>async(dispatch)=>{
+  try{
+    await Cookies.remove("e-learningadmintoken")
+    dispatch({type:global.LOGOUT})
+    return true
+
+  }
+  catch(err){
+  }
+ 
+
+}
+
+

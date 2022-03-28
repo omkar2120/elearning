@@ -33,8 +33,13 @@ import TechDash from "./teacher/pages/TeachDashBoard/TechDash";
 import AttendanceCom from "./teacher/components/Attendance/AttendanceCom";
 import ClassListAttendance from './teacher/components/ClassList/ClassListAttendance'
 import NotFound from "./home/component/NotFound";
+import AdminFooter from "./admin/pages/AdminFooter";
 import TeacherTopicEdit from "./teacher/pages/TeacherTopicEdit";
 import TeacherAddSession from "./teacher/pages/TeacherAddSession";
+import StudentNavbar from "./student/Pages/StudentNavbar";
+import StudentProfile from "./student/Pages/StudentProfile";
+import TeacherProfile from "./teacher/pages/TeacherProfile"; 
+
 const theme = createTheme({
   // typography:{
   //   fontFamily:'Quicksand,sans-serif',
@@ -62,6 +67,8 @@ load()
           <Route path="/admin/dashboard" element={<AdminDashboard2/>}/>
           <Route path="/teacher/dashboard" element={<TechDash/>}/>
           <Route path="/student/dashboard" element={<StudentDashboard/>}/>
+          <Route path="/student/dashboard/navbar" element={<StudentNavbar/>}/>
+          <Route path="/student/dashboard/profile" element={<StudentProfile/>}/>
           <Route path="/admin/manage/course/add" element={<AdminAddCourse/>}/>
           <Route path="/admin/manage/teacher/add" element={<AdminAddTeacher/>}/>
           <Route path="/admin/manage/student/add" element={<AdminAddStudent/>}/>
@@ -75,10 +82,12 @@ load()
           <Route path="/teacher/add/subject" element={<TeacherAddSubject/>}/>
           <Route path="/teacher/create/session" element={<TeacherAddSession/>}/>
           <Route path="/teacher/add/topic" element={<TeacherAddTopic/>}/>
+          <Route path="/teacher/dashboard/profile" element={<TeacherProfile/>}/>
           <Route path="/admin/add/topic" element={<AdminAddTopic/>}/>
           <Route path="/admin/add/subject" element={<AdminAddSubject/>}/>
+          <Route path="admin/footer" element={<AdminFooter/>} />
           <Route path="/teacher/student/list" element={<TeacherStudentList/>}/>
-          <Route path="*" element={<NotFound/>} />\
+          <Route path="*" element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
     </div>

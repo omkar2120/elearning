@@ -1,30 +1,40 @@
-import React, { useState } from 'react'
-import "./Topbar.css"
+import React, { useEffect, useState } from 'react'
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import { Container, CssBaseline, Divider } from '@mui/material';
+import { FaBars } from "react-icons/fa"
+import { Link } from 'react-router-dom'
+import Sidebar from '../../global/component/Sidebar'
 import img from "../../global/component/Avtar2.jpg";
 import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { ListItem } from '@mui/material';
-import { Toolbar } from '@mui/material';
-import { Box } from '@mui/material'
-import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import { Container, CssBaseline, Divider,Typography } from '@mui/material';
-import { useSelector ,useDispatch} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logOut } from '../../redux/actions/global.action';
+import Cookies from 'js-cookie'
+import { ListItem } from '@mui/material';
+import Swal from 'sweetalert2';
 
-export default function Topbar() {  
-  //admin topbar
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
+const TeacherNavbar = () => {
 
-     const getLogOut = async() => {
-        const isLogedOut= await dispatch(logOut())
-       if(isLogedOut)
-       navigate("/")
+    const navigate = useNavigate()
+
+
+
+    const techerLogout = () => {
+        Cookies.remove('e-learningadmintoken',)
+        Swal.fire("Teacher Logout Successfully")
+        window.location.href = '/teachlogin'
     }
+
+    const adminState = useSelector((state) => state.adminReducer)
+
 
     const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -34,32 +44,30 @@ export default function Topbar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-    const adminState = useSelector((state) => state.adminReducer)
-
 
     return (
-        <div style={{ height: '10%' }}>
-            <Box sx={{ flexGrow: 1 }}  style={{height:"100%"}}>
+        <div style={{ height: '13%' }}>
+            <Box sx={{ flexGrow: 1 }} >
                 <CssBaseline />
-                <AppBar  color='inherit' sx={{ boxShadow: 1, justifySelf: 'flex-start' }}>
-                    <Toolbar style={{display:"grid",gridTemplateColumns:"10% 1fr 10%"}}>
+                <AppBar position="fixed" color='inherit' sx={{ boxShadow: 1, justifySelf: 'flex-start', height: '13%' }}>
+                    <Toolbar>
                         <Link to="/" style={{ textDecoration: 'none' }}>
                             <Typography
                                 sx={{
                                     flexGrow: 3,
                                     fontFamily: 'Quicksand,sans-serif',
-                                    fontSize: '25px',
+                                    fontSize: '30px',
                                     fontWeight: '800',
-                                    color: '#0B2060',
+                                    color: '#0B2060'
                                 }}
                             >
                                 eLearning
                             </Typography>
                         </Link>
-                        <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+                        <div style={{ marginLeft: '30%', width: '100%' }}>
                             <Typography
                                 sx={{
-                                    fontSize: '25px',
+                                    fontSize: '30px',
                                     fontWeight: '800',
                                     color: '#0B2060'
                                 }}
@@ -69,7 +77,7 @@ export default function Topbar() {
                         <Toolbar sx={{ display: "flex", justifyContent: 'right', width: "100%", marginTop: '5px' }}>
                             <Box sx={{ flexGrow: 0 }}>
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <img src={img} height={40} width={40} style={{ borderRadius: '50px' }}>
+                                    <img src={img} height={65} width={65} style={{ borderRadius: '50px' }}>
 
                                     </img>
                                 </IconButton>
@@ -101,7 +109,7 @@ export default function Topbar() {
                                         </Link>
                                     </MenuItem>
                                     <MenuItem>
-                                        <ListItem onClick={getLogOut}>Logout</ListItem>
+                                        <ListItem onClick={techerLogout}>Logout</ListItem>
 
                                     </MenuItem>
                                 </Menu>
@@ -117,3 +125,5 @@ export default function Topbar() {
 
     )
 }
+
+export default TeacherNavbar
