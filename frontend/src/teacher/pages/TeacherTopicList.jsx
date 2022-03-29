@@ -66,7 +66,7 @@ export default function () {
     return <NotFound />;
   else
     return (
-      <div style={{ height: "calc(100vh - 10%)" }}>
+      <div style={{ height: "100%" }}>
         <Topbar />
         <div
           className="mainContainer"
@@ -131,7 +131,7 @@ export default function () {
                 :
                 <TableBody>
                   {theSubjectState.subjects.map((d) => (
-                    <TableRow>
+                    <StyledTableRow>
                       <StyledTableCell align="center">{d.Name}</StyledTableCell>
                       <StyledTableCell align="center">
                         {d.Semester}
@@ -170,7 +170,7 @@ export default function () {
                       <StyledTableCell align="center">
                         <FaFileDownload fontSize={23} cursor="pointer" />
                       </StyledTableCell>
-                    </TableRow>
+                    </StyledTableRow>
                   ))}
                 </TableBody>
                 }

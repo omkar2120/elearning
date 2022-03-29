@@ -9,19 +9,35 @@ import {
   Select,
   MenuItem,
   FormControl,
-  InputLabel,Button
+  InputLabel,
+  Button,
 } from "@mui/material";
-import { useSelector } from "react-redux";
+import {useNavigate} from "react-router-dom"
+import { createSession, validation } from "../../redux/actions/session.action";
+import { useSelector, useDispatch } from "react-redux";
 export default function AddSession() {
+  const dispatch = useDispatch();
+  const navigate=useNavigate()
+  const theSessionState = useSelector((state) => state.sessionReducer);
   const [value, setValue] = useState(null);
   const [isCostom, setCostom] = useState(false);
   const [topic, setTopic] = useState([]);
   const [subtopic, setSubTopic] = useState([]);
+  const [theSession, setSession] = useState({
+    sessionName: "",
+    subject: "",
+    topic: "",
+    subtopic: "",
+    date: "",
+    time: "",
+    isCostom: false,
+  });
   const theSubjectState = useSelector((state) => state.subjectReducer);
   const manageTopic = (e) => {
     const { name, value } = e.target;
+    setSession({ ...theSession, [name]: value });
     const { topics } = theSubjectState.subjects.find((t) => {
-      if (t.Name == value) {
+      if (t._id == value) {
         return t;
       }
     });
@@ -29,12 +45,18 @@ export default function AddSession() {
   };
   const manageSubTopic = (e) => {
     const { name, value } = e.target;
+    setSession({ ...theSession, [name]: value });
     const { SubTopics } = topic.find((st) => {
       if (st.Name == value) {
         return st;
       }
     });
     setSubTopic(SubTopics);
+  };
+  const sendData = async() => {
+    const isData =await dispatch(createSession(theSession));
+    if(isData)
+    navigate("/teacher/dashboard")
   };
   return (
     <div
@@ -57,28 +79,28 @@ export default function AddSession() {
         }}
       >
         <Grid container spacing={4}>
-          
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "right",
-                width:"100%"
-              }}
-            >
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      onChange={() => {
-                        setCostom(!isCostom);
-                      }}
-                    />
-                  }
-                  label="Costom"
-                />
-              </FormGroup>
-            </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "right",
+              width: "100%",
+            }}
+          >
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    onChange={() => {
+                      setSession({ ...theSession, isCostom: !isCostom });
+                      setCostom(!isCostom);
+                    }}
+                  />
+                }
+                label="Costom"
+              />
+            </FormGroup>
+          </div>
           <Grid item sm={12} md={12} xl={12}>
             <Typography
               textAlign={"center"}
@@ -96,7 +118,7 @@ export default function AddSession() {
               Create Session
             </Typography>
           </Grid>
-          
+
           <Grid item sm={4} md={4} xl={4} marginTop={5}>
             <FormControl fullWidth>
               <InputLabel>Select Subject</InputLabel>
@@ -111,24 +133,29 @@ export default function AddSession() {
                 }}
               >
                 {theSubjectState.subjects.map((s, k) => (
-                  <MenuItem key={k} value={s.Name}>
+                  <MenuItem key={k} value={s._id}>
                     {s.Name}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
+            <div style={{color:"red"}}>{theSessionState.err.subject}</div>
           </Grid>
           {isCostom ? (
             <Grid item sm={8} md={8} xl={8} marginTop={5}>
-              <Grid item sm={12} md={12} xl={12}>
-          <TextField
-            variant="standard"
-            label="Session Name"
-            fullWidth
-            required
-          ></TextField>
-          </Grid>
-
+              <TextField
+                variant="standard"
+                label="Session Name"
+                name="sessionName"
+                fullWidth
+                required
+                value={theSession.sessionName}
+                onChange={(e) => {
+                  const { name, value } = e.target;
+                  setSession({ ...theSession, [name]: value });
+                }}
+              ></TextField>
+              <div style={{color:"red"}}>{theSessionState.err.sessionName}</div>
             </Grid>
           ) : (
             <>
@@ -148,11 +175,20 @@ export default function AddSession() {
                     ))}
                   </Select>
                 </FormControl>
+                <div style={{color:"red"}}>{theSessionState.err.topic}</div>
               </Grid>
               <Grid item sm={4} md={4} xl={4} marginTop={5}>
                 <FormControl fullWidth>
                   <InputLabel>Select subtopic</InputLabel>
-                  <Select label="Select subtopic" name="subtopic" fullWidth>
+                  <Select
+                    label="Select subtopic"
+                    name="subtopic"
+                    fullWidth
+                    onChange={(e) => {
+                      const { name, value } = e.target;
+                      setSession({ ...theSession, [name]: value });
+                    }}
+                  >
                     {subtopic.map((st, k) => (
                       <MenuItem key={k} value={st}>
                         {st}
@@ -160,27 +196,57 @@ export default function AddSession() {
                     ))}
                   </Select>
                 </FormControl>
+                <div style={{color:"red"}}>{theSessionState.err.subtopic}</div>
               </Grid>
             </>
           )}
           <Grid item sm={6} md={6} xl={6} marginTop={5}>
-          <FormControl fullWidth>
-                  <TextField fullWidth size={"medium"}  type={"date"} variant={"standard"}/>
+            <FormControl fullWidth>
+              <TextField
+                fullWidth
+                size={"medium"}
+                name={"date"}
+                type={"date"}
+                variant={"standard"}
+                onChange={(e) => {
+                  const { name, value } = e.target;
+                  setSession({ ...theSession, [name]: value });
+                }}
+              />
             </FormControl>
-
+            <div style={{color:"red"}}>{theSessionState.err.date}</div>
           </Grid>
           <Grid item sm={6} md={6} xl={6} marginTop={5}>
-          <FormControl fullWidth>
-                  <TextField fullWidth size={"medium"}  type={"time"} variant={"standard"}/>
+            <FormControl fullWidth>
+              <TextField
+                fullWidth
+                size={"medium"}
+                name={"time"}
+                type={"time"}
+                variant={"standard"}
+                onChange={(e) => {
+                  const { name, value } = e.target;
+                  setSession({ ...theSession, [name]: value });
+                }}
+              />
             </FormControl>
-
+            <div style={{color:"red"}}>{theSessionState.err.time}</div>
           </Grid>
           <Grid item sm={6} md={6} xl={6} marginTop={5}>
-            <Button variant="contained" color={"error"} fullWidth>Clear</Button>
-            </Grid>
-            <Grid item sm={6} md={6} xl={6} marginTop={5}>
-            <Button variant="contained" color={"success"} fullWidth>create session</Button>
-            </Grid>
+            <Button variant="contained" color={"error"} fullWidth>
+              Clear
+            </Button>
+          </Grid>
+          <Grid item sm={6} md={6} xl={6} marginTop={5}>
+            <Button
+              variant="contained"
+              color={"success"}
+              fullWidth
+              onClick={sendData}
+            >
+              create session
+            </Button>
+          </Grid>
         </Grid>
       </div>
     </div>

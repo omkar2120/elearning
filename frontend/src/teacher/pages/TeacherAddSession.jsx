@@ -7,7 +7,7 @@ import NotFound from '../../home/component/NotFound'
 import AddSession from '../../global/component/AddSession'
 export default function TeacherAddSession() {
   return (
-    <div>
+    <div style={{height:"100%"}}>
         <Topbar/>
         <div className="mainContainer" style={{height:"calc(100vh - 10%)",display:'grid',gridTemplateColumns:"17% 1fr"}}>
             <div className="sidebarContaine">

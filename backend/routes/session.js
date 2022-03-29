@@ -1,9 +1,10 @@
 const { createsession, getsession, getsesbyquery } = require("../controllers/session");
 
+const {isTeacher} =require("../middleware/index")
 const router = require("express").Router();
 
 
-router.post("/session",createsession);
+router.post("/session",isTeacher,createsession);
 
 router.get("/getsession",getsession)
 

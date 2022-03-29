@@ -5,29 +5,21 @@ const Session = require("../models/session.schema")
 //create session
 exports.createsession = async(req,res)=>{
     try{
-        return console.log(req.body)
-      const {sessioname,subject,teacher,date} = req.body
-       if(!sessioname || !subject || !teacher || !date){
-           return res.status(400).json({message:"enter all the details"})
-       }
-       const sessions = new Session({
-           Session:sessioname,
-           subject:subject,
-           teacher:teacher,
-           date:date
-       })
-       const newsession = await sessions.save()
-       if(newsession){
-           return res.status(200).json({message:"session has been created"});
-       }
+        const { sessionname, subject, topic, subtopic, date, time, isCostom } = req.body
+        console.log(req.body)
+        let theSession;
+        if(isCostom)
+       theSession=new Session({sessionname,subject,date,time,teacher:req._id})
+       else
+       theSession=new Session({subject,topic,subtopic,date,time,teacher:req._id})
+       const newsession = await theSession.save() 
+       if(!newsession)
+       return res.status(400).send("Session Not Created!") 
+       return res.status(200).send("Session  Created!") 
     }
     catch(err){
      console.log(err)
-     const split_Err = err.message.split(" ");
-         if (split_Err[11] === "Session:")
-            return res
-               .status(404)
-            .send(`the course (${split_Err[12]}) is already created!`);  
+     return res.status(400).send("Session Not Created!") 
     }
 }
 
