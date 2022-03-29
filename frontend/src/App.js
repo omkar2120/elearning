@@ -38,7 +38,7 @@ import TeacherAddSession from "./teacher/pages/TeacherAddSession";
 import StudentNavbar from "./student/Pages/StudentNavbar";
 import StudentProfile from "./student/Pages/StudentProfile";
 import TeacherProfile from "./teacher/pages/TeacherProfile"; 
-
+import Profile from "./global/component/Profile";
 const theme = createTheme({
   // typography:{
   //   fontFamily:'Quicksand,sans-serif',
@@ -57,6 +57,7 @@ load()
       <BrowserRouter>
         <Routes>
           <Route  path="/" element={<Home/>} />
+          <Route path="/profile" element={<Profile/>}/>
           <Route  path="/studlogin" element={<StudLogin/>} />
           <Route  path="/teachlogin" element={<TeachLogin/>} />
           <Route  path="/admin" element={<AdminLogin/>}/>
