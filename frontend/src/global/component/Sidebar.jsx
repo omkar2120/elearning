@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
+import { ThemeProvider, createTheme } from "@mui/material";
 
 export default function Sidebar({ sidebar, setSidebar, list }) {
 
@@ -23,12 +24,18 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
 
   }
 
+  const theme = createTheme({
+    typography:{
+      fontFamily: 'Raleway, Arial',
+    }
+  })
   const [dropdown, setDropdown] = useState({
     isOpen: false,
     key: false,
   });
   const userState = useSelector((state) => state.adminReducer);
   return (
+    <ThemeProvider theme={theme}>
     <div className={sidebar ? "sideBarMain" : "sideBarNone"} >
       <div
         onClick={() => {
@@ -101,5 +108,6 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
         </div>
       </div>
     </div>
+    </ThemeProvider>
   );
 }
