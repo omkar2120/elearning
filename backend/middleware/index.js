@@ -51,3 +51,20 @@ exports.verifyadmin = async (req,res,next)=>{
         res.status(400).json(err);
     }
 }
+exports.isTeacher=async(req,res,next)=>{
+    try{
+        const verifytoken = req.headers.authorization;
+        if(!verifytoken)
+          return res.status(401).json("token is required");
+        const theData=await jwt.verify(verifytoken,process.env.SECRETKEY)
+        const {id}=theData
+        const theTeacher=await User.findById(id)
+        if(!theTeacher||theTeacher.role!="teacher")
+        return res.status(400).send("invalid user")
+        req._id=id
+        next()
+    }
+    catch(err){
+        console.log(err)
+    }
+}
