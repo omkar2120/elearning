@@ -17,10 +17,10 @@ const StudentNavbar = ({ list }) => {
 
   return (
     <div>
-      <div style={{ height: '13%' }}>
+      <div style={{ height: '10%' }}>
         <Box sx={{ flexGrow: 1 }} >
           <CssBaseline />
-          <AppBar position="fixed" color='inherit' sx={{ boxShadow: 1, justifySelf: 'flex-start', height: '13%' }}>
+          <AppBar position="fixed" color='inherit' sx={{ boxShadow: 1, justifySelf: 'flex-start', height: '10%' }}>
             <Toolbar>
               <Link to="/" style={{ textDecoration: 'none' }}>
                 <Typography 

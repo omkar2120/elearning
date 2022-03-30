@@ -16,7 +16,7 @@ export default function () {
   return (
     <div style={{height:"calc(100vh - 10%)"}}>
         {/* <Topbar/> */}
-        <TeacherNavbar />
+        <Topbar/>
         <div className="mainContainer" style={{height:"100%",display:'grid',gridTemplateColumns:"17% 1fr"}}>
             <div className="sidebarContaine">
                 <Sidebar data={sideBarData}/>

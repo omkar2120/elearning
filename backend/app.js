@@ -33,3 +33,41 @@ app.get("/",(req,res)=>{
 app.listen(PORT,()=>{
     console.log(`server is running at ${PORT}`);
 })
+
+
+
+
+// NodeJS
+// Event loop
+// Callback, Promise, Async Await
+// Closures
+// Currying, Call, Bind, Apply
+// Event Emitters
+// Sync vs Async
+// Child processes
+// Forking
+// This [yes you read it right -> this]
+// Express Architecture
+// Middlewares & Authentication
+// Streams
+// lib/package managing
+// os | fs | path modules
+// Objects & modules
+// Database
+// ACID | CAP Theorem
+// Schema/DB Design & Queries
+// Mongo | PostgreSQL execution
+// Aggregation | Projection | Transaction
+// ORMs [Mongoose | sequalize]
+// Replication | Sharding | Scaling
+// APIs
+// REST
+// JSON APIs
+// Browser APIs
+// Authentication | Authorization
+// Cookies | OAuth | JWT Auth |
+// Caching [Server Side | Client Side]
+// CORS | Content Security Policy | SSL | TLS | HTTPS
+// HTTP Status Codes
+
+

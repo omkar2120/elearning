@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@date-io/dayjs": "^2.13.1",
+    "@date-io/moment": "^2.13.1",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@mui/icons-material": "^5.4.4",
+    "@mui/lab": "^5.0.0-alpha.74",
     "@mui/material": "^5.4.3",
     "@mui/styles": "^5.4.4",
     "@mui/x-data-grid": "^5.6.0",

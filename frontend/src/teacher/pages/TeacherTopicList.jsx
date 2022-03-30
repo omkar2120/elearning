@@ -19,7 +19,7 @@ import {
   ListItem,
   ListItemText,
   TreeVi,
-  Modal,Box,Typography
+  Modal,Box,Typography, CircularProgress
 } from "@mui/material";
 import { FaFileDownload } from "react-icons/fa";
 import { styled } from "@mui/material/styles";
@@ -56,13 +56,17 @@ export default function () {
   const dispatch = useDispatch();
   const theState = useSelector((state) => state.adminReducer);
   const theSubjectState=useSelector((state)=>state.subjectReducer)
-  useEffect(async()=>{await dispatch(getSubjects())},[dispatch])
+  
+  useEffect(async()=>{
+    await dispatch(getSubjects())
+  },[dispatch])
+    
 
   if (!theState.isLogedin || theState.users.role !== "teacher")
     return <NotFound />;
   else
     return (
-      <div style={{ height: "calc(100vh - 10%)" }}>
+      <div style={{ height: "100%" }}>
         <Topbar />
         <div
           className="mainContainer"
@@ -121,9 +125,13 @@ export default function () {
                     <StyledTableCell align="center">Download</StyledTableCell>
                   </TableRow>
                 </TableHead>
+                {theSubjectState.isLoading
+                ?
+                <CircularProgress/>
+                :
                 <TableBody>
                   {theSubjectState.subjects.map((d) => (
-                    <TableRow>
+                    <StyledTableRow>
                       <StyledTableCell align="center">{d.Name}</StyledTableCell>
                       <StyledTableCell align="center">
                         {d.Semester}
@@ -162,9 +170,10 @@ export default function () {
                       <StyledTableCell align="center">
                         <FaFileDownload fontSize={23} cursor="pointer" />
                       </StyledTableCell>
-                    </TableRow>
+                    </StyledTableRow>
                   ))}
                 </TableBody>
+                }
               </Table>
             </TableContainer>
           </div>

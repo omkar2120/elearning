@@ -3,26 +3,27 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink, Navigate,useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import "./Sidebar.css";
 import img from "./Avtar2.jpg";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
-import { ThemeProvider, createTheme } from "@mui/material";
-
+import { logOut } from "../../redux/actions/global.action";
+import { createTheme , ThemeProvider } from "@mui/material";
 export default function Sidebar({ sidebar, setSidebar, list }) {
 
 
-  const studentLogout = () => {
-    Cookies.remove('e-learningadmintoken')
-    Swal.fire("Success","Student Logout succesffully ")
-    window.location.href='/studlogin';
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
 
-
-  }
+     const getLogOut = async() => {
+        const isLogedOut= await dispatch(logOut())
+       if(isLogedOut)
+       navigate("/")
+    }
 
   const theme = createTheme({
     typography:{
@@ -43,7 +44,7 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
         }}
       ></div>
       <div className="sidebarContentContainer">
-      <Link to="/student/dashboard/profile" style={{textDecoration:'none'}}>
+      <Link to="/profile" style={{textDecoration:'none'}}>
         <div className="profileContainer" style={{marginTop:"4%"}}>
           <div className="dp">
             <img src={img} />
@@ -99,11 +100,12 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
                   </List>
                 </>
               ))}
-            </List>
-            <div style={{display:"flex" ,justifyContent:"left"}}>
+           
+             <ListItem style={{marginTop:"60px"}}>
             {/* <Button variant="contained" color="error">LogOut</Button> */}
-            <Button  variant='outlined' onClick={studentLogout} sx={{borderRadius:'50px', height:'40px',width:'115px' }} >Logout </Button>
-            </div>
+            <Button  variant='outlined' onClick={getLogOut} sx={{borderRadius:'50px', height:'40px',width:'115px' }} >Logout </Button>
+            </ListItem>
+            </List>
 
         </div>
       </div>

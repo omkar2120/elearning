@@ -37,9 +37,9 @@ export default function
     return <NotFound />
   else
     return (
-      <div style={{ height: "calc(100vh - 10%)" }}>
+      <div style={{ height: "100vh" }}>
         <Topbar />
-        <div className="mainContainer" style={{ height: "100%", display: 'grid', gridTemplateColumns: "17% 1fr" }}>
+        <div className="mainContainer" style={{ height: "calc(100vh - 10%)", display: 'grid', gridTemplateColumns: "17% 1fr" }}>
           <div className="sidebarContaine">
             <Sidebar data={sideBarData} />
 

@@ -10,12 +10,20 @@ import { Toolbar } from '@mui/material';
 import { Box } from '@mui/material'
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { Container, CssBaseline, Divider,Typography } from '@mui/material';
+import { useSelector ,useDispatch} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logOut } from '../../redux/actions/global.action';
 
-export default function Topbar() {    //admin topbar
+export default function Topbar() {  
+  //admin topbar
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
 
-    const adminLogout = () => {
-        Cookies.remove('e-learningadmintoken')
-        window.location.href = "/"
+     const getLogOut = async() => {
+        const isLogedOut= await dispatch(logOut())
+       if(isLogedOut)
+       navigate("/")
     }
 
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -26,59 +34,86 @@ export default function Topbar() {    //admin topbar
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    const adminState = useSelector((state) => state.adminReducer)
 
 
     return (
-        <div className='topbar'>
-            <div className="topbarWrapper">
-                <div className="topLeft">
-                    <span className="logo">DashBoard</span>
-                </div>
-                <div className="topRight">
-
-                    {/* <img src="https://images.pexels.com/photos/8730980/pexels-photo-8730980.jpeg?cs=srgb&dl=pexels-mikhail-nilov-8730980.jpg&fm=jpg" alt="" className="pr" /> */}
-                    <Toolbar sx={{ display: "flex", justifyContent: 'right', width: "100%", marginTop: '5px' }}>
-                        <Box sx={{ flexGrow: 0 }}>
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <img src={img} height={65} width={65} style={{ borderRadius: '50px' }}>
-
-                                </img>
-                            </IconButton>
-                            <Menu
-                                PaperProps={{
-                                    style: {
-                                        width: 150,
-                                    },
+        <div style={{ height: '10%' }}>
+            <Box sx={{ flexGrow: 1 }}  style={{height:"100%"}}>
+                <CssBaseline />
+                <AppBar  color='inherit' sx={{ boxShadow: 1, justifySelf: 'flex-start' }}>
+                    <Toolbar style={{display:"grid",gridTemplateColumns:"10% 1fr 10%"}}>
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                            <Typography
+                                sx={{
+                                    flexGrow: 3,
+                                    fontFamily: 'Quicksand,sans-serif',
+                                    fontSize: '25px',
+                                    fontWeight: '800',
+                                    color: '#0B2060',
                                 }}
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
                             >
-                                <MenuItem>
-                                    <ListItem onClick={adminLogout}>Logout</ListItem>
+                                eLearning
+                            </Typography>
+                        </Link>
+                        <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+                            <Typography
+                                sx={{
+                                    fontSize: '25px',
+                                    fontWeight: '800',
+                                    color: '#0B2060'
+                                }}
+                            >{`Welcome Mr ${adminState.users.fullname}`}</Typography>
+                        </div>
 
-                                </MenuItem>
-                            </Menu>
-                        </Box>
+                        <Toolbar sx={{ display: "flex", justifyContent: 'right', width: "100%", marginTop: '5px' }}>
+                            <Box sx={{ flexGrow: 0 }}>
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                    <img src={img} height={40} width={40} style={{ borderRadius: '50px' }}>
+
+                                    </img>
+                                </IconButton>
+                                <Menu
+                                    PaperProps={{
+                                        style: {
+                                            width: 150,
+                                        },
+                                    }}
+                                    sx={{ mt: '45px' }}
+                                    id="menu-appbar"
+
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
+                                    <MenuItem>
+                                        <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }}>
+                                            <ListItem>Profile</ListItem>
+                                        </Link>
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <ListItem onClick={getLogOut}>Logout</ListItem>
+
+                                    </MenuItem>
+                                </Menu>
+                            </Box>
+                        </Toolbar>
+
                     </Toolbar>
 
-
-
-
-                </div>
-            </div>
+                </AppBar>
+            </Box>
         </div>
+
+
     )
 }

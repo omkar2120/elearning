@@ -19,6 +19,7 @@ import Swal from "sweetalert2"
 import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom";
 import { loadUser } from "../../redux/actions/global.action";
+import { getSubjects } from "../../redux/actions/subject.action";
 import {useDispatch, useSelector} from "react-redux"
 const TeachLogin = () => {
   const dispatch=useDispatch()
@@ -56,7 +57,8 @@ const TeachLogin = () => {
       const res=await axios.post(`/auth/verify/otp/${succMsg.verifyToken}`,{otp})
       setLoading(false)
       Cookies.set("e-learningadmintoken",res.data.token)
-      dispatch({type:"ADMIN_USER_LOGIN_SUCCESS",user:res.data.user,courses:res.data.courses,subjects:res.data.subjects})
+      await dispatch({type:"ADMIN_USER_LOGIN_SUCCESS",user:res.data.user,courses:res.data.courses,subjects:res.data.subjects})
+      await dispatch(getSubjects())
       Swal.fire("Verifyed!")
 
     }

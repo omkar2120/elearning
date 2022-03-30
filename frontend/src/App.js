@@ -34,22 +34,22 @@ import ClassListAttendance from './teacher/components/ClassList/ClassListAttenda
 import NotFound from "./home/component/NotFound";
 import AdminFooter from "./admin/pages/AdminFooter";
 import TeacherTopicEdit from "./teacher/pages/TeacherTopicEdit";
+import TeacherAddSession from "./teacher/pages/TeacherAddSession";
 import StudentNavbar from "./student/Pages/StudentNavbar";
 import StudentProfile from "./student/Pages/StudentProfile";
 import TeacherProfile from "./teacher/pages/TeacherProfile"; 
-
+import Profile from "./global/component/Profile";
 const theme = createTheme({
-  typography:{
-    fontFamily:'Quicksand,sans-serif',
-  }
+  // typography:{
+  //   fontFamily:'Quicksand,sans-serif',
+  // }
 })
 
 function App() {
  const dispatch=useDispatch()
-
-  useEffect(async()=>{
-    await dispatch(loadUser())
-  },[dispatch])
+ const load=async()=>{await dispatch(loadUser())
+console.log("colled")}
+load()
 
   return (
     <ThemeProvider theme={theme}>
@@ -57,6 +57,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route  path="/" element={<Home/>} />
+          <Route path="/profile" element={<Profile/>}/>
           <Route  path="/studlogin" element={<StudLogin/>} />
           <Route  path="/teachlogin" element={<TeachLogin/>} />
           <Route  path="/admin" element={<AdminLogin/>}/>
@@ -79,6 +80,7 @@ function App() {
           <Route path="/teacher/topic/list" element={<TeacherTopicList/>}/>
           <Route path="/teacher/topic/list/edit/:sid" element={<TeacherTopicEdit/>}/>
           <Route path="/teacher/add/subject" element={<TeacherAddSubject/>}/>
+          <Route path="/teacher/create/session" element={<TeacherAddSession/>}/>
           <Route path="/teacher/add/topic" element={<TeacherAddTopic/>}/>
           <Route path="/teacher/dashboard/profile" element={<TeacherProfile/>}/>
           <Route path="/admin/add/topic" element={<AdminAddTopic/>}/>
