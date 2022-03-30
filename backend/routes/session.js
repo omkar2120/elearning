@@ -1,12 +1,12 @@
 const { createsession, getsession, getsesbyquery } = require("../controllers/session");
 
-const {isTeacher} =require("../middleware/index")
+const {isTeacher,isTeacherOrStudent} =require("../middleware/index")
 const router = require("express").Router();
 
 
 router.post("/session",isTeacher,createsession);
 
-router.get("/getsession",getsession)
+router.get("/getsession",isTeacherOrStudent,getsession)
 
 router.get("/get/session",getsesbyquery)
 

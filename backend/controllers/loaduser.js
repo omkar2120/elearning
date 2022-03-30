@@ -58,6 +58,7 @@ exports.loadUser = async (_id) => {
       );
       dataToSend.courses=await course.findById(theUser.course)
       dataToSend.teachers=await auth.find({role:"teacher",course:theUser.course}).select("-password")
+      console.log(dataToSend)
       return dataToSend
     }
   } catch (err) {

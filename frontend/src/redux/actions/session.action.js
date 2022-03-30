@@ -165,3 +165,17 @@ const isFutureDateAndTime = (date, time) => (dispatch) => {
 
   return true;
 };
+
+
+
+
+
+export const getSessionListByClass=()=>async()=>{
+  try{
+    await axios.get("/getsession",{headers:{authorization: Cookies.get("e-learningadmintoken")}})
+
+  }
+  catch(err){
+    console.log(err)
+  }
+}
