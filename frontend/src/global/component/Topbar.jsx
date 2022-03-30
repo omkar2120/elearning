@@ -96,7 +96,7 @@ export default function Topbar() {
                                     onClose={handleCloseUserMenu}
                                 >
                                     <MenuItem>
-                                        <Link to="/teacher/dashboard/profile" style={{ textDecoration: 'none', color: 'black' }}>
+                                        <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }}>
                                             <ListItem>Profile</ListItem>
                                         </Link>
                                     </MenuItem>

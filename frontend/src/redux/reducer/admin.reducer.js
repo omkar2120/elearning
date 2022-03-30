@@ -29,6 +29,7 @@ const adminReducer = (state = initialState, action) => {
         users: action.user,
         courses: action.courses,
         subjects:action.subjects,
+        teachers:action.teachers,
         token: Cookie.get("e-learningadmintoken"),
       };
     case admin.ADMIN_USER_LOGIN_ERROR:

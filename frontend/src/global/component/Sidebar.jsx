@@ -38,7 +38,7 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
         }}
       ></div>
       <div className="sidebarContentContainer">
-      <Link to="/student/dashboard/profile" style={{textDecoration:'none'}}>
+      <Link to="/profile" style={{textDecoration:'none'}}>
         <div className="profileContainer" style={{marginTop:"4%"}}>
           <div className="dp">
             <img src={img} />
