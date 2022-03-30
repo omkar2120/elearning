@@ -16,7 +16,6 @@ const StudentNavbar = ({ list }) => {
   const adminState = useSelector((state) => state.adminReducer)
 
   return (
-    <div>
       <div style={{ height: '10%' }}>
         <Box sx={{ flexGrow: 1 }} >
           <CssBaseline />
@@ -61,8 +60,6 @@ const StudentNavbar = ({ list }) => {
           </AppBar>
         </Box>
       </div>
-
-    </div>
   )
 }
 
