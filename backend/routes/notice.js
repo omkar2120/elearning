@@ -8,8 +8,8 @@ router.post("/createnotice",AdminAndTeacherMiddleware,createnotice);
 
 router.get("/getnotices",AdminAndTeacherMiddleware,getnotice);
 
-router.put("/updatenotice/:id",updatenotice)
+router.put("/updatenotice/:id",AdminAndTeacherMiddleware,datenotice)
 
-router.delete("/deletenotice/:id",delnot)
+router.delete("/deletenotice/:id",AdminAndTeacherMiddleware,delnot)
 
 module.exports=router
