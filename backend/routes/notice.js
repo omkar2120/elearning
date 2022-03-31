@@ -8,7 +8,7 @@ router.post("/createnotice",AdminAndTeacherMiddleware,createnotice);
 
 router.get("/getnotices",AdminAndTeacherMiddleware,getnotice);
 
-router.put("/updatenotice/:id",AdminAndTeacherMiddleware,udatenotice)
+router.put("/updatenotice/:id",AdminAndTeacherMiddleware,updatenotice)
 
 router.delete("/deletenotice/:id",AdminAndTeacherMiddleware,delnot)
 
