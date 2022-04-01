@@ -39,6 +39,8 @@ import StudentNavbar from "./student/Pages/StudentNavbar";
 import StudentProfile from "./student/Pages/StudentProfile";
 import TeacherProfile from "./teacher/pages/TeacherProfile"; 
 import Profile from "./global/component/Profile";
+import CreateNotice from "./teacher/pages/CreateNotice";
+
 const theme = createTheme({
   // typography:{
   //   fontFamily:'Quicksand,sans-serif',
@@ -83,6 +85,8 @@ load()
           <Route path="/teacher/create/session" element={<TeacherAddSession/>}/>
           <Route path="/teacher/add/topic" element={<TeacherAddTopic/>}/>
           <Route path="/teacher/dashboard/profile" element={<TeacherProfile/>}/>
+          <Route path="/teacher/notice" element={<CreateNotice/>}/>
+
           <Route path="/admin/add/topic" element={<AdminAddTopic/>}/>
           <Route path="/admin/add/subject" element={<AdminAddSubject/>}/>
           <Route path="admin/footer" element={<AdminFooter/>} />

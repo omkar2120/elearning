@@ -42,6 +42,19 @@ export const getfeedback = () => async (dispatch) => {
   }
   
 }
+// export const getAllNotice = () => async (dispatch) => {
+//   try{
+//     dispatch({ type: global.TEACHER_NOTICE_CREATE_REQUESTEED})
+//     const getNoticeData = await axios.post('//getnotices',{headers:{authorization:Cookies.get("e-learningadmintoken")}})
+//         console.log(getNoticeData)
+
+//   }catch(err){
+    
+//   }
+// }
+
+
+
 export const logOut=()=>async(dispatch)=>{
   try{
     await Cookies.remove("e-learningadmintoken")
