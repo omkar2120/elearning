@@ -52,11 +52,12 @@ exports.getfeedback = async (req,res)=>{
 exports.getAllFeedback = async (req,res)=>{
       try{
         const data = await Feedback.find();
+        console.log(data);
         if(!data){
             return res.status(400).json("something went wrong");
         }
         return res.status(200).json(data);
-        console.log(data);
+        
       }
     catch(err){
        res.status(400).json("feedback not found");

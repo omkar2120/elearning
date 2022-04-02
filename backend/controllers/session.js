@@ -1,7 +1,7 @@
 const Subject = require("../models/subject.schema");
 const user = require("../models/userSchema");
 const Session = require("../models/session.schema");
-
+const randomColor = require('randomcolor');
 //create session
 exports.createsession = async (req, res) => {
   try {
@@ -98,5 +98,56 @@ exports.getsesbyquery = async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
     console.log(err);
+  }
+};
+
+
+
+
+exports.getSessionStatus=async(req,res)=>{
+  try{
+    const {id,sem}=req.params
+    let dataToSend=[]
+    const subjects=await Subject.find({course:id,Semester:sem})
+    for(let i=0;i<subjects.length;i++){
+      let dataToAdd={}
+      dataToAdd.Name=text_truncate(subjects[i].Name,17)
+      let total=0
+      let complete=0
+      for(let j=0;j<subjects[i].topics.length;j++){
+        total=total+subjects[i].topics[j].SubTopics.length
+        complete=complete+await Session.count({subject:subjects[i]._id,topic:subjects[i].topics[j].Name,isDone:true})
+       
+      }
+     dataToAdd.total=total
+     dataToAdd.complete=complete
+     let percentage=Math.floor((100*Number(complete))/Number(total))
+     if(isNaN(percentage)){
+     percentage=1}
+     dataToAdd.percentage=percentage
+     dataToAdd.fill=randomColor()
+     dataToSend.push(dataToAdd)
+    }
+    console.log(dataToSend)
+    res.send(dataToSend)
+
+  }
+  catch(err){
+    console.log(err)
+
+  }
+}
+
+const text_truncate = (str, length, ending)=> {
+  if (length == null) {
+    length = 100;
+  }
+  if (ending == null) {
+    ending = '...';
+  }
+  if (str.length > length) {
+    return str.substring(0, length - ending.length) + ending;
+  } else {
+    return str;
   }
 };
