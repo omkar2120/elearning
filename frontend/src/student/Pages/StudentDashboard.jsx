@@ -10,7 +10,7 @@ export default function StudentDashboard() {
   return (
     <div style={{height:"100%"}}>
       <StudentNavbar list={sideBarData}/>
-      <div className="dashboardContainer" style={{height:"calc(100vh - 10%)",display:"grid",gridTemplateColumns:"30% 1fr 30%",columnGap:"2px"}}>
+      <div className="dashboardContainer" style={{height:"calc(100vh - 10%)",display:"grid",gridTemplateColumns:"25% 1fr 25%",columnGap:"2px"}}>
         <div className="container1" style={{border:"1px solid green"}}>
           <div className="quotesContainer" style={{height:"35%",backgroundColor:"",display:"flex",alignItems:"center",justifyContent:"space-around"}}>
             <Quotes/>
@@ -22,7 +22,7 @@ export default function StudentDashboard() {
           </div>
 
         </div>
-        <div className="container2" style={{border:"1px solid yellow"}}>
+        <div className="container2" style={{border:"1px solid yellow",height:"100%"}}>
           <SessionTree/>
 
         </div>
