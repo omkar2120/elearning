@@ -4,6 +4,7 @@ import Sidebar from '../../global/component/Sidebar2'
 import { sideBarData } from '../sidebarData'
 import { FormControl, Input } from '@mui/material';
 import DatePicker from '@mui/material'
+import axios from '../../axios'
 import {
   Typography,
   Grid,
@@ -11,12 +12,12 @@ import {
   Button,
 
 } from "@mui/material";
-import axios from '../../../src/axios'
+import Cookies from 'js-cookie';
 
 const CreateNotice = () => {
 
   const [notice, setNotice] = useState({
-    text: "",
+    notice: "",
     date: ""
   })
 
@@ -26,8 +27,10 @@ const CreateNotice = () => {
   }
 
   const sendNoticeData =  async () => {
+    
        try{
-         const getNotice = await axios.post('/createnotice', notice)
+         const getNotice = await axios.post('/createnotice',notice,
+         {headers : { authorization:Cookies.get("e-learningadmintoken")}})
          console.log(getNotice)
 
        }catch(err){
@@ -80,10 +83,9 @@ const CreateNotice = () => {
                   label="Enter Notice"
                   fullWidth
                   variant="standard"
-                  name="text"
-                  value={notice.text}
-                  onChange={noticeBoardData
-                  }
+                  name="notice"
+                  value={notice.notice}
+                  onChange={noticeBoardData}
                 />
               </Grid>
               <Grid xs={12} md={12} sm={12} lg={12} item style={{}}>

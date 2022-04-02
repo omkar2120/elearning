@@ -16,7 +16,7 @@ const Session=mongoose.Schema({
 
       teacher:{
         type:mongoose.Types.ObjectId,
-        ref: "User"
+        ref: "USER"
       },
      date:{
          type:String,
@@ -25,6 +25,10 @@ const Session=mongoose.Schema({
      time:{
        type: String,
        required:true
+     },
+     isDone:{
+       type:Boolean,
+       default:false
      }
 })
 module.exports= mongoose.model("session",Session)

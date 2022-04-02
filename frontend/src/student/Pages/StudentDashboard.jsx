@@ -5,6 +5,7 @@ import { sideBarData } from "../sidebarData";
 import StudentNavbar from "./StudentNavbar";
 import Quotes from "../components/Quotes";
 import NoticeBoard from "../components/NoticeBoard";
+import SessionTree from "../components/SessionTree";
 export default function StudentDashboard() {
   return (
     <div style={{height:"100%"}}>
@@ -22,6 +23,7 @@ export default function StudentDashboard() {
 
         </div>
         <div className="container2" style={{border:"1px solid yellow"}}>
+          <SessionTree/>
 
         </div>
         <div className="container3" style={{border:"1px solid blue"}}>

@@ -55,7 +55,7 @@ const TeachLogin = () => {
       setLoading(false)
       Cookies.set("e-learningadmintoken",res.data.token)
       console.log(res.data)
-      dispatch({type:"ADMIN_USER_LOGIN_SUCCESS",user:res.data.user,courses:res.data.courses})
+      dispatch({type:"ADMIN_USER_LOGIN_SUCCESS",user:res.data.user,courses:res.data.courses,teachers:res.data.teachers})
       Swal.fire("Verifyed!")
 
 

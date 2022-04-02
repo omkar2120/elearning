@@ -1,8 +1,9 @@
+import Cookie from 'js-cookie';
 import * as global from '../constant/global.constatnt'
 const initialState = {
     isLoading: false,
     feedbacks: [],
-    text: []
+    notice: []
 };
 
 const globalReducer = (state = initialState, action) => {
@@ -17,7 +18,8 @@ const globalReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                feedbacks: action.data
+                feedbacks: action.data,
+
             };
         case global.ADMIN_FEEDBACK_GET_ERROR:
             return {
@@ -35,7 +37,9 @@ const globalReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                text: action.data
+                notice:action.data,
+                token: Cookie.get("e-learningadmintoken"),
+
             };
         case global.TEACHER_NOTICE_CREATE_ERROR:
             return {
