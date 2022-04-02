@@ -1,25 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllNotice } from "../../redux/actions/global.action";
-
+import axios from "../../axios";
+import Cookies from "js-cookie";
 function NoticeBoard() {
-  const dispatch = useDispatch()
-
-
-  const theNoticeState = useSelector((state) => state.globalReducer)
-  console.log(theNoticeState)
+  const [notice,setNotice]=useState({
+    notice:"",
+    by:"",
+    date:""
+  })
 
   useEffect(async () => {
-    await dispatch(getAllNotice())
-
-    
-  }, [dispatch])
+    const thenotice=await axios.get("/getnotices",{
+      headers: { authorization: Cookies.get("e-learningadmintoken") },
+    }) 
+    const {notice,by,date}=thenotice.data
+    setNotice({...notice,notice,by,date})
+  }, [])
   return (
     <div
       className=""
       style={{
-        minHeight: "90%",
+        minHeight: "60%",
         width: "95%",
         boxShadow: "rgba(100, 100, 111, 0.151) 0px 7px 29px 0px",
         backgroundColor: "rgb(0 0 0 / 85%)",
@@ -46,13 +49,10 @@ function NoticeBoard() {
       </Typography>
       <div>
           <div>
-            <div className="containt" style={{ textAlign: "center", padding: "2%" }}>
+            <div className="containt" style={{ textAlign: "center", padding: "3%" }}>
 
               <p style={{ color: "yellow" }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy text ever
-                since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book.
+               {notice.notice}
               </p>
             </div>
             <div
@@ -64,8 +64,8 @@ function NoticeBoard() {
                 padding: "3%",
               }}
             >
-              <b style={{ color: "white", justifySelf: "flex-start" }}>25/03/2022</b>
-              <b style={{ color: "white", justifySelf: "flex-end" }}>~Amit Thakur</b>
+              <b style={{ color: "white", justifySelf: "flex-start" }}>{notice.date}</b>
+              <b style={{ color: "white", justifySelf: "flex-end" }}>~{notice.by}</b>
             </div>
           </div>
         

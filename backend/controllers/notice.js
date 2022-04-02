@@ -3,53 +3,36 @@ const User = require("../models/userSchema")
 
 exports.createnotice = async (req, res) => {
     try {
-        const userId = req._id
-        const {notice,date} = req.body
-        // console.log(userId)
-        // console.log(req.body)
-        const newnot = new Notice({
-            userId: userId,
-            notice: notice,
-            date: date
-        })
-        // console.log(newnot)
-        const notices = await newnot.save();
-        if (!notices) {
-            return res.status(400).json("notice not created")
-        }
-        res.status(200).json("notice is created");
-        console.log(notices)
+        const user = req._id
+        const {course}=await User.findById(user)
+        const {notice} = req.body
+        if(!notice)
+        return res.status(400).send("Notice is required!")
+        if(notice.length<10)
+        return res.status(400).send("Notice length Should be greater > 10")
+        const theNotice=new Notice({user,course,notice})
+        const createdNotice=await theNotice.save()
+        if(!createdNotice)
+        return res.status(400).send("Notices Not Updated")
+        return res.status(200).send("Notice Updated")
+    
     }
     catch (err) {
         console.log(err)
-        res.status(400).json("something went wrong")
+        return res.status(400).json("something went wrong")
     }
 }
 
 
 exports.getnotice = async (req, res) => {
     try {
-        const getnot = await Notice.find({})
-        const dataToSend = []
-        if (getnot) {
-            for (let i = 0; i <= getnot.length; i++) {
-                // console.log(getnot[i])
-                if (getnot[i]) {
-                    let user = await User.findById({ _id: getnot[i].userId });
-                    // console.log(user)
-                    if (user) {
-                        let datatoadd = {}
-                        datatoadd._id = getnot[i].id
-                        datatoadd.fullname = user.fullname
-                        datatoadd.email = user.email
-                        datatoadd.notice = getnot[i].notice
-                        datatoadd.date = getnot[i].date
-                        dataToSend.push(datatoadd)
-                    }
-                }
-            }
-        }
-        res.status(200).json(dataToSend)
+        const {_id,course}=req
+        let theNotice=await Notice.findOne({course}).populate("user","fullname")
+        const {createdAt,notice,user}=theNotice
+        const theDate=new Date(createdAt).toLocaleString().split(",")
+        if(!theNotice)
+        return res.status(400).send("Notice not found")
+        return res.status(200).send({notice,by:user.fullname,date:theDate[0]})
     } catch (err) {
         console.log(err)
         res.status(400).json("something to went wrong")

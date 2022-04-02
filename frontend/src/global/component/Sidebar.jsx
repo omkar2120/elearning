@@ -21,7 +21,6 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
 
      const getLogOut = async() => {
         const isLogedOut= await dispatch(logOut())
-       if(isLogedOut)
        navigate("/")
     }
 

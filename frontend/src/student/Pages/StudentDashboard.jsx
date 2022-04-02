@@ -6,7 +6,12 @@ import StudentNavbar from "./StudentNavbar";
 import Quotes from "../components/Quotes";
 import NoticeBoard from "../components/NoticeBoard";
 import SessionTree from "../components/SessionTree";
+import { useSelector } from "react-redux";
 export default function StudentDashboard() {
+  const adminState = useSelector((state) => state.adminReducer);
+  if(adminState.isLoading||!adminState.isLogedin)
+  return <></>
+  else
   return (
     <div style={{height:"100%"}}>
       <StudentNavbar list={sideBarData}/>

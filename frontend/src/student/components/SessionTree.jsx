@@ -30,6 +30,7 @@ function SessionTree() {
   const [graphData, setGraphData] = useState([ ]);
   const getSessionStatus = async (sem) => {
     const { _id } = adminState.courses;
+    console.log(_id)
     const data = await axios.get(`/get/session/status/${_id}/${sem}`);
     setGraphData(data.data);
   };
