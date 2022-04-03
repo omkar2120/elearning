@@ -1,20 +1,36 @@
 const Subject = require("../models/subject.schema");
 const user = require("../models/userSchema");
 const Session = require("../models/session.schema");
-const randomColor = require('randomcolor');
+const randomColor = require("randomcolor");
 //create session
 exports.createsession = async (req, res) => {
   try {
-    const { sessionname, subject, topic, subtopic, date, time, isCostom } =
+    const { sessionname, subject, topic, subtopic, date, fromtime,totime, isCostom } =
       req.body;
-    console.log(req.body);
+    let splitedDate = date.split("-");
+    let splitedFromTime = fromtime.split(":");
+    let splitedToTime = totime.split(":");
+    const fromdateandtime = new Date(
+      splitedDate[0],
+      splitedDate[1] - 1,
+      splitedDate[2],
+      splitedFromTime[0],
+      splitedFromTime[1]
+    );
+    const todateandtime = new Date(
+      splitedDate[0],
+      splitedDate[1] - 1,
+      splitedDate[2],
+      splitedToTime[0],
+      splitedToTime[1]
+    );
     let theSession;
     if (isCostom)
       theSession = new Session({
         sessionname,
         subject,
-        date,
-        time,
+        fromdateandtime,
+        todateandtime,
         teacher: req._id,
       });
     else
@@ -22,8 +38,8 @@ exports.createsession = async (req, res) => {
         subject,
         topic,
         subtopic,
-        date,
-        time,
+        fromdateandtime,
+        todateandtime,
         teacher: req._id,
       });
     const newsession = await theSession.save();
@@ -101,49 +117,49 @@ exports.getsesbyquery = async (req, res) => {
   }
 };
 
-
-
-
-exports.getSessionStatus=async(req,res)=>{
-  try{
-    const {id,sem}=req.params
-    let dataToSend=[]
-    const subjects=await Subject.find({course:id,Semester:sem})
-    for(let i=0;i<subjects.length;i++){
-      let dataToAdd={}
-      dataToAdd.Name=text_truncate(subjects[i].Name,17)
-      let total=0
-      let complete=0
-      for(let j=0;j<subjects[i].topics.length;j++){
-        total=total+subjects[i].topics[j].SubTopics.length
-        complete=complete+await Session.count({subject:subjects[i]._id,topic:subjects[i].topics[j].Name,isDone:true})
-       
+exports.getSessionStatus = async (req, res) => {
+  try {
+    const { id, sem } = req.params;
+    let dataToSend = [];
+    const subjects = await Subject.find({ course: id, Semester: sem });
+    for (let i = 0; i < subjects.length; i++) {
+      let dataToAdd = {};
+      dataToAdd.Name = text_truncate(subjects[i].Name, 17);
+      let total = 0;
+      let complete = 0;
+      for (let j = 0; j < subjects[i].topics.length; j++) {
+        total = total + subjects[i].topics[j].SubTopics.length;
+        complete =
+          complete +
+          (await Session.count({
+            subject: subjects[i]._id,
+            topic: subjects[i].topics[j].Name,
+            isDone: true,
+          }));
       }
-     dataToAdd.total=total
-     dataToAdd.complete=complete
-     let percentage=Math.floor((100*Number(complete))/Number(total))
-     if(isNaN(percentage)){
-     percentage=1}
-     dataToAdd.percentage=percentage
-     dataToAdd.fill=randomColor()
-     dataToSend.push(dataToAdd)
+      dataToAdd.total = total;
+      dataToAdd.complete = complete;
+      let percentage = Math.floor((100 * Number(complete)) / Number(total));
+      if (isNaN(percentage)) {
+        percentage = 1;
+      }
+      dataToAdd.percentage = percentage;
+      dataToAdd.fill = randomColor();
+      dataToSend.push(dataToAdd);
     }
-    console.log(dataToSend)
-    res.send(dataToSend)
-
+    console.log(dataToSend);
+    res.send(dataToSend);
+  } catch (err) {
+    console.log(err);
   }
-  catch(err){
-    console.log(err)
+};
 
-  }
-}
-
-const text_truncate = (str, length, ending)=> {
+const text_truncate = (str, length, ending) => {
   if (length == null) {
     length = 100;
   }
   if (ending == null) {
-    ending = '...';
+    ending = "...";
   }
   if (str.length > length) {
     return str.substring(0, length - ending.length) + ending;

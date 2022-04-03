@@ -86,3 +86,19 @@ exports.getSubjectsByCourseId=async(req,res)=>{
 
     }
 }
+exports.getTopicsBySemAndCourse=async(req,res)=>{
+    try{
+        const {_id,course}=req
+        const {sem}=req.query
+        const theTopics=await subject.find({course,Semester:sem})
+        console.log(theTopics)
+        if(!theTopics)
+        return res.status(400).send("topic Not Found")
+        return res.status(200).send(theTopics)
+
+    }
+    catch(err){
+        console.log(err)
+        return res.status(400).send("topic Not Found")
+    }
+}

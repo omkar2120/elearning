@@ -18,13 +18,13 @@ const Session=mongoose.Schema({
         type:mongoose.Types.ObjectId,
         ref: "USER"
       },
-     date:{
-         type:String,
+     fromdateandtime:{
+         type:Date,
          required:true
      },
-     time:{
-       type: String,
-       required:true
+     todateandtime:{
+         type:Date,
+         required:true
      },
      isDone:{
        type:Boolean,

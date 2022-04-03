@@ -5,21 +5,28 @@ import Swal from "sweetalert2"
 export const createSession = (data) => async(dispatch) => {
     try{
         
-  const { sessionName, subject, topic, subtopic, date, time, isCostom } = data;
+  const { sessionName, subject, topic, subtopic, date, fromtime,totime, isCostom } = data;
+  console.log(data)
   if (!date)
     return dispatch({
       type: session.SESSION_ERROR,
       key: "date",
       err: "This is required Field*",
     });
-  if (!time)
+  if (!fromtime)
     return dispatch({
       type: session.SESSION_ERROR,
       key: "time",
       err: "This is required Field*",
     });
+    if (!totime)
+    return dispatch({
+      type: session.SESSION_ERROR,
+      key: "totime",
+      err: "This is required Field*",
+    });
 
-  const isValidDateAndTime = dispatch(isFutureDateAndTime(date, time));
+  const isValidDateAndTime = dispatch(isFutureDateAndTime(date, fromtime,totime));
   console.log(isValidDateAndTime);
   if (isValidDateAndTime !== true) return;
 
@@ -36,7 +43,8 @@ export const createSession = (data) => async(dispatch) => {
         key: "subject",
         err: "This is required Field*",
       });
-      const dataToSend={sessionname:sessionName,subject,date,time,isCostom}
+      const dataToSend={sessionname:sessionName,subject,date,fromtime,totime,isCostom}
+      // console.log(dataToSend)
       dispatch({type:session.SESSION_REQUESTED})
       const theSession=await axios.post("/session",dataToSend,{headers:{authorization: Cookies.get("e-learningadmintoken")}})
       if(theSession){
@@ -67,7 +75,8 @@ export const createSession = (data) => async(dispatch) => {
       key: "subtopic",
       err: "This is required Field*",
     });
-    const dataToSend={subject,topic,subtopic,date,time,isCostom}
+    const dataToSend={subject,topic,subtopic,date,fromtime,totime,isCostom}
+    console.log(dataToSend)
     dispatch({type:session.SESSION_REQUESTED})
     const theSession=await axios.post("/session",dataToSend,{headers:{authorization: Cookies.get("e-learningadmintoken")}})
     if(theSession){
@@ -92,13 +101,14 @@ catch(err){
 return false
 };
 
-const isFutureDateAndTime = (date, time) => (dispatch) => {
+const isFutureDateAndTime = (date, fromtime,totime) => (dispatch) => {
   const currentDate = new Date().toLocaleString();
   const dateAndTime = currentDate.split(",");
   const theDate = dateAndTime[0];
   const theFullDate = theDate.split("/");
   const theGivenDate = date.split("-");
-  const theGivenTime = time.split(":");
+  const theGivenTime = fromtime.split(":");
+  const theGivenToTime = totime.split(":");
 
   const theTime = new Date().toLocaleTimeString("en-IN", {
     hour12: false,
@@ -161,6 +171,20 @@ const isFutureDateAndTime = (date, time) => (dispatch) => {
       type: session.SESSION_ERROR,
       key: "time",
       err: "can't enter past minute*",
+    });
+    console.log(theGivenToTime,theGivenTime)
+    if(theGivenTime[0]>theGivenToTime[0]){
+      console.log("if")
+    return dispatch({
+      type: session.SESSION_ERROR,
+      key: "totime",
+      err: "time should be greater than from time*",
+    });}
+    if(theGivenToTime[1]-theGivenTime[1]<20&&theGivenTime[0]>=theGivenToTime[0])
+    return dispatch({
+      type: session.SESSION_ERROR,
+      key: "totime",
+      err: "You can't create meeting less than 20min*",
     });
 
   return true;

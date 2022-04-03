@@ -40,7 +40,7 @@ import StudentProfile from "./student/Pages/StudentProfile";
 import TeacherProfile from "./teacher/pages/TeacherProfile"; 
 import Profile from "./global/component/Profile";
 import CreateNotice from "./teacher/pages/CreateNotice";
-
+import StudentSession from "./student/Pages/StudentSession";
 const theme = createTheme({
   // typography:{
   //   fontFamily:'Quicksand,sans-serif',
@@ -69,6 +69,7 @@ load()
           <Route path="/admin/dashboard" element={<AdminDashboard2/>}/>
           <Route path="/teacher/dashboard" element={<TechDash/>}/>
           <Route path="/student/dashboard" element={<StudentDashboard/>}/>
+          <Route path="/student/session" element={<StudentSession/>}/>
           <Route path="/student/dashboard/navbar" element={<StudentNavbar/>}/>
           <Route path="/student/dashboard/profile" element={<StudentProfile/>}/>
           <Route path="/admin/manage/course/add" element={<AdminAddCourse/>}/>

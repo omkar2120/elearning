@@ -29,7 +29,8 @@ export default function AddSession() {
     topic: "",
     subtopic: "",
     date: "",
-    time: "",
+    fromtime: "",
+    totime:"",
     isCostom: false,
   });
   const theSubjectState = useSelector((state) => state.subjectReducer);
@@ -208,6 +209,10 @@ export default function AddSession() {
                 name={"date"}
                 type={"date"}
                 variant={"standard"}
+                label={"date"}
+                InputLabelProps={{
+                  shrink: true,
+                }}
                 onChange={(e) => {
                   const { name, value } = e.target;
                   setSession({ ...theSession, [name]: value });
@@ -216,14 +221,18 @@ export default function AddSession() {
             </FormControl>
             <div style={{color:"red"}}>{theSessionState.err.date}</div>
           </Grid>
-          <Grid item sm={6} md={6} xl={6} marginTop={5}>
+          <Grid item sm={3} md={3} xl={3} marginTop={5}>
             <FormControl fullWidth>
               <TextField
                 fullWidth
                 size={"medium"}
-                name={"time"}
+                name={"fromtime"}
                 type={"time"}
                 variant={"standard"}
+                label={"From"}
+                InputLabelProps={{
+                  shrink: true,
+                }}
                 onChange={(e) => {
                   const { name, value } = e.target;
                   setSession({ ...theSession, [name]: value });
@@ -231,6 +240,26 @@ export default function AddSession() {
               />
             </FormControl>
             <div style={{color:"red"}}>{theSessionState.err.time}</div>
+          </Grid>
+          <Grid item sm={3} md={3} xl={3} marginTop={5}>
+            <FormControl fullWidth>
+              <TextField
+                fullWidth
+                size={"medium"}
+                name={"totime"}
+                type={"time"}
+                variant={"standard"}
+                label={"To"}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={(e) => {
+                  const { name, value } = e.target;
+                  setSession({ ...theSession, [name]: value });
+                }}
+              />
+            </FormControl>
+            <div style={{color:"red"}}>{theSessionState.err.totime}</div>
           </Grid>
           <Grid item sm={6} md={6} xl={6} marginTop={5}>
             <Button variant="contained" color={"error"} fullWidth>

@@ -13,15 +13,15 @@ export const sideBarData=[
         dropdown:[]
     },
     {
-        icon:<BsFillCalendarCheckFill/>,
-        list:"Attendance",
-        path:"/student/attendance",
+        icon:<GiTeacher/>,
+        list:"Session",
+        path:"/student/session",
         dropdown:[]
     },
     {
-        icon:<MdAssignment/>,
-        list:"Notice Board",
-        path:"",
+        icon:<BsFillCalendarCheckFill/>,
+        list:"Attendance",
+        path:"/student/attendance",
         dropdown:[]
     },
     {
@@ -31,12 +31,6 @@ export const sideBarData=[
         dropdown:[]
     },
     
-    {
-        icon:<GiTeacher/>,
-        list:"Session",
-        path:"/student/session",
-        dropdown:[]
-    },
     
     {
         icon:<GrNotes/>,
