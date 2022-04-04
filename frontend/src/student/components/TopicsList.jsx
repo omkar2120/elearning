@@ -66,7 +66,7 @@ function TopicsList() {
           {topics.map((top,k) => (
             <List component="nav">
               <ListItem>
-                <ListItemButton style={{backgroundColor:`${k%2==0?'#0d6efd17':''}`}}>
+                <ListItemButton style={{backgroundColor:`${k%2==0?'hsl(216 98% 39% / 0.04)':''}`}}>
                   <ListItemText primary={top.Name} />
                 </ListItemButton>
               </ListItem>

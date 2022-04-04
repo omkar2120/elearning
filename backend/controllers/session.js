@@ -5,8 +5,17 @@ const randomColor = require("randomcolor");
 //create session
 exports.createsession = async (req, res) => {
   try {
-    const { sessionname, subject, topic, subtopic, date, fromtime,totime, isCostom } =
-      req.body;
+    const {
+      sessionname,
+      subject,
+      topic,
+      subtopic,
+      date,
+      fromtime,
+      totime,
+      isCostom,
+      isDone,
+    } = req.body;
     let splitedDate = date.split("-");
     let splitedFromTime = fromtime.split(":");
     let splitedToTime = totime.split(":");
@@ -32,6 +41,7 @@ exports.createsession = async (req, res) => {
         fromdateandtime,
         todateandtime,
         teacher: req._id,
+        isDone,
       });
     else
       theSession = new Session({
@@ -41,6 +51,7 @@ exports.createsession = async (req, res) => {
         fromdateandtime,
         todateandtime,
         teacher: req._id,
+        isDone,
       });
     const newsession = await theSession.save();
     if (!newsession) return res.status(400).send("Session Not Created!");
@@ -140,7 +151,7 @@ exports.getSessionStatus = async (req, res) => {
       dataToAdd.total = total;
       dataToAdd.complete = complete;
       let percentage = Math.floor((100 * Number(complete)) / Number(total));
-      if (isNaN(percentage)) {
+      if (isNaN(percentage) || percentage == 0) {
         percentage = 1;
       }
       dataToAdd.percentage = percentage;
@@ -166,4 +177,83 @@ const text_truncate = (str, length, ending) => {
   } else {
     return str;
   }
+};
+
+exports.getUpComingSession = async (req, res) => {
+  try {
+    const { _id, course } = req;
+    let dataToSend = [];
+    const theSession = await Session.find({
+      course,
+      todateandtime: { $gte: new Date() },
+    })
+      .sort("fromdateandtime")
+      .limit(5);
+    for (let i = 0; i < theSession.length; i++) {
+      let { _id, subtopic, fromdateandtime, todateandtime, sessionname } =
+        theSession[i];
+      let dataToAdd = { _id };
+      let topic;
+      if (subtopic) topic = subtopic;
+      if (sessionname) topic = sessionname;
+      let isLive = checkIsLive(fromdateandtime, todateandtime);
+      let fromtime = dateFomate(fromdateandtime);
+      let totime = dateFomate(todateandtime);
+      dataToAdd.fromtime = fromtime;
+      dataToAdd.totime = totime;
+      dataToAdd.topic = topic;
+      dataToAdd.isLive = isLive;
+      dataToAdd.isLink = false;
+
+      dataToSend.push(dataToAdd);
+    }
+    if (!theSession) return res.status(400).send("session Not Found!");
+    return res.status(200).send(dataToSend);
+  } catch (err) {
+    console.log(err);
+    return res.status(400).send("session Not Found!");
+  }
+};
+
+const checkIsLive = (from, to) => {
+  if (from < new Date() && to > new Date()) return true;
+  return false;
+};
+const dateFomate = (date) => {
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const nth = (d) => {
+    if (d > 3 && d < 21) return d + "th";
+    switch (d % 10) {
+      case 1:
+        return d + "st";
+      case 2:
+        return d + "nd";
+      case 3:
+        return d + "rd";
+      default:
+        return d + "th";
+    }
+  };
+  const themonths = months[new Date(date).getMonth()];
+  const theDay = nth(new Date(date).getDate());
+  const time = new Date(date).toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+  const dateToReturn = { date: themonths + `  ${theDay}`, time };
+  return dateToReturn;
 };

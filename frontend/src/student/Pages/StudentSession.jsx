@@ -4,6 +4,7 @@ import { sideBarData } from "../sidebarData";
 import { useSelector} from 'react-redux';
 import TopicsList from '../components/TopicsList';
 import UpcomingSession from '../components/UpcomingSession';
+import RecentlyCompleted from '../components/RecentlyCompleted';
 function StudentSession() {
    
   return (
@@ -17,11 +18,9 @@ function StudentSession() {
           <div className="totalSessAndComSessCon" style={{backgroundColor:"",display:"grid",gridTemplateRows:"55% 1fr"}}>
             <div className="umComCon" style={{padding:"3%" ,overflow:"auto"}}>
             <UpcomingSession/>
-            <UpcomingSession/>
-            <UpcomingSession/>
-
             </div>
-            <div className="recentlyCon">
+            <div className="recentlyCon" style={{display:"flex",alignItems:"center",justifyContent:"space-around"}}>
+              <RecentlyCompleted/>
 
             </div>
             
