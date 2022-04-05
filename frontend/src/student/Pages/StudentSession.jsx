@@ -3,10 +3,9 @@ import StudentNavbar from "./StudentNavbar";
 import { sideBarData } from "../sidebarData";
 import { useSelector} from 'react-redux';
 import TopicsList from '../components/TopicsList';
-import UpcomingSession from '../components/UpcomingSession';
-import RecentlyCompleted from '../components/RecentlyCompleted';
+import UpcomingSession from '../../global/component/UpcomingSession';
+import RecentlyCompleted from '../../global/component/RecentlyCompleted';
 function StudentSession() {
-   
   return (
     <div style={{height:"100%"}}>
       <StudentNavbar list={sideBarData}/>

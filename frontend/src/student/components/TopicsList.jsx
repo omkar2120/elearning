@@ -13,7 +13,7 @@ import {
   InputLabel,
 } from "@mui/material";
 function TopicsList() {
-  const [activesem,setActiveSem]=useState(0)
+  const [activesem, setActiveSem] = useState(0);
   const adminState = useSelector((state) => state.adminReducer);
   const [topics, setTopics] = useState([]);
   const getTopics = async (sem) => {
@@ -28,9 +28,9 @@ function TopicsList() {
   };
   useEffect(async () => {
     await getTopics("SEM1");
-    setActiveSem(0)
+    setActiveSem(0);
   }, []);
-  if (adminState.isLoading) return <></>;
+  if (adminState.isLoading||!adminState.isLogedin) return <></>;
   else
     return (
       <div
@@ -52,10 +52,20 @@ function TopicsList() {
             justifyContent: "space-around",
           }}
         >
-          
-              {adminState.courses.Semesters.map((sem, k) => (
-                <div style={{cursor:"pointer",borderBottom:`${activesem==k?'2px solid blue':''}`}} onClick={()=>{setActiveSem(k);getTopics(sem)}}>{sem}</div>
-              ))}
+          {adminState.courses.Semesters.map((sem, k) => (
+            <div
+              style={{
+                cursor: "pointer",
+                borderBottom: `${activesem == k ? "2px solid blue" : ""}`,
+              }}
+              onClick={() => {
+                setActiveSem(k);
+                getTopics(sem);
+              }}
+            >
+              {sem}
+            </div>
+          ))}
           {/* <Select style={{width:"30%"}} defaultValue={adminState.courses.Semesters[0]} label={"select semester"}>
           {adminState.courses.Semesters.map((sem, k) => (
             <MenuItem value={sem}>{sem}</MenuItem>
@@ -63,10 +73,16 @@ function TopicsList() {
         </Select> */}
         </div>
         <div className="allSyllContainer" style={{ overflow: "auto" }}>
-          {topics.map((top,k) => (
+          {topics.map((top, k) => (
             <List component="nav">
               <ListItem>
-                <ListItemButton style={{backgroundColor:`${k%2==0?'hsl(216 98% 39% / 0.04)':''}`}}>
+                <ListItemButton
+                  style={{
+                    backgroundColor: `${
+                      k % 2 == 0 ? "hsl(216 98% 39% / 0.04)" : ""
+                    }`,
+                  }}
+                >
                   <ListItemText primary={top.Name} />
                 </ListItemButton>
               </ListItem>

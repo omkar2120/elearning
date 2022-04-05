@@ -188,7 +188,8 @@ exports.getUpComingSession = async (req, res) => {
       todateandtime: { $gte: new Date() },
     })
       .sort("fromdateandtime")
-      .limit(5);
+      .limit(5).populate("subject","Name");
+      console.log(theSession)
     for (let i = 0; i < theSession.length; i++) {
       let { _id, subtopic, fromdateandtime, todateandtime, sessionname } =
         theSession[i];
@@ -204,10 +205,12 @@ exports.getUpComingSession = async (req, res) => {
       dataToAdd.topic = topic;
       dataToAdd.isLive = isLive;
       dataToAdd.isLink = false;
+      dataToAdd.subject=theSession[i].subject.Name
 
       dataToSend.push(dataToAdd);
     }
     if (!theSession) return res.status(400).send("session Not Found!");
+    console.log(dataToSend)
     return res.status(200).send(dataToSend);
   } catch (err) {
     console.log(err);

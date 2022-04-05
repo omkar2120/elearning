@@ -41,6 +41,7 @@ import TeacherProfile from "./teacher/pages/TeacherProfile";
 import Profile from "./global/component/Profile";
 import CreateNotice from "./teacher/pages/CreateNotice";
 import StudentSession from "./student/Pages/StudentSession";
+import TeacherSessionList from "./teacher/pages/TeacherSessionList";
 const theme = createTheme({
   // typography:{
   //   fontFamily:'Quicksand,sans-serif',
@@ -64,6 +65,7 @@ load()
           <Route  path="/teachlogin" element={<TeachLogin/>} />
           <Route  path="/admin" element={<AdminLogin/>}/>
           <Route path="/teacher/manage/attendance" element={<ClassListAttendance/>}/>
+          <Route path="/teacher/manage/session" element={<TeacherSessionList/>}/>
           <Route path="/teacher/pages/Attendance/Attendance" element={<AttendanceCom/>}/>
           {/* <Route  path="/admin/dashboard" element={<AdimDashBoard/>}/> */}
           <Route path="/admin/dashboard" element={<AdminDashboard2/>}/>

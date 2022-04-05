@@ -5,7 +5,7 @@ const Session=mongoose.Schema({
       },
       subject:{
           type:mongoose.Types.ObjectId,
-          ref: "subjectSchema"          
+          ref: "subject"          
         },
         topic:{
           type:String,

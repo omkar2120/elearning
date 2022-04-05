@@ -65,7 +65,7 @@ export const sideBarData = [
         {
             name: "SessionList",
             icon: <FaUsers />,
-            link: "/admin/manage/session/list",
+            link: "/teacher/manage/session",
             dropdown: []
 
         }]
