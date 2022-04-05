@@ -3,8 +3,10 @@ import { AiOutlineMessage } from "react-icons/ai";
 import axios from "../../axios";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
+import LinkUploadModal from "./modal/LinkUploadModal";
 function UpcomingSession() {
   const theUserState = useSelector((state) => state.adminReducer);
+  const [linkModal,setLinkModal]=useState(false)
   const [session, setSession] = useState([]);
   useEffect(async () => {
     try {
@@ -153,8 +155,9 @@ function UpcomingSession() {
                   textAlign: "center",
                   cursor: "pointer",
                 }}
+                onClick={()=>{setLinkModal(!linkModal)}}
               >
-                Link
+                LINK
               </div>
             ) : (
               ""
@@ -162,6 +165,7 @@ function UpcomingSession() {
           </div>
         </div>
       ))}
+     {linkModal?<LinkUploadModal linkModal={linkModal} onClick={setLinkModal} />:<></>}
     </>
   );
 }
