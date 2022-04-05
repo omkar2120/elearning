@@ -54,7 +54,9 @@ exports.isTeacher = async (req, res, next) => {
     const theTeacher = await User.findById(id);
     if (!theTeacher || theTeacher.role != "teacher")
       return res.status(400).send("invalid user");
+      const {course}=theTeacher
     req._id = id;
+    req.course=course
     next();
   } catch (err) {
     console.log(err);

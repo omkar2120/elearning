@@ -3,6 +3,10 @@ const Session=mongoose.Schema({
       sessionname:{
           type:String
       },
+      course:{
+        type:mongoose.Types.ObjectId,
+        ref:"Course"
+      },
       subject:{
           type:mongoose.Types.ObjectId,
           ref: "subject"          

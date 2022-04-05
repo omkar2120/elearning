@@ -4,6 +4,7 @@ const Session = require("../models/session.schema");
 const randomColor = require("randomcolor");
 //create session
 exports.createsession = async (req, res) => {
+  const {course}=req
   try {
     const {
       sessionname,
@@ -42,6 +43,7 @@ exports.createsession = async (req, res) => {
         todateandtime,
         teacher: req._id,
         isDone,
+        course
       });
     else
       theSession = new Session({
@@ -52,7 +54,9 @@ exports.createsession = async (req, res) => {
         todateandtime,
         teacher: req._id,
         isDone,
+        course
       });
+      console.log(theSession)
     const newsession = await theSession.save();
     if (!newsession) return res.status(400).send("Session Not Created!");
     return res.status(200).send("Session  Created!");
@@ -183,13 +187,13 @@ exports.getUpComingSession = async (req, res) => {
   try {
     const { _id, course } = req;
     let dataToSend = [];
+    const theSub= await Subject.find({course})
     const theSession = await Session.find({
       course,
       todateandtime: { $gte: new Date() },
     })
       .sort("fromdateandtime")
       .limit(5).populate("subject","Name");
-      console.log(theSession)
     for (let i = 0; i < theSession.length; i++) {
       let { _id, subtopic, fromdateandtime, todateandtime, sessionname } =
         theSession[i];
@@ -210,7 +214,6 @@ exports.getUpComingSession = async (req, res) => {
       dataToSend.push(dataToAdd);
     }
     if (!theSession) return res.status(400).send("session Not Found!");
-    console.log(dataToSend)
     return res.status(200).send(dataToSend);
   } catch (err) {
     console.log(err);
