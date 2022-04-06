@@ -27,6 +27,9 @@ const User = new mongoose.Schema({
     course:{
         type:mongoose.Types.ObjectId,
         ref:"Course"
+    },
+    gender:{
+        type:String
     }
 },{timestamps:true});
 

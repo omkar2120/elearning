@@ -11,7 +11,7 @@ const {nodemaileConfig,emailTemplate}=require("../nodemailer.config")
 const nodemailer=require("nodemailer")
 exports.addProfile = async (req, res) => {
   try {
-    const { fullname, email, mobile, password, role,course } = req.body;
+    const { fullname, email, mobile, password, role,course,gender} = req.body;
     console.log(req.body);
     if (!fullname || !email || !mobile  || !role)
       return res.status(400).send("all field is required!");
@@ -19,8 +19,9 @@ exports.addProfile = async (req, res) => {
       return res.status(400).send("invalid email!");
     else if (!validator.isMobilePhone(mobile, "en-IN"))
       return res.status(400).send("invalid mobile!");
-    const user=new auth({fullname, email, mobile, password, role,course})
+    const user=new auth({fullname, email, mobile, password, role,course,gender})
     console.log(user.role)
+    console.log(user)
     if(user.role!="admin"&&user.role!="teacher"&&user.role!="student")
     return res.status(400).send("role is not valid!")
     const theUser=await user.save()
