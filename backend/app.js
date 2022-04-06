@@ -12,6 +12,7 @@ const sessionRoute=require("./routes/session");
 const subjectRoute=require("./routes/subject.route")
 const feedbackRoute=require("./routes/feedback");
 const noticeRoute=require("./routes/notice");
+const meetingRoute=require("./routes/meetingRoute")
 const theMainRoute="/ursacaps/api"
 
 require("./database/connect");
@@ -27,6 +28,7 @@ app.use(theMainRoute,sessionRoute)
 app.use(theMainRoute,subjectRoute)
 app.use(theMainRoute,feedbackRoute)
 app.use(theMainRoute,noticeRoute)
+app.use(theMainRoute,meetingRoute)
 
 app.get("/",(req,res)=>{
     res.status(200).json("hello there!");

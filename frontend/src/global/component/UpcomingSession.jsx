@@ -6,7 +6,12 @@ import { useSelector } from "react-redux";
 import LinkUploadModal from "./modal/LinkUploadModal";
 function UpcomingSession() {
   const theUserState = useSelector((state) => state.adminReducer);
-  const [linkModal,setLinkModal]=useState(false)
+  const [linkModal,setLinkModal]=useState(
+    {
+      status:false,
+      sessionId:false
+    }
+  )
   const [session, setSession] = useState([]);
   useEffect(async () => {
     try {
@@ -15,7 +20,7 @@ function UpcomingSession() {
       });
       setSession(sessionData.data);
     } catch (err) {}
-  }, []);
+  }, [linkModal]);
   return (
     <>
       {session.map((ses, k) => (
@@ -131,7 +136,7 @@ function UpcomingSession() {
                 cursor: `${ses.isLive && ses.isLink ? "pointer" : ""}`,
               }}
             >
-              {ses.isLive && ses.isLink ? "JOIN" : "SCHEDULED"}
+              {ses.isLive && ses.isLink ?<a href={ses.isLink} target="_blank" color="white" style={{textDecoration:"none",color:"white",width:"100%",height:"100%",backgroundColor:"",display:"block"}}>JOIN</a>  : "SCHEDULED"}
             </div>
           </div>
           <div
@@ -155,7 +160,7 @@ function UpcomingSession() {
                   textAlign: "center",
                   cursor: "pointer",
                 }}
-                onClick={()=>{setLinkModal(!linkModal)}}
+                onClick={()=>{setLinkModal({status:!linkModal.status,sessionId:ses._id})}}
               >
                 LINK
               </div>
@@ -165,7 +170,7 @@ function UpcomingSession() {
           </div>
         </div>
       ))}
-     {linkModal?<LinkUploadModal linkModal={linkModal} onClick={setLinkModal} />:<></>}
+     {linkModal.status?<LinkUploadModal linkModal={linkModal} onClick={setLinkModal} />:<></>}
     </>
   );
 }

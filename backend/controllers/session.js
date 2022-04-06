@@ -2,6 +2,7 @@ const Subject = require("../models/subject.schema");
 const user = require("../models/userSchema");
 const Session = require("../models/session.schema");
 const randomColor = require("randomcolor");
+const meeting=require("../models/meetingLink")
 //create session
 exports.createsession = async (req, res) => {
   const {course}=req
@@ -208,12 +209,18 @@ exports.getUpComingSession = async (req, res) => {
       dataToAdd.totime = totime;
       dataToAdd.topic = topic;
       dataToAdd.isLive = isLive;
+      const isLink=await meeting.findOne({sessionId:_id})
+      if(!isLink)
       dataToAdd.isLink = false;
+      else
+      dataToAdd.isLink = isLink.meetingUrl;
+
       dataToAdd.subject=theSession[i].subject.Name
 
       dataToSend.push(dataToAdd);
     }
     if (!theSession) return res.status(400).send("session Not Found!");
+    console.log(dataToSend)
     return res.status(200).send(dataToSend);
   } catch (err) {
     console.log(err);
