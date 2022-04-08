@@ -80,11 +80,12 @@ exports.sendOtp=async(req,res)=>{
     return res.status(400).send("Somthing went wrong!")
     const mail=nodemailer.createTransport(nodemaileConfig)
     const themail=await mail.sendMail({
-      from:"E-Learning Team:<elearning.oraganization@gmail.com>",
+      from:"E-Learning Team:<elarning.org@outlook.com>",
       to:emailOrMobile,
       subject:"SignIn",
       html:emailTemplate(otp,isUser.fullname)
     })
+    console.log(themail)
    if(!themail.messageId)
    return res.status(404).send("Something Went Wrong!")
     const authToken=await jwt.sign({userId:isUser._id,otpId:theSavedOtp._id},process.env.SECRETKEYFORTOKEN,{expiresIn:120})

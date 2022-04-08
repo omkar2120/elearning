@@ -1,6 +1,6 @@
 require("dotenv").config()
 exports.nodemaileConfig={
-    host: "smtp.gmail.com",
+    service: "hotmail",
     port: 587,
     secure: false, 
     auth: {
