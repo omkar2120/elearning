@@ -1,4 +1,5 @@
 import React from "react";
+import Girl from './Girl.png'
 import dp from "./Avtar2.jpg";
 import { AiFillEdit,AiOutlineRollback } from "react-icons/ai";
 import { Button, Grid, Typography } from "@mui/material";
@@ -47,9 +48,9 @@ function Profile() {
             }}
           >
             <img
-              src={dp}
-              height="85%"
-              width="85%"
+              src={userState.users.gender.male ? `${dp}`: `${Girl}`}
+              height="75%"
+              width="75%"
               style={{ borderRadius: "10px" }}
             />
             <div

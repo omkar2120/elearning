@@ -6,7 +6,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { NavLink, Navigate,useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import "./Sidebar.css";
-import img from "./Avtar2.jpg";
+import dp from "./Avtar2.jpg";
 import { useSelector,useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -46,7 +46,7 @@ export default function Sidebar({ sidebar, setSidebar, list }) {
       <Link to="/profile" style={{textDecoration:'none'}}>
         <div className="profileContainer" style={{marginTop:"4%"}}>
           <div className="dp">
-            <img src={img} />
+            <img src={dp}/>
           </div>
           <div className="dpDetails">
             <div className="dpDetailsName" style={{marginTop:"5%"}}>
